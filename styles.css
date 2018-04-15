@@ -1,45 +1,5 @@
 @charset "utf-8";
+/* CSS Document */
 body {
-	background-color: #00b8e6;
-	background-size: cover;
-	font-family: actor;
-	font-style: normal;
-	font-weight: 400;
-	float: left;
-}
-.button {
-	background-color: #4CAF50; /* Green */
-	border: none;
-	color: white;
-	padding: 15px 32px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
-	margin-top: 15px;
-	margin-left: 600px;
-}
-ul {
-	list-style-type: none;
-	padding: 0;
-	overflow: hidden;
-	background-color: #333;
-	float: left;
-	clear: left;
-}
-
-li {
-    float: left;
-}
-
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-li a:hover {
-    background-color: #111;
+    background-color: lightblue;
 }
