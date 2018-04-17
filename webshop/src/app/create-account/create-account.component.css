@@ -91,9 +91,6 @@
 }
 body {
   background: #670000; 
-  background: -webkit-linear-gradient(right, #00b8e6, #00b8e6);
-  background: -moz-linear-gradient(right, #00b8e6, #00b8e6);
-  background: linear-gradient(to left, #00b8e6, #00b8e6);
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
