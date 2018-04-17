@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth  } from 'angularfire2/auth';
+import { Observable } from 'rxjs/Observable';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-create-account',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateAccountComponent implements OnInit {
 
-  constructor() { }
+  user = {
+    email: '',
+    password: ''
+  };
+
+  constructor(authService: AuthService) {
+  }
 
   ngOnInit() {
+  }
+
+  createAccount() {
+
   }
 
 }
