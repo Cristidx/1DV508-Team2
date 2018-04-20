@@ -13,7 +13,11 @@ export class AuthService {
   /* Subscribes to the authentication state to listen for any changes */
   constructor(private afAuth: AngularFireAuth) {
     afAuth.authState.subscribe((user) => {
-      console.log(user);
+      if (user != null) {
+        console.log(user.email);
+      } else {
+        console.log(user);
+      }
     });
   }
 
