@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
-import { User } from 'firebase';
 
 @Component({
   selector: 'app-login',
@@ -9,27 +8,22 @@ import { User } from 'firebase';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  private authService: AuthService;
-  private signedInUser: Promise<User>;
-
   user = {
     email: '',
     password: ''
   };
 
-  constructor(authService: AuthService, private router: Router) {
-    this.authService = authService;
+  constructor(private authService: AuthService, private router: Router) {
+
   }
 
   ngOnInit() {
 
   }
 
-  login() {
+  private signIn(): void {
     this.authService.signInWithRegularEmail(this.user.email, this.user.password)
-    .then((user) => (this.router.navigate(['']))
+    .then((user) => this.router.navigate([''])
     .catch((error) => console.log(error)));
   }
-
 }

@@ -6,10 +6,35 @@ import * as firebase from 'firebase/app';
 
 @Injectable()
 export class AuthService {
-  constructor(private _firebaseAuth: AngularFireAuth) {
+  get User() {
+    return this.afAuth.auth.currentUser;
   }
 
-  signInWithRegularEmail(email: string, password: string) {
-    return this._firebaseAuth.auth.signInWithEmailAndPassword(email, password);
+  /* Subscribes to the authentication state to listen for any changes */
+  constructor(private afAuth: AngularFireAuth) {
+    afAuth.authState.subscribe((user) => {
+      console.log(user);
+    });
+  }
+
+  signInWithRegularEmail(email: string, password: string): Promise<any> {
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password);
+  }
+
+  isSignedIn() {
+    if (this.User) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  signOut() {
+    if (this.isSignedIn()) {
+      this.afAuth.auth.signOut()
+      .catch((error) => console.log(error));
+    } else {
+      console.log('No user is logged in');
+    }
   }
 }
