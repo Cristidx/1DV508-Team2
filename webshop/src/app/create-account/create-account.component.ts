@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth  } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-account',
@@ -9,20 +10,21 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./create-account.component.css']
 })
 export class CreateAccountComponent implements OnInit {
-
   user = {
     email: '',
     password: ''
   };
 
-  constructor(authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
   }
 
   ngOnInit() {
-  }
-
-  createAccount() {
 
   }
 
+  private createAccount() {
+   this.authService.createAccountWithRegularEmail(this.user.email, this.user.password)
+   .then((user) => this.router.navigate(['']))
+   .catch((error) => console.log(error));
+  }
 }

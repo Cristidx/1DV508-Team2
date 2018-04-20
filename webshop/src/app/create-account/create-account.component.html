@@ -15,9 +15,9 @@
         <p class="message">Already registered? <a href="#">Sign In</a></p>
       </form>
       <form name="userform" method="POST" #formCtrl="ngForm" class="login-form">
-        <input [(ngModel)]="user.email" type="text" placeholder="email" required/>
-        <input [(ngModel)]="user.password" type="password" placeholder="password" required/>
-        <button>Create account</button>
+        <input name="email-input" [(ngModel)]="user.email" type="text" placeholder="email" required/>
+        <input name="password-input" [(ngModel)]="user.password" type="password" placeholder="password" required/>
+        <button (click)="createAccount()">Create account</button>
       </form>
     </div>
   </div>

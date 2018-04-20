@@ -17,8 +17,12 @@ export class AuthService {
     });
   }
 
-  signInWithRegularEmail(email: string, password: string): Promise<any> {
+  signInWithRegularEmail(email: string, password: string) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password);
+  }
+
+  createAccountWithRegularEmail(email: string, password: string) {
+    return this.afAuth.auth.createUserWithEmailAndPassword(email, password);
   }
 
   isSignedIn() {
