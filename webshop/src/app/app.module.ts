@@ -14,6 +14,11 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { FormsModule } from '@angular/forms';
 import { environment } from '../environments/environment';
+import { AdminLogInComponent } from './admin-log-in/admin-log-in.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatButtonModule} from '@angular/material/button';
 
 
 @NgModule({
@@ -21,15 +26,20 @@ import { environment } from '../environments/environment';
     AppComponent,
     LoginComponent,
     CreateAccountComponent,
-    HeaderComponent
+    HeaderComponent,
+    AdminLogInComponent
   ],
   imports: [
+    MatMenuModule,
+    MatButtonModule,
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    MatSidenavModule,
+    BrowserAnimationsModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
