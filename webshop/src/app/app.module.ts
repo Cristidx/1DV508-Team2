@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { MatModule } from './mat.module';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -15,11 +15,6 @@ import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { FormsModule } from '@angular/forms';
 import { environment } from '../environments/environment';
 import { AdminLogInComponent } from './admin-log-in/admin-log-in.component';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatButtonModule} from '@angular/material/button';
-
 
 @NgModule({
   declarations: [
@@ -30,16 +25,13 @@ import {MatButtonModule} from '@angular/material/button';
     AdminLogInComponent
   ],
   imports: [
-    MatMenuModule,
-    MatButtonModule,
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    MatSidenavModule,
-    BrowserAnimationsModule
+    MatModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

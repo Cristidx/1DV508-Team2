@@ -6,13 +6,19 @@ import * as firebase from 'firebase/app';
 
 @Injectable()
 export class AuthService {
+  private user: firebase.User;
   get User() {
-    return this.afAuth.auth.currentUser;
+    return this.user;
   }
 
-  /* Subscribes to the authentication state to listen for any changes */
   constructor(private afAuth: AngularFireAuth) {
-    afAuth.authState.subscribe((user) => {
+    this.subscribeToAuthState();
+  }
+
+  /* Subscribes to Observable<User> state to listen for any changes */
+  subscribeToAuthState() {
+    this.afAuth.authState.subscribe((user) => {
+      this.user = user;
       if (user != null) {
         console.log(user.email);
       } else {
