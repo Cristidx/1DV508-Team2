@@ -114,3 +114,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
 }
+*{
+    font-size: large;
+    font-weight: bold;
+}

@@ -40,6 +40,16 @@
             </div>
             <button type="submit" class="btn btn-default">Search</button>
           </form>
+          <div>
+
+              <form class="navbar-form navbar-left" role="Add Product">
+                  
+    
+              <button mat-button type="submit" class="btn1" routerLink="/app-add-product">Add Product</button>
+              </form>
+
+          </div>
+     
           <ul class="nav navbar-nav navbar-right">
             <li>
               <a *ngIf="authService.User == null; else showLogout" routerLink="/login">Sign in/Create account</a>
