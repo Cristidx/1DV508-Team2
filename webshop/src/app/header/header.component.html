@@ -10,12 +10,12 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-
+  
   <body>
-  <mat-toolbar color = "primary">  
+  <mat-toolbar color = "primary" >
       <mat-toolbar-row>
         <!-- <span>Menu 1</span> -->
-        <button mat-icon-button [matMenuTriggerFor]="menu">Categories</button>
+        <button class="navBar" mat-raised-button [matMenuTriggerFor]="menu">Categories </button>
         <mat-menu #menu="matMenu">
           <button mat-menu-item>Action</button>
           <button mat-menu-item>Thriller</button>
@@ -23,7 +23,7 @@
         </mat-menu>
       </mat-toolbar-row>
     </mat-toolbar>
-  </body>
+  </body> 
   <!-- <body style="padding-top: 70px">
     <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
