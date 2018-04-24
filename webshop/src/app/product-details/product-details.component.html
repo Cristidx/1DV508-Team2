@@ -1,0 +1,14 @@
+<h2 class="movieName">{{movie.name|uppercase}}</h2>
+<div class="detail">{{movie.genre}}</div>
+<div class="detail2">{{movie.price}} </div>
+<div class="detail3">{{movie.price2}} </div>
+<div class="detail4">{{movie.year}} </div>
+<div class="detail5">{{movie.year2}}</div>
+<div class="detail6">{{movie.details}}</div>
+<ul class="detail7">
+  <li *ngFor="let i of items" class="detail8">
+    <a href="https://www.google.co.uk/{{i}}">{{i}}</a>
+  </li>
+</ul>
+<img class="movieImage" src="https://i.pinimg.com/originals/65/68/58/656858f9faa6cac13c4f1c14661ce1a9.jpg" height="500" width="350">
+<button class="detail9" mat-raised-button>Add to Cart</button>
