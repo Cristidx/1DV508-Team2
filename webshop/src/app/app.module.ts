@@ -15,6 +15,7 @@ import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { FormsModule } from '@angular/forms';
 import { environment } from '../environments/environment';
 import { AdminLogInComponent } from './admin-log-in/admin-log-in.component';
+import { AddProductComponent } from './add-product/add-product.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AdminLogInComponent } from './admin-log-in/admin-log-in.component';
     LoginComponent,
     CreateAccountComponent,
     HeaderComponent,
-    AdminLogInComponent
+    AdminLogInComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,
