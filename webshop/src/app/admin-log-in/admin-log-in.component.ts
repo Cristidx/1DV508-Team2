@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-log-in',
@@ -6,10 +8,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-log-in.component.css']
 })
 export class AdminLogInComponent implements OnInit {
-
-  constructor() { }
+  user = {
+    email: '',
+    password: ''
+  };
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
 
+  private signIn(): void {
+    if (this.authService.verifyAdminEmail(this.user.email)) {
+      this.authService.signInWithRegularEmail(this.user.email, this.user.password)
+      .then((user) => this.router.navigate([''])
+      .catch((error) => console.log(error)));
+    } else {
+      console.log('User is not an administrator');
+    }
+  }
 }

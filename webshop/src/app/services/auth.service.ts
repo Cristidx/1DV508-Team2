@@ -1,28 +1,36 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
+import { User } from '../model/user';
 
 @Injectable()
 export class AuthService {
-  private user: firebase.User;
-  get User() {
-    return this.user;
-  }
+  private user: User;
+  private adminEmails: any[];
 
-  constructor(private afAuth: AngularFireAuth) {
+  constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase) {
+    this.user = new User();
     this.subscribeToAuthState();
+    this.subscribeToAdminEmails();
   }
 
   /* Subscribes to Observable<User> state to listen for any changes */
   subscribeToAuthState() {
     this.afAuth.authState.subscribe((user) => {
-      this.user = user;
-      if (user != null) {
-        console.log(user.email);
+      this.user.FirebaseUser = user;
+    });
+  }
+
+  subscribeToAdminEmails() {
+    const dbRef = this.db.database.ref('AdminUsers/UIDS');
+    this.db.list(dbRef).valueChanges().subscribe((adminEmails) => {
+      if (adminEmails != null) {
+        this.adminEmails = adminEmails;
       } else {
-        console.log(user);
+        console.log('Reference error');
       }
     });
   }
@@ -35,8 +43,22 @@ export class AuthService {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password);
   }
 
+  verifyAdminEmail(email: string): boolean {
+    let isAdmin = false;
+    for (let i = 0; i < this.adminEmails.length; i++) {
+      console.log(this.adminEmails[i]);
+      if (this.adminEmails[i] === email) {
+        this.user.Admin = true;
+        isAdmin = true;
+        console.log(email + ' is admin: ' + this.user.Admin);
+      }
+    }
+
+    return isAdmin;
+  }
+
   isSignedIn() {
-    if (this.User) {
+    if (this.user.FirebaseUser) {
       return true;
     } else {
       return false;
@@ -45,6 +67,7 @@ export class AuthService {
 
   signOut() {
     if (this.isSignedIn()) {
+      this.user.Admin = false;
       this.afAuth.auth.signOut()
       .catch((error) => console.log(error));
     } else {

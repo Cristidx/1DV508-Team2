@@ -42,7 +42,10 @@
           </form>
           <ul class="nav navbar-nav navbar-right">
             <li>
-              <a *ngIf="authService.User == null; else showLogout" routerLink="/login">Sign in/Create account</a>
+                <a *ngIf="authService.user.Admin == true;">Signed in as admin</a>
+            </li>
+            <li>
+              <a *ngIf="authService.user.FirebaseUser == null; else showLogout" routerLink="/login">Sign in/Create account</a>
               <ng-template #showLogout>
                 <a href="#" (click)="signOut()">Sign Out</a>
               </ng-template> 
