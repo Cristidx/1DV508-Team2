@@ -41,7 +41,7 @@
                       <button mat-menu-item>Help</button>
                     </mat-menu>
                   </form>
-              <form class="navbar-form navbar-left" role="Add Product">
+              <form *ngIf="authService.user.Admin == true;" class="navbar-form navbar-left" role="Add Product">
               <button mat-button type="submit" class="btn1" routerLink="/app-add-product">Add Product</button>
               </form>
           </div>

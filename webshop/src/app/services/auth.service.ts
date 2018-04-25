@@ -46,11 +46,9 @@ export class AuthService {
   verifyAdminEmail(email: string): boolean {
     let isAdmin = false;
     for (let i = 0; i < this.adminEmails.length; i++) {
-      console.log(this.adminEmails[i]);
       if (this.adminEmails[i] === email) {
         this.user.Admin = true;
         isAdmin = true;
-        console.log(email + ' is admin: ' + this.user.Admin);
       }
     }
 

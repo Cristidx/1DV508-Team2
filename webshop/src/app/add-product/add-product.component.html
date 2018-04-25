@@ -1,4 +1,4 @@
-<div class="form">
+<div *ngIf="authService.user.Admin == true;" class="form">
 <div>
    <mat-form-field>
     <input matInput placeholder="Title">
