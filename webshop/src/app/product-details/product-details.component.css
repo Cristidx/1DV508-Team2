@@ -1,108 +1,50 @@
 
-.movieImage{
-  position: absolute;
-  top: 70px;
-  left: 70px;
-  border-radius: 8px;
+.MainBox {
+  background: #e0e0eb;
+  padding: 10px; 
+  width: 600px;
+  height: 400px; 
+  margin: 5% 25%;
 }
-
-.movieName {
-  font-family: "Century Gothic", CenturyGothic, Geneva, sans-serif;
-  font-size: 30px;
-  position: absolute;
-  left: 500px;
-  top: 60px;
+textarea {
+  background: #e0e0eb;
+  border-color: #e0e0eb;
+  color: black;
 }
-.detail{
-  font-family: "Century Gothic", CenturyGothic, Geneva, sans-serif;
-  font-size: 20px;
+.price {
+  background:#009900;
   color: white;
-  position: absolute;
-  left: 500px;
-  top: 125px;
-  padding: 1px;
-  border: 1px solid #002440;
-  border-radius: 5px;
-  width: 480px;
-  background:#002440 ;
+  padding: 0px; 
+  width: 100px;
+  height: 30px; 
+  text-align: center;
+  margin: -3% 69%;
 }
-.detail2{
-  font-family: "Century Gothic", CenturyGothic, Geneva, sans-serif;
-  font-size: 20px;
-  position: absolute;
-  left: 500px;
-  top: 186px;
-  padding: 5px;
-  border: 1px solid #002440;
-  border-radius: 5px;
-  width: 473px;
-  background:#002440 ;
+.buy {
+  background:#3e423e;
   color: white;
+  padding: 0px; 
+  width: 100px;
+  height: 30px; 
+  text-align: center;
+  margin: 3% 69%;
+}
+div {
+  margin-bottom: 10px;
+}
 
+div h2 {
+  display: block;
 }
-.detail3{
-  font-size: 20px;
-  color: red;
-  position: absolute;
-  left: 500px;
-  top: 225px;
-  padding: 2px;
-  border-radius: 5px;
-  width: 480px;
-  background: white;
-  border: 1px solid #ffffff;
+h2{
+  margin-top:10px;
+  margin-bottom:10px;
+  font-weight: bold;
 }
-.detail4{
-  font-family: "Century Gothic", CenturyGothic, Geneva, sans-serif;
-  font-size: 20px;
-  position: absolute;
-  left: 500px;
-  top: 253px;
-  padding: 5px;
-  border-radius: 5px;
-  width: 477px;
-  background:#002440 ;
-  color: white;
-
+.genre {
+  font-style: italic;
 }
-.detail5{
-  font-size: 20px;
-  position: absolute;
-  left: 500px;
-  top: 290px;
-  padding: 2px;
-  color: green;
-  border-radius: 5px;
-  width: 480px;
-  background: white;
-  border: 1px solid #ffffff;
-}
-.detail6{
-  position: absolute; left: 500px;
-  top: 330px;
-  height:200px;width:480px;overflow:auto; border:0px solid #ffff; border-radius: 8px;
-  background-color:#ffff;color:black;
-  scrollbar-base-color:gold;font-family:'Times New Roman';padding:3px; font-size: 12px;
-}
-.detail7{
-  position: absolute;
-  left: 500px;
-  top: 157px;
-  float: left;
-  clear: left;
-  list-style-type: none;
-  text-decoration: none;
-  border: 1px solid #ffffff;
-  border-radius: 5px;
-  width: 442px;
-  background: white;
-
-}
-.detail8{
-  float: left;
-  padding: 5px;
-}
-.detail9{
-  position: absolute;
-  top: 540px; left: 870px;
+img {
+  width: 200px;
+  margin: -50% 60% 0%;
 }
