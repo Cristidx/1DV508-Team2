@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { environment } from '../environments/environment';
 import { AdminLogInComponent } from './admin-log-in/admin-log-in.component';
 import { AddProductComponent } from './add-product/add-product.component';
+import { ProductDesignComponent } from './product-design/product-design.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AddProductComponent } from './add-product/add-product.component';
     CreateAccountComponent,
     HeaderComponent,
     AdminLogInComponent,
-    AddProductComponent
+    AddProductComponent,
+    ProductDesignComponent
   ],
   imports: [
     BrowserModule,

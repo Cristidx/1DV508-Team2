@@ -2,3 +2,7 @@
     background-color: rgb(72, 185, 72);
     
 }
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
