@@ -19,6 +19,11 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { ProductDesignComponent } from './product-design/product-design.component';
 import { CrudService } from './services/crud.service';
 
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import {HttpClientModule, HttpClient} from '@angular/common/http';
+import { DataCloudComponent } from './components/data-cloud/data-cloud.component';
+import { DataCloudService } from './services/data-cloud.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,18 +32,21 @@ import { CrudService } from './services/crud.service';
     HeaderComponent,
     AdminLogInComponent,
     AddProductComponent,
-    ProductDesignComponent
+    ProductDesignComponent,
+    DataCloudComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
+    AngularFireModule.initializeApp(environment.firebase, 'angularfs'),
+    AngularFirestoreModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     MatModule
   ],
-  providers: [AuthService, CrudService],
+  providers: [AuthService, CrudService, DataCloudService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
