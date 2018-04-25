@@ -5,9 +5,15 @@
    </mat-form-field>
 </div>
 <div class="Genre">
-    <mat-form-field>
-      <input matInput placeholder="Genre">
-    </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Genre">
+      <mat-option>Horror</mat-option>
+      <mat-option>Action</mat-option>
+      <mat-option>Comedy</mat-option>
+      <mat-option>Romance</mat-option>
+      <mat-option *ngFor="let state of states" [value]="Genre">{{Genre}}</mat-option>
+    </mat-select>
+  </mat-form-field>
 </div>
   <div class="Year">
     <mat-form-field>
