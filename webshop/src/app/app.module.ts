@@ -19,6 +19,7 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { ProductDesignComponent } from './product-design/product-design.component';
 import { AddCategoryComponent } from './add-category/add-category.component';
 
+ //test
 @NgModule({
   declarations: [
     AppComponent,
