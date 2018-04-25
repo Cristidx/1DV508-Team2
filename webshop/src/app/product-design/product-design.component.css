@@ -1,0 +1,51 @@
+
+.MainBox {
+    background: #e0e0eb;
+    padding: 10px; 
+    width: 600px;
+    height: 400px; 
+    margin: 5% 25%;
+  }
+  textarea {
+    background: #e0e0eb;
+    border-color: #e0e0eb;
+    color: black;
+  }
+  .price {
+    background:#009900;
+    color: white;
+    padding: 0px; 
+    width: 100px;
+    height: 30px; 
+    text-align: center;
+    margin: -3% 69%;
+  }
+  .buy {
+    background:#3e423e;
+    color: white;
+    padding: 0px; 
+    width: 100px;
+    height: 30px; 
+    text-align: center;
+    margin: 3% 69%;
+  }
+  div {
+    margin-bottom: 10px;
+  }
+  
+  div h2 {
+    display: block;
+  }
+  h2{
+    margin-top:10px;
+    margin-bottom:10px;
+    font-weight: bold;
+  }
+
+  .genre {
+    font-style: italic;
+  }
+  img {
+    width: 200px;
+    margin: -50% 60% 0%;
+  }
