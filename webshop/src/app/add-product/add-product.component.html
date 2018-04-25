@@ -1,12 +1,12 @@
 <div *ngIf="authService.user.Admin == true;" class="form">
 <div>
    <mat-form-field>
-    <input matInput placeholder="Title">
+    <input [(ngModel)]="movie.title" matInput placeholder="Title">
    </mat-form-field>
 </div>
 <div class="Genre">
   <mat-form-field>
-    <mat-select placeholder="Genre">
+    <mat-select id="genre" placeholder="Genre">
       <mat-option>Horror</mat-option>
       <mat-option>Action</mat-option>
       <mat-option>Comedy</mat-option>
@@ -17,26 +17,26 @@
 </div>
   <div class="Year">
     <mat-form-field>
-      <input matInput placeholder="Year">
+      <input [(ngModel)]="movie.year" matInput placeholder="Year">
     </mat-form-field>
 
   </div>
     <div class="Price">
     <mat-form-field>
-      <input matInput placeholder="Price" type="number" class="example-right-align">
+      <input [(ngModel)]="movie.price" matInput placeholder="Price" type="number" class="example-right-align">
     </mat-form-field>
   </div>
   <div>
       <mat-form-field>
-        <input matInput placeholder="Image Url">
+        <input [(ngModel)]="movie.imgUrl" matInput placeholder="Image Url">
       </mat-form-field>
   </div>
   <div><mat-form-field>
-    <textarea matInput placeholder="Plot"></textarea>
+    <textarea [(ngModel)]="movie.plot" matInput placeholder="Plot"></textarea>
   </mat-form-field>
   </div>
   <div >
-  <button class="button" >Add Product</button>
+  <button (click)="onSubmit()" class="button" >Add Product</button>
 </div>
 </div>
 

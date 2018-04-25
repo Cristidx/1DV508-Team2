@@ -13,7 +13,6 @@ const routes: Routes = [
   { path: 'adminLogin', component: AdminLogInComponent},
   { path: 'app-add-product', component: AddProductComponent},
   { path: 'product-details', component: ProductDesignComponent},
-  
 ];
 
 @NgModule({

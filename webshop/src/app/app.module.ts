@@ -17,6 +17,7 @@ import { environment } from '../environments/environment';
 import { AdminLogInComponent } from './admin-log-in/admin-log-in.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { ProductDesignComponent } from './product-design/product-design.component';
+import { CrudService } from './services/crud.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { ProductDesignComponent } from './product-design/product-design.componen
     AngularFireAuthModule,
     MatModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, CrudService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
