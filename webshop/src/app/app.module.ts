@@ -18,6 +18,7 @@ import { AdminLogInComponent } from './admin-log-in/admin-log-in.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { ProductDesignComponent } from './product-design/product-design.component';
 
+ //test
 @NgModule({
   declarations: [
     AppComponent,
