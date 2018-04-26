@@ -19,9 +19,9 @@
                 <mat-menu #menu="matMenu">
                   <button mat-menu-item *ngFor ="let item of categories" value={{item.genre}}>{{item.genre}}</button>
 
-                  <button routerLink="/add-category" mat-menu-item>+Add Category</button>
+                  <button *ngIf="authService.user.Admin == true;" routerLink="/add-category" mat-menu-item>+Add Category</button>
                 </mat-menu>
-                <h2>Admin Mode</h2> 
+                <h2 *ngIf="authService.user.Admin == true;">Admin Mode</h2> 
                 <div>
                     <form *ngIf="authService.user.Admin == true;" class="navbar-form navbar-left" role="Add Product">
                    <button mat-button type="submit" class="btn1" routerLink="/app-add-product">Add Product</button>
