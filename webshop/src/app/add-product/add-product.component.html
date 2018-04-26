@@ -8,9 +8,9 @@
 
 <div class="Genre">
   <mat-form-field>
-    <mat-select placeholder="Genre"   >
+    <mat-select placeholder="Genre"  [(value)]="selected" [(ngModel)] = "movies.genre" name="genre">
        
-        <mat-option *ngFor ="let item of categories" value={{item.genre}}>{{item.genre}}</mat-option>
+        <mat-option  >qwert</mat-option>
         
     </mat-select>
   </mat-form-field>

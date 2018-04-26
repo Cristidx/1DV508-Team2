@@ -15,6 +15,7 @@ import {categoriesData} from '../model/data';
 export class AddProductComponent implements OnInit {
   
   categories: categoriesData[];
+  
   movies: movieData = {
     title:'',
     genre:'',
