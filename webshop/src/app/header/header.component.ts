@@ -18,7 +18,6 @@ export class HeaderComponent implements OnInit {
       this.categories = Catdata;
     });
   }
-
   private signOut() {
     this.authService.signOut();
   }
