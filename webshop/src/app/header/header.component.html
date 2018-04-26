@@ -17,13 +17,15 @@
                 <h1>BluRay Shop</h1> 
                 <button class="dropdown" mat-button [matMenuTriggerFor]="menu">Categories</button>
                 <mat-menu #menu="matMenu">
-                  <button mat-menu-item>Category 1</button>
+                  <button mat-menu-item *ngFor ="let item of categories" value={{item.genre}}>{{item.genre}}</button>
+                  
                   <button routerLink="/add-category" mat-menu-item>+Add Category</button>
                 </mat-menu>
               
+                
                 <div>
-                    <form class="navbar-form navbar-left" role="Add Product">
-                    <button mat-button type="submit" class="btn1" routerLink="/app-add-product">Add Product</button>
+                    <form *ngIf="authService.user.Admin == true;" class="navbar-form navbar-left" role="Add Product">
+                   <button mat-button type="submit" class="btn1" routerLink="/app-add-product">Add Product</button>
                     </form>
                 </div>
               </mat-toolbar-row>

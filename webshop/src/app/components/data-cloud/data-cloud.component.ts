@@ -15,7 +15,7 @@ export class DataCloudComponent implements OnInit {
 
 movies: movieData[];
 categories: categoriesData[];
-
+aVar:String;
 movie = {
     
     id:'no id',
@@ -45,12 +45,12 @@ movie = {
 
  }
 
- public accesProduct() {
+ accesProduct(movieID:string) {
    for(let item of this.movies){
     this.movie.title = item.title;
     this.movie.id = item.id;
-    console.log('heeee');
+    console.log(movieID);
    }
   }
 }
-export var var1 = this.movies;
+export var var1 = this.movie;

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataCloudService } from '../services/data-cloud.service';
+import {categoriesData} from '../model/data';
 
 @Component({
   selector: 'app-add-category',
@@ -6,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-category.component.css']
 })
 export class AddCategoryComponent implements OnInit {
-
-  constructor() { }
+  categories: categoriesData = {
+    genre:''
+  }
+  constructor(private dataService: DataCloudService) { }
 
   ngOnInit() {
   }
 
+  onSubmit(){
+    if(this.categories.genre != ''){
+      this.dataService.addCategory(this.categories);
+      this.categories.genre = '';
+      
+    }
+  }
 }

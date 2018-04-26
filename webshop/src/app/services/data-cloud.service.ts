@@ -16,9 +16,7 @@ export class DataCloudService {
   constructor(public afs: AngularFirestore) {
 
     //this.movieData = this.afs.collection('Movies').valueChanges();
-    
     this.movieCollection = this.afs.collection('Movies');
-
     this.movieData = this.afs.collection('Movies').snapshotChanges().map(changes => {
       return changes.map(a => {
         const data=a.payload.doc.data() as movieData;
@@ -28,7 +26,15 @@ export class DataCloudService {
     });
 
 
-    this.categoriesData = this.afs.collection('Categories').valueChanges();
+    //this.categoriesData = this.afs.collection('Categories').valueChanges();
+    this.categoriesCollection = this.afs.collection('Categories');
+    this.categoriesData = this.afs.collection('Categories').snapshotChanges().map(changes => {
+      return changes.map(a => {
+        const data=a.payload.doc.data() as categoriesData;
+        data.id = a.payload.doc.id;
+        return data;
+      });
+    });
    }
 
   
@@ -41,6 +47,9 @@ export class DataCloudService {
   addProduct(movieData: movieData){
     this.movieCollection.add(movieData);
   }
+  addCategory(categoriesData: categoriesData){
+    this. categoriesCollection.add(categoriesData);
 
+  }
 }
 

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { DataCloudService } from '../services/data-cloud.service';
+import {categoriesData} from '../model/data';
 import {AddCategoryComponent} from '../add-category/add-category.component'
 
 @Component({
@@ -8,14 +10,17 @@ import {AddCategoryComponent} from '../add-category/add-category.component'
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor(private authService: AuthService) { }
+  categories: categoriesData[];
+  constructor(private dataService: DataCloudService,private authService: AuthService) { }
 
   ngOnInit() {
+    this.dataService.getCategories().subscribe(Catdata => {
+      console.log(Catdata);
+      this.categories = Catdata;
+    });
   }
 
   private signOut() {
     this.authService.signOut();
   }
 }
-

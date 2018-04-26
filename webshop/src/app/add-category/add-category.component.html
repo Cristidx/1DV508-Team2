@@ -1,11 +1,11 @@
 <div class="form">
   <div>
      <mat-form-field>
-      <input matInput placeholder="Category">
+      <input matInput placeholder="Category" [(ngModel)] = "categories.genre" name="genre">
      </mat-form-field>
   </div>
     <div >
-    <button class="button" >Add Category</button>
+    <button (click)="onSubmit()"  class="button" >Add Category</button>
   </div>
   </div>
   
