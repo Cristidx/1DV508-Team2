@@ -18,7 +18,7 @@ import { AdminLogInComponent } from './admin-log-in/admin-log-in.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { ProductDesignComponent } from './product-design/product-design.component';
 import { CrudService } from './services/crud.service';
-
+import {AddCategoryComponent} from './add-category/add-category.component';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import {HttpClientModule, HttpClient} from '@angular/common/http';
 import { DataCloudComponent } from './components/data-cloud/data-cloud.component';
@@ -33,7 +33,8 @@ import { DataCloudService } from './services/data-cloud.service';
     AdminLogInComponent,
     AddProductComponent,
     ProductDesignComponent,
-    DataCloudComponent
+    DataCloudComponent,
+    AddCategoryComponent
   ],
   imports: [
     BrowserModule,
