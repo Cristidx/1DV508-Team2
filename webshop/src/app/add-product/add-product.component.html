@@ -10,7 +10,7 @@
   <mat-form-field>
     <mat-select placeholder="Genre"  [(value)]="selected" [(ngModel)] = "movies.genre" name="genre">
        
-        <mat-option  >qwert</mat-option>
+        <mat-option *ngFor ="let item of categories" value={{item.genre}}>{{item.genre}}</mat-option>
         
     </mat-select>
   </mat-form-field>
