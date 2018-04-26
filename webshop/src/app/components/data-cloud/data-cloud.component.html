@@ -1,3 +1,29 @@
-<p>
-  data-cloud works!
-</p>
+<h1>Movies</h1>
+
+
+<div  class="nav3" *ngIf="movies?.length > 0; else noItems">
+  <ul *ngFor ="let item of movies" >
+    
+
+    <a href="#" (click)="accesProduct()" routerLink="/product-details">
+      <img src="{{item.imageURL}}" height="213" width="153">
+      </a>
+  </ul>
+</div>
+
+<h1>blabla {{movie.title}} - {{movie.id}}</h1>
+  
+
+<ul *ngFor ="let item of categories" >
+   
+      <h1>{{item.genre}}</h1>
+      
+  </ul>
+
+<ng-template #noItems>
+  <hr>
+  <h5>No items here!</h5>
+
+</ng-template>
+
+

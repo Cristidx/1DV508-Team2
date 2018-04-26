@@ -1,6 +1,7 @@
 
    export interface categoriesData {
     id?:string;
+    genre?:string;
   }
 
   export interface movieData {
@@ -8,7 +9,7 @@
     title?:string;
     genre?:string;
     imageURL?:string;
-    price?:number;
-    year?:number;
+    price?:string;
+    year?:string;
     plot?:string;
   }

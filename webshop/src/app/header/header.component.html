@@ -28,6 +28,14 @@
               </ul>
             </li>
           </ul>
+
+          <div class="collapse navbar-collapse" >
+              
+              <div id="list1" class="dropdown-content">
+                <a href="#" *ngFor ="let item of categories">{{item.genre}} </a>
+              </div>
+            </div> 
+            
           <!-- <form class="navbar-form navbar-left" role="search">
             <div class="form-group">  
               <input type="text" class="form-control" placeholder="Search">

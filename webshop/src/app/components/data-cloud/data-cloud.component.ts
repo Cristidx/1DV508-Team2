@@ -3,6 +3,7 @@ import { DataCloudService } from '../../services/data-cloud.service';
 import { CrudService } from '../../services/crud.service';
 import {movieData} from '../../model/data';
 import {categoriesData} from '../../model/data';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-data-cloud',
@@ -15,18 +16,41 @@ export class DataCloudComponent implements OnInit {
 movies: movieData[];
 categories: categoriesData[];
 
+movie = {
+    
+    id:'no id',
+    title:'123',
+    genre:'',
+    imageURL:'',
+    price:'',
+    year:'',
+    plot:''
+}
+
   constructor(public dataService: DataCloudService) {  }
 
   ngOnInit() {
-    this.dataService.getMovie().subscribe(someMoviedata => {
-      console.log(someMoviedata);
-      this.movies = someMoviedata;
+    this.dataService.getMovie().subscribe(Moviedata => {
+      console.log(Moviedata);
+      this.movies = Moviedata;
+      
     });
 
-    this.dataService.getCategories().subscribe(someCatdata => {
-      console.log(someCatdata);
-      this.categories = someCatdata;
+    this.dataService.getCategories().subscribe(Catdata => {
+      console.log(Catdata);
+      this.categories = Catdata;
+
+      
     });
 
  }
+
+ public accesProduct() {
+   for(let item of this.movies){
+    this.movie.title = item.title;
+    this.movie.id = item.id;
+    console.log('heeee');
+   }
+  }
 }
+export var var1 = this.movies;
