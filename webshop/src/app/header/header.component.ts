@@ -15,7 +15,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.dataService.getCategories().subscribe(Catdata => {
-      console.log(Catdata);
       this.categories = Catdata;
     });
   }

@@ -6,20 +6,18 @@
     
       
      
-    <a href="#" (click)="accesProduct()" routerLink="/product-details">
+    <a href="#" (click)="accesProduct($event, item)" routerLink="/product-details">
       <img src="{{item.imageURL}}" height="213" width="153">
       </a>
   </ul>
 </div>
 
-<h1>{{movie.title}} - {{movie.id}}</h1>
-  
+<h1>title - {{movie.title}}</h1>
+<h1>price - {{movie.price}}</h1>
+<h1>genre - {{movie.genre}}</h1>
+<h1>year - {{movie.year}}</h1>
+<h1>plot - {{movie.plot}}</h1>  
 
-<ul *ngFor ="let item of categories" >
-   
-      <h1>{{item.genre}} + {{item.id}}</h1>
-      
-  </ul>
 
 <ng-template #noItems>
   <hr>

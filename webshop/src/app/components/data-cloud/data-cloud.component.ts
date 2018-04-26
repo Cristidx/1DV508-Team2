@@ -15,11 +15,9 @@ export class DataCloudComponent implements OnInit {
 
 movies: movieData[];
 categories: categoriesData[];
-aVar:String;
 movie = {
-    
-    id:'no id',
-    title:'123',
+    id:'',
+    title:'',
     genre:'',
     imageURL:'',
     price:'',
@@ -31,13 +29,11 @@ movie = {
 
   ngOnInit() {
     this.dataService.getMovie().subscribe(Moviedata => {
-      console.log(Moviedata);
       this.movies = Moviedata;
       
     });
 
     this.dataService.getCategories().subscribe(Catdata => {
-      console.log(Catdata);
       this.categories = Catdata;
 
       
@@ -45,12 +41,10 @@ movie = {
 
  }
 
- accesProduct(movieID:string) {
-   for(let item of this.movies){
-    this.movie.title = item.title;
-    this.movie.id = item.id;
-    console.log(movieID);
-   }
+ accesProduct(event, item) {
+  this.movie=item;
+  
   }
+  
 }
-export var var1 = this.movie;
+

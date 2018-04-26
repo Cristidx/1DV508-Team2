@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {var1} from '../components/data-cloud/data-cloud.component';
 
 
 @Component({
@@ -11,9 +10,9 @@ export class ProductDesignComponent implements OnInit {
 
   constructor() { }
   
-movies = var1;
-  ngOnInit() {
 
+  ngOnInit() {
+    console.log();
   }
 
 }
