@@ -26,7 +26,7 @@
                     <form *ngIf="authService.user.Admin == true;" class="navbar-form navbar-left" role="Add Product">
                    <button mat-button type="submit" class="btn1" routerLink="/app-add-product">Add Product</button>
                     </form>
-                    <a *ngIf="authService.User == null; else showLogout" mat-button class= "btn2" type="submit" routerLink="/login">Sign in/Create account</a>
+                    <a *ngIf="authService.User == null; else showLogout" mat-button class="btn2" type="submit" routerLink="/login">Sign in/Create account</a>
                     <ng-template #showLogout>
                       <a href="#" (click)="signOut()">Sign Out</a>
                     </ng-template> 
