@@ -18,7 +18,7 @@
     width: 100px;
     height: 30px; 
     text-align: center;
-    margin: -3% 69%;
+    margin: -1% 69%;
   }
   .buy {
     background:#3e423e;
@@ -27,7 +27,7 @@
     width: 100px;
     height: 30px; 
     text-align: center;
-    margin: 3% 69%;
+    margin: 1% 69%;
   }
   div {
     margin-bottom: 10px;
@@ -46,6 +46,5 @@
     font-style: italic;
   }
   img {
-    width: 200px;
-    margin: -50% 60% 0%;
+       margin: -35% 60% 0%;
   }

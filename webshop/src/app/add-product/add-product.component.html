@@ -1,9 +1,15 @@
-<div  class="form">
+<div   class="form">
 
 <div>
    <mat-form-field>
     <input matInput placeholder="Title" [(ngModel)] = "movies.title" name="title">
    </mat-form-field>
+</div>
+
+<div>
+    <mat-form-field>
+      <input matInput placeholder="Image Url" [(ngModel)] = "movies.imageURL" name="imageURL"> 
+    </mat-form-field>
 </div>
 
 <div class="Genre">
@@ -30,15 +36,23 @@
   
   <div>
       <mat-form-field>
-        <input matInput placeholder="Image Url" [(ngModel)] = "movies.imageURL" name="imageURL"> 
+       <input matInput placeholder="Director" [(ngModel)] = "movies.director" name="director">
       </mat-form-field>
-  </div>
+   </div>
+  
 
   <div><mat-form-field>
     <textarea matInput placeholder="Plot" [(ngModel)] = "movies.plot" name="plot"> ></textarea>
     
   </mat-form-field>
   </div>
+
+  <div>
+      <mat-form-field>
+       <input matInput placeholder="Stock" [(ngModel)] = "movies.stock" name="stock">
+      </mat-form-field>
+   </div>
+
   <div >
     <button (click)="onSubmit()" class="button" >Add Product</button>
 </div>

@@ -62,5 +62,16 @@ export class DataCloudService {
     this.movieDoc = this.afs.doc(`Movies/${movieData.id}`);
     this.movieDoc.delete();
   }
+
+  getDate(date:Date):string{
+    const sec = date.getSeconds();
+    const min = date.getMinutes();
+    const hours = date.getHours();
+    const day = date.getDate();
+    const mounth = date.getMonth() + 1;
+    const year = date.getFullYear();
+
+    return `${year}-${mounth}-${day}-${hours}-${min}-${sec}`;
+  }
 }
 
