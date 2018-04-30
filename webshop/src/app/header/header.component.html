@@ -12,24 +12,23 @@
   </head>
   <body>
       <body>
-          <mat-toolbar color = "primary" >
+          <mat-toolbar style="display: flex" color = "primary" >
               <mat-toolbar-row>
-                <h1>BluRay Shop</h1> 
+                <h1><a routerLink="">Bluray Shop</a></h1> 
+                <h2 *ngIf="user != null && user.admin == true;">Admin Mode <i class="fas fa-exclamation-triangle"></i></h2> 
                 <button class="dropdown" mat-button [matMenuTriggerFor]="menu">Categories</button>
                 <mat-menu #menu="matMenu">
                   <button mat-menu-item *ngFor ="let item of categories" value={{item.genre}}>{{item.genre}}</button>
-
-                  <button *ngIf="authService.user.Admin == true;" routerLink="/add-category" mat-menu-item>+Add Category</button>
+                  <button *ngIf="user != null && user.admin == true;" routerLink="/add-category" mat-menu-item>+Add Category</button>
                 </mat-menu>
-                <h2 *ngIf="authService.user.Admin == true;">Admin Mode</h2> 
-                <div>
-                    <form *ngIf="authService.user.Admin == true;" class="navbar-form navbar-left" role="Add Product">
-                   <button mat-button type="submit" class="btn1" routerLink="/app-add-product">Add Product</button>
-                    </form>
-                    <a *ngIf="authService.User == null; else showLogout" mat-button class="btn2" type="submit" routerLink="/login">Sign in/Create account</a>
-                    <ng-template #showLogout>
-                      <a href="#" (click)="signOut()">Sign Out</a>
-                    </ng-template> 
+                <form class="navbar-form navbar-left" role="Add Product">
+                  <button *ngIf="user != null && user.admin == true;" mat-button type="submit" class="btn1" routerLink="/app-add-product">Add Product</button>
+                </form>
+                <div class="left-container">
+                  <button *ngIf="user == null; else showLogout" mat-button type="submit" routerLink="/login">Sign in/Create account</button>
+                  <ng-template #showLogout>
+                      <button (click)="signOut()" mat-button routerLink="">Sign Out</button>
+                  </ng-template>
                 </div>
               </mat-toolbar-row>
             </mat-toolbar>

@@ -23,8 +23,7 @@ export class CreateAccountComponent implements OnInit {
   }
 
   private createAccount() {
-   this.authService.createAccountWithRegularEmail(this.user.email, this.user.password)
-   .then((user) => this.router.navigate(['']))
-   .catch((error) => console.log(error));
+    this.authService.createAccountWithRegularEmail(this.user.email, this.user.password)
+      .then(() => this.router.navigateByUrl(''));
   }
 }

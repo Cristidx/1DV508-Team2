@@ -18,6 +18,14 @@
         <input name="email-input" [(ngModel)]="user.email" type="text" placeholder="email" required/>
         <input name="password-input" [(ngModel)]="user.password" type="password" placeholder="password" required/>
         <button type="button" (click)="signIn()">Sign in</button>
+        <mat-grid-list cols="2">
+            <mat-grid-tile>
+                <button id="google" (click)="signInWithGoogle()" mat-button-raised>Sign in With Google</button>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <button id="github" (click)="signInWithGithub()" mat-button-raised>Sign in With Github</button>
+            </mat-grid-tile>
+        </mat-grid-list>
         <p class="message">Not registered? 
           <a routerLink="/create">Create account</a>
         </p>

@@ -5,58 +5,77 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 import { User } from '../model/user';
+import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 
 @Injectable()
 export class AuthService {
-  private user: User;
-  private adminEmails: any[];
+  user: Observable<User>;
 
-  constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase) {
-    this.user = new User();
-    this.subscribeToAuthState();
-    this.subscribeToAdminEmails();
-  }
-
-  /* Subscribes to Observable<User> state to listen for any changes */
-  subscribeToAuthState() {
-    this.afAuth.authState.subscribe((user) => {
-      this.user.FirebaseUser = user;
-    });
-  }
-
-  subscribeToAdminEmails() {
-    const dbRef = this.db.database.ref('AdminUsers/UIDS');
-    this.db.list(dbRef).valueChanges().subscribe((adminEmails) => {
-      if (adminEmails != null) {
-        this.adminEmails = adminEmails;
+  constructor(private afAuth: AngularFireAuth, private db: AngularFirestore, private router: Router) {
+    this.user = this.afAuth.authState.switchMap(user => {
+      if (user != null) {
+        return this.db.doc<User>(`Users/${user.uid}`).valueChanges();
       } else {
-        console.log('Reference error');
+        return Observable.of(null);
       }
     });
+  }
+
+  googleLogin() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    return this.oAuthLogin(provider);
+  }
+
+  githubLogin() {
+    const provider = new firebase.auth.GithubAuthProvider();
+    return this.oAuthLogin(provider);
+  }
+
+  private oAuthLogin(provider) {
+    return this.afAuth.auth.signInWithPopup(provider)
+      .then((credential) => {
+        this.updateUserDocument(credential.user);
+      });
   }
 
   signInWithRegularEmail(email: string, password: string) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password);
   }
 
-  createAccountWithRegularEmail(email: string, password: string) {
-    return this.afAuth.auth.createUserWithEmailAndPassword(email, password);
+  signInAsAdmin(email: string, password: string) {
+    this.signInWithRegularEmail(email, password)
+    .then(() => {
+      this.user.subscribe((val) => {
+        if (val.admin) {
+          this.router.navigateByUrl('');
+        } else {
+          this.signOut();
+        }
+      });
+    })
   }
 
-  verifyAdminEmail(email: string): boolean {
-    let isAdmin = false;
-    for (let i = 0; i < this.adminEmails.length; i++) {
-      if (this.adminEmails[i] === email) {
-        this.user.Admin = true;
-        isAdmin = true;
-      }
+  createAccountWithRegularEmail(email: string, password: string) {
+    return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+        .then((user) => this.updateUserDocument(user))
+        .catch((error) => console.log(error));
+  }
+
+  updateUserDocument(user) {
+    let userRef = this.db.doc<User>(`Users/${user.uid}`);
+
+    const data: User = {
+      email: user.email,
+      name: user.displayName,
+      uid: user.uid,
+      admin: false
     }
 
-    return isAdmin;
+    return userRef.set(data, { merge: true})
   }
 
   isSignedIn() {
-    if (this.user.FirebaseUser) {
+    if (this.user) {
       return true;
     } else {
       return false;
@@ -65,9 +84,7 @@ export class AuthService {
 
   signOut() {
     if (this.isSignedIn()) {
-      this.user.Admin = false;
-      this.afAuth.auth.signOut()
-      .catch((error) => console.log(error));
+      this.afAuth.auth.signOut();
     } else {
       console.log('No user is logged in');
     }

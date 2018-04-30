@@ -20,6 +20,14 @@ export class LoginComponent implements OnInit {
 
   }
 
+  private signInWithGoogle() {
+    this.authService.googleLogin();
+  }
+
+  private signInWithGithub() {
+    this.authService.githubLogin();
+  }
+
   private signIn(): void {
     this.authService.signInWithRegularEmail(this.user.email, this.user.password)
     .then((user) => this.router.navigate([''])

@@ -22,6 +22,21 @@ h1 {
     font-weight: bolder;
     font-style: italic;
 }
+
+a {
+    color: beige;
+}
+
+a:hover {
+    text-decoration: none; 
+    color: beige;
+}
+
+a:focus {
+    text-decoration: none; 
+    color: beige;
+}
+
 .signIn {
     position: right;
     margin: 0% 8%;
@@ -33,4 +48,8 @@ h2 {
     color: beige;
     font-weight: bolder;
     font-style: italic;
+}
+
+.left-container {
+    margin-left: auto;
 }

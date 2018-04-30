@@ -94,3 +94,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
 }
+
+#google {
+  width: auto;
+  height: auto;
+}
+
+#github {
+  width: auto;
+  height: auto;
+}

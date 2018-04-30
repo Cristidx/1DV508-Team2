@@ -12,18 +12,13 @@ export class AdminLogInComponent implements OnInit {
     email: '',
     password: ''
   };
+
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
 
   private signIn(): void {
-    if (this.authService.verifyAdminEmail(this.user.email)) {
-      this.authService.signInWithRegularEmail(this.user.email, this.user.password)
-      .then((user) => this.router.navigate([''])
-      .catch((error) => console.log(error)));
-    } else {
-      console.log('User is not an administrator');
-    }
+    this.authService.signInAsAdmin(this.user.email, this.user.password);
   }
 }
