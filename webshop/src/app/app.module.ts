@@ -23,6 +23,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import {HttpClientModule, HttpClient} from '@angular/common/http';
 import { DataCloudComponent } from './components/data-cloud/data-cloud.component';
 import { DataCloudService } from './services/data-cloud.service';
+import { EditProductComponent } from './edit-product/edit-product.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { DataCloudService } from './services/data-cloud.service';
     AddProductComponent,
     ProductDesignComponent,
     DataCloudComponent,
-    AddCategoryComponent
+    AddCategoryComponent,
+    EditProductComponent
   ],
   imports: [
     BrowserModule,
