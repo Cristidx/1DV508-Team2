@@ -14,8 +14,8 @@
   <body>
   <div>
   <div class="MainBox">
-     <div> 
-      <h2> {{movieImport.title}} </h2> 
+     <div>
+      <h2> {{movieImport.title}} </h2>
       <h3> ({{movieImport.year}}) </h3> </div>
       <br>
     <div class = "genre"> <div>{{movieImport.genre}}</div> </div>
@@ -28,16 +28,26 @@
       <div> <img src="{{movieImport.imageURL}}" height="282" width="204"> </div>
       <div class= "price">
           {{movieImport.price}}:-
-              </div> 
-     <div class= "buy">
-                  Buy
-                      </div>           
+              </div>
+              <div class= "buy">
+      <button *ngIf = "movieImport.stock > 0; else outOfStockButton" mat-button>Add to cart</button>
+      <ng-template #outOfStockButton> Out of stock </ng-template>
+                </div>
+    <div>
+      <button class="editButton" mat-button="Edit" routerLink = "app-edit-product">Edit</button>
+      
+    <form role="Delete">
+      <button mat-button type="submit" class="delete" value="Delete"
+              onclick="return confirm('Are you sure want to delete');"routerLink="/" >Delete</button>
+
+    </form>
+    </div>
     </div>
   </div>
 
   </body>
   </html>
- 
+
 <!-- <li *ngFor="let i of items" class="detail8">
   <a href="https://www.google.co.uk/{{i}}">{{i}}</a>
 </li>

@@ -1,0 +1,44 @@
+<div  class="form">
+  <div class = "example-container"> 
+     <mat-form-field>
+      <input matInput placeholder="Title"  name="title">
+     </mat-form-field>
+  </div>
+  
+  <div class="example-container">
+    <mat-form-field>
+      <mat-select placeholder="Genre"  name="genre">
+         
+          
+      </mat-select>
+    </mat-form-field>
+  </div>
+  
+    <div class="example-container">
+      <mat-form-field>
+        <input matInput placeholder="Year"  name="year"> 
+      </mat-form-field>
+    </div>
+  
+      <div class="example-container">
+      <mat-form-field>
+        <input matInput placeholder="Price"  name="price"> 
+      </mat-form-field>
+    </div>
+    
+    <div class = "example-container">
+        <mat-form-field>
+          <input matInput placeholder="Image Url"  name="imageURL"> 
+        </mat-form-field>
+    </div>
+  
+    <div class = "example-container"><mat-form-field>
+      <textarea matInput placeholder="Plot"  name="plot"> </textarea>
+      
+    </mat-form-field>
+    </div>
+    <div >
+      <button (click)="onSubmit()" class="button" routerLink="/product-details">Edit Product</button>
+  </div>
+  
+  </div>

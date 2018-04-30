@@ -16,7 +16,7 @@
               <mat-toolbar-row>
                 <h1><a routerLink="">Bluray Shop</a></h1> 
                 <h2 *ngIf="user != null && user.admin == true;">Admin Mode <i class="fas fa-exclamation-triangle"></i></h2> 
-                <button class="dropdown" mat-button [matMenuTriggerFor]="menu">Categories</button>
+                <button class="dropdown" mat-button [matMenuTriggerFor]="menu">Genres</button>
                 <mat-menu #menu="matMenu">
                   <button mat-menu-item *ngFor ="let item of categories" value={{item.genre}}>{{item.genre}}</button>
                   <button *ngIf="user != null && user.admin == true;" routerLink="/add-category" mat-menu-item>+Add Category</button>

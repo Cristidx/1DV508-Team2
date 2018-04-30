@@ -7,7 +7,7 @@ import {AdminLogInComponent} from './admin-log-in/admin-log-in.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import {ProductDesignComponent} from './product-design/product-design.component';
 import { AddCategoryComponent } from './add-category/add-category.component';
-
+import { EditProductComponent } from './edit-product/edit-product.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'create', component: CreateAccountComponent },
@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'app-add-product', component: AddProductComponent},
   { path: 'product-details', component: ProductDesignComponent},
   { path: 'add-category', component: AddCategoryComponent},
+  { path: 'app-edit-product', component: EditProductComponent}
 ];
 
 @NgModule({

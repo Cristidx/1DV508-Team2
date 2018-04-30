@@ -1,9 +1,9 @@
 
 .MainBox {
     background: #e0e0eb;
-    padding: 10px; 
+    padding: 10px;
     width: 600px;
-    height: 400px; 
+    height: 500px;
     margin: 5% 25%;
   }
   textarea {
@@ -14,25 +14,25 @@
   .price {
     background:#009900;
     color: white;
-    padding: 0px; 
-    width: 100px;
-    height: 30px; 
+    padding: 0px;
+    width: 101px;
+    height: 30px;
     text-align: center;
     margin: -1% 69%;
   }
   .buy {
     background:#3e423e;
     color: white;
-    padding: 0px; 
-    width: 100px;
-    height: 30px; 
+    padding: 0px;
+    width: 101px;
+    height: 35px;
     text-align: center;
     margin: 1% 69%;
   }
   div {
     margin-bottom: 10px;
   }
-  
+
   div h2 {
     display: block;
   }
@@ -48,3 +48,16 @@
   img {
        margin: -35% 60% 0%;
   }
+  .editButton{
+    background-color: #009900;
+    font-size: 18px;
+    color: white;
+  }
+
+.delete{
+  font-style: normal;
+  margin: 0% 20%;
+  font-size: medium;
+  font-weight: bold;
+  background: #EF3B3A;
+}
