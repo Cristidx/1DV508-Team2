@@ -9,7 +9,10 @@
     title?:string;
     genre?:string;
     imageURL?:string;
-    price?:string;
-    year?:string;
+    price?:number;
+    year?:number;
     plot?:string;
+    stock?:number;
+    director?:string;
+    dateAdded?:string;
   }

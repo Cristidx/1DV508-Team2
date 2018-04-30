@@ -9,20 +9,23 @@ import { Title } from '@angular/platform-browser';
   selector: 'app-data-cloud',
   templateUrl: './data-cloud.component.html',
   styleUrls: ['./data-cloud.component.css'],
-  providers: [ CrudService ]
+  providers: [ DataCloudService ]
+  
 })
 export class DataCloudComponent implements OnInit {
 
 movies: movieData[];
 categories: categoriesData[];
 movie = {
-    id:'',
-    title:'',
-    genre:'',
-    imageURL:'',
-    price:'',
-    year:'',
-    plot:''
+  title:'',
+  genre:'',
+  imageURL:'',
+  price:0,
+  year:0,
+  plot:'',
+  stock:0,
+  director:'',
+  dateAdded:''
 }
 
   constructor(public dataService: DataCloudService) {  }
@@ -38,13 +41,10 @@ movie = {
 
       
     });
-
+    
  }
 
  accesProduct(event, item) {
   this.movie=item;
-  
   }
-  
 }
-

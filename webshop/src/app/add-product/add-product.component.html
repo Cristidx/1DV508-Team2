@@ -1,12 +1,27 @@
+<<<<<<< HEAD
 <div  class="form">
+<div class = "example-container">
+=======
+<div   class="form">
 
 <div>
+>>>>>>> b849ad2ea2c834295c37d0f3769444357900ed0c
    <mat-form-field>
     <input matInput placeholder="Title" [(ngModel)] = "movies.title" name="title">
    </mat-form-field>
 </div>
 
+<<<<<<< HEAD
+<div class="example-container">
+=======
+<div>
+    <mat-form-field>
+      <input matInput placeholder="Image Url" [(ngModel)] = "movies.imageURL" name="imageURL"> 
+    </mat-form-field>
+</div>
+
 <div class="Genre">
+>>>>>>> b849ad2ea2c834295c37d0f3769444357900ed0c
   <mat-form-field>
     <mat-select placeholder="Genre"  [(value)]="selected" [(ngModel)] = "movies.genre" name="genre">
        
@@ -16,29 +31,38 @@
   </mat-form-field>
 </div>
 
-  <div class="Year">
+  <div class="example-container">
     <mat-form-field>
       <input matInput placeholder="Year" [(ngModel)] = "movies.year" name="year"> 
     </mat-form-field>
   </div>
 
-    <div class="Price">
+    <div class="example-container">
     <mat-form-field>
       <input matInput placeholder="Price" [(ngModel)] = "movies.price" name="price"> 
     </mat-form-field>
   </div>
   
-  <div>
+  <div class = "example-container">
       <mat-form-field>
-        <input matInput placeholder="Image Url" [(ngModel)] = "movies.imageURL" name="imageURL"> 
+       <input matInput placeholder="Director" [(ngModel)] = "movies.director" name="director">
       </mat-form-field>
-  </div>
+   </div>
+  
 
-  <div><mat-form-field>
+  <div class = "example-container">
+    <mat-form-field>
     <textarea matInput placeholder="Plot" [(ngModel)] = "movies.plot" name="plot"> ></textarea>
     
   </mat-form-field>
   </div>
+
+  <div>
+      <mat-form-field>
+       <input matInput placeholder="Stock" [(ngModel)] = "movies.stock" name="stock">
+      </mat-form-field>
+   </div>
+
   <div >
     <button (click)="onSubmit()" class="button" >Add Product</button>
 </div>

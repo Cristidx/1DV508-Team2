@@ -18,8 +18,8 @@ export class DataCloudService {
   constructor(public afs: AngularFirestore) {
 
     //this.movieData = this.afs.collection('Movies').valueChanges();
-    this.movieCollection = this.afs.collection('Movies');
-    this.movieData = this.afs.collection('Movies').snapshotChanges().map(changes => {
+    this.movieCollection = this.afs.collection('Movies', ref => ref.orderBy('dateAdded', 'desc'));
+    this.movieData =this.movieCollection.snapshotChanges().map(changes => {
       return changes.map(a => {
         const data = a.payload.doc.data() as movieData;
         data.id = a.payload.doc.id;
@@ -61,6 +61,17 @@ export class DataCloudService {
   deleteMovie(movieData: movieData) {
     this.movieDoc = this.afs.doc(`Movies/${movieData.id}`);
     this.movieDoc.delete();
+  }
+
+  getDate(date:Date):string{
+    const sec = date.getSeconds();
+    const min = date.getMinutes();
+    const hours = date.getHours();
+    const day = date.getDate();
+    const mounth = date.getMonth() + 1;
+    const year = date.getFullYear();
+
+    return `${year}-${mounth}-${day}-${hours}-${min}-${sec}`;
   }
 }
 

@@ -5,7 +5,8 @@ import {categoriesData} from '../model/data';
 @Component({
   selector: 'app-add-category',
   templateUrl: './add-category.component.html',
-  styleUrls: ['./add-category.component.css']
+  styleUrls: ['./add-category.component.css'],
+  providers: [DataCloudService]
 })
 export class AddCategoryComponent implements OnInit {
   categories: categoriesData = {
