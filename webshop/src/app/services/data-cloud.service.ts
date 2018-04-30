@@ -18,8 +18,8 @@ export class DataCloudService {
   constructor(public afs: AngularFirestore) {
 
     //this.movieData = this.afs.collection('Movies').valueChanges();
-    this.movieCollection = this.afs.collection('Movies');
-    this.movieData = this.afs.collection('Movies').snapshotChanges().map(changes => {
+    this.movieCollection = this.afs.collection('Movies', ref => ref.orderBy('dateAdded', 'desc'));
+    this.movieData =this.movieCollection.snapshotChanges().map(changes => {
       return changes.map(a => {
         const data = a.payload.doc.data() as movieData;
         data.id = a.payload.doc.id;
