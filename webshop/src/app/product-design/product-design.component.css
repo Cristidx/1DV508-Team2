@@ -53,3 +53,11 @@
     font-size: 18px;
     color: white;
   }
+
+.delete{
+  font-style: normal;
+  margin: 0% 20%;
+  font-size: medium;
+  font-weight: bold;
+  background: #EF3B3A;
+}
