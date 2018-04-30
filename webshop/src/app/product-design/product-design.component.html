@@ -35,6 +35,12 @@
                 </div>
     <div>
       <button class="editButton" mat-button="Edit" routerLink = "app-edit-product">Edit</button>
+      
+    <form role="Delete">
+      <button mat-button type="submit" class="delete" value="Delete"
+              onclick="return confirm('Are you sure want to delete');"routerLink="/" >Delete</button>
+
+    </form>
     </div>
     </div>
   </div>
