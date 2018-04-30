@@ -29,9 +29,10 @@
       <div class= "price">
           {{movieImport.price}}:-
               </div> 
-     <div class= "buy">
-                  Buy
-                      </div>           
+              <div class= "buy">
+      <button *ngIf = "movieImport.stock > 0; else outOfStockButton" mat-button>Add to cart</button>
+      <ng-template #outOfStockButton> Out of stock </ng-template>
+                </div>
     </div>
   </div>
 

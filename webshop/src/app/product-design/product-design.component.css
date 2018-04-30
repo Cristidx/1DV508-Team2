@@ -3,7 +3,7 @@
     background: #e0e0eb;
     padding: 10px; 
     width: 600px;
-    height: 400px; 
+    height: 500px; 
     margin: 5% 25%;
   }
   textarea {
@@ -15,7 +15,7 @@
     background:#009900;
     color: white;
     padding: 0px; 
-    width: 100px;
+    width: 101px;
     height: 30px; 
     text-align: center;
     margin: -1% 69%;
@@ -24,8 +24,8 @@
     background:#3e423e;
     color: white;
     padding: 0px; 
-    width: 100px;
-    height: 30px; 
+    width: 101px;
+    height: 35px; 
     text-align: center;
     margin: 1% 69%;
   }
