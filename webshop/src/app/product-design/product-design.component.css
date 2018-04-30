@@ -4,7 +4,11 @@
     padding: 10px;
     width: 600px;
 <<<<<<< HEAD
+<<<<<<< HEAD
     height: 450px; 
+=======
+    height: 500px;
+>>>>>>> b849ad2ea2c834295c37d0f3769444357900ed0c
 =======
     height: 500px;
 >>>>>>> b849ad2ea2c834295c37d0f3769444357900ed0c
@@ -51,6 +55,7 @@
   }
   img {
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 200px;
     margin: -50% 60% 0%;
   }
@@ -58,6 +63,8 @@
     background-color: rgb(22, 138, 184);
   }
 =======
+=======
+>>>>>>> b849ad2ea2c834295c37d0f3769444357900ed0c
        margin: -35% 60% 0%;
   }
   .editButton{
@@ -65,4 +72,7 @@
     font-size: 18px;
     color: white;
   }
+<<<<<<< HEAD
+>>>>>>> b849ad2ea2c834295c37d0f3769444357900ed0c
+=======
 >>>>>>> b849ad2ea2c834295c37d0f3769444357900ed0c
