@@ -56,11 +56,12 @@ export class DataCloudService {
    /* To delete categories */
   deleteCategory(categoriesData: categoriesData) {
     this.categoryDoc=this.afs.doc(`Categories/${categoriesData.id}`);
+    this.categoryDoc.delete().then(()=>window.alert('A category is successfully deleted'),console.error);
   }
   /* To delete movies item by id */
   deleteMovie(movieData: movieData) {
     this.movieDoc = this.afs.doc(`Movies/${movieData.id}`);
-    this.movieDoc.delete();
+    this.movieDoc.delete().then(()=>window.alert('A movie is Successfully deleted'),console.error);
   }
 
   getDate(date:Date):string{

@@ -24,7 +24,7 @@
 
     <div class = "stock"> <div>Left in stock: {{movieImport.stock}}</div> </div>
     <br>
-      <textarea placeholder="Remember, be nice!" ></textarea>
+     
       <div> <img src="{{movieImport.imageURL}}" height="282" width="204"> </div>
       <div class= "price">
           {{movieImport.price}}:-
@@ -35,12 +35,7 @@
                 </div>
     <div>
       <button class="editButton" mat-button="Edit" routerLink = "app-edit-product">Edit</button>
-      
-    <form role="Delete">
-      <button mat-button type="submit" class="delete" value="Delete"
-              onclick="return confirm('Are you sure want to delete');"routerLink="/" >Delete</button>
-
-    </form>
+      <button mat-button  type="submit" class="delete" value="Delete" (click)="deleteMovies($window,$event,movieImport)" routerLink="/"> Delete</button>
     </div>
     </div>
   </div>
