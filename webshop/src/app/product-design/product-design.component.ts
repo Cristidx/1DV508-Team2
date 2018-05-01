@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { movieData } from '../model/data';
-
-
+import { DataCloudService } from '../services/data-cloud.service';
 @Component({
   selector: 'app-product-design',
   templateUrl: './product-design.component.html',
@@ -12,11 +11,18 @@ import { movieData } from '../model/data';
 export class ProductDesignComponent implements OnInit {
 
 
-  constructor() { }
+  constructor(public dataService: DataCloudService) { }
   
   
   ngOnInit() {
     // this.movie = this.importMovieData.getMovieInfo();
     console.log();
      }
+     deleteMovies(event,item){
+      if(confirm("Want to delte the movie?")){
+        this.dataService.deleteMovie(item);
+      }
+     else 
+       return false;
+    }
   }
