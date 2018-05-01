@@ -18,7 +18,7 @@ export class ProductDesignComponent implements OnInit {
     // this.movie = this.importMovieData.getMovieInfo();
     console.log();
      }
-     deleteMovies($window, event,item){
+     deleteMovies(event,item){
       if(confirm("Want to delte the movie?")){
         this.dataService.deleteMovie(item);
       }
