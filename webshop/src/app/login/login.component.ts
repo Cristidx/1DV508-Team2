@@ -21,11 +21,15 @@ export class LoginComponent implements OnInit {
   }
 
   private signInWithGoogle() {
-    this.authService.googleLogin();
+    this.authService.googleLogin()
+    .then((user) => this.router.navigate([''])
+    .catch((error) => console.log(error)));
   }
 
   private signInWithGithub() {
-    this.authService.githubLogin();
+    this.authService.githubLogin()
+    .then((user) => this.router.navigate([''])
+    .catch((error) => console.log(error)));
   }
 
   private signIn(): void {

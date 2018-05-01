@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 import { User } from '../model/user';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { query } from '@angular/animations';
 
 @Injectable()
 export class AuthService {
@@ -34,7 +35,7 @@ export class AuthService {
   private oAuthLogin(provider) {
     return this.afAuth.auth.signInWithPopup(provider)
       .then((credential) => {
-        this.updateUserDocument(credential.user);
+        this.createUserDocument(credential.user);
       });
   }
 
@@ -52,26 +53,28 @@ export class AuthService {
           this.signOut();
         }
       });
-    })
+    });
   }
 
   createAccountWithRegularEmail(email: string, password: string) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
-        .then((user) => this.updateUserDocument(user))
+        .then((user) => this.createUserDocument(user))
         .catch((error) => console.log(error));
   }
 
-  updateUserDocument(user) {
-    let userRef = this.db.doc<User>(`Users/${user.uid}`);
-
-    const data: User = {
-      email: user.email,
-      name: user.displayName,
-      uid: user.uid,
-      admin: false
-    }
-
-    return userRef.set(data, { merge: true})
+  createUserDocument(user) {
+    const userRef = this.db.firestore.doc(`Users/${user.uid}`);
+      return userRef.get().then((value) => {
+        if (!value.exists) {
+          const data: User = {
+            name: user.displayName,
+            email: user.email,
+            uid: user.uid,
+            admin: false
+          };
+          return userRef.set(data);
+        }
+    });
   }
 
   isSignedIn() {
