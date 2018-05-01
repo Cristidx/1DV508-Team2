@@ -24,6 +24,7 @@ import {HttpClientModule, HttpClient} from '@angular/common/http'; // DON'T TOUC
 import { DataCloudComponent } from './components/data-cloud/data-cloud.component';
 import { DataCloudService } from './services/data-cloud.service';
 import { EditProductComponent } from './edit-product/edit-product.component';
+import { DataService } from './services/data.service';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { EditProductComponent } from './edit-product/edit-product.component';
     AngularFireAuthModule,
     MatModule
   ],
-  providers: [AuthService, CrudService, DataCloudService],
+  providers: [AuthService, CrudService, DataCloudService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

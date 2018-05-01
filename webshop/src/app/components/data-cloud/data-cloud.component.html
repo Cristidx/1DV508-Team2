@@ -2,23 +2,39 @@
     <app-product-design [movieImport] = "movie"></app-product-design>
 </div>
 
-<h1>Movies</h1>
+<h1>Movies: {{selectedGenre}}</h1>
 
 
-<div  class="nav3" *ngIf="movies?.length > 0; else noItems">
-  <ul *ngFor ="let item of movies" >
+
+
+
+
+<div *ngIf="selectedGenre.length > 0; else allItems"> 
+  
+    <div  class="nav3" *ngIf="movies?.length > 0; else noItems">
+        <ul *ngFor ="let item of movies" >
+            <div *ngIf="selectedGenre == item.genre"> 
+              <h5>{{item.title}}</h5>
+            <a href="#" (click)="accesProduct($event, item)" >
+              <img src="{{item.imageURL}}" height="213" width="153">
+              </a>
+            </div>
+          </ul>
+        </div>
+
+</div>  
+
+
+
+<ng-template #allItems>
     
-      
-      <h5>{{item.title}}</h5>
-    <a href="#" (click)="accesProduct($event, item)" >
-      <img src="{{item.imageURL}}" height="213" width="153">
-      </a>
-  </ul>
-</div>
+    <div  class="nav3" *ngIf="movies?.length > 0">
+        <ul *ngFor ="let item of movies" >
+              <h5>{{item.title}}</h5>
+            <a href="#" (click)="accesProduct($event, item)" >
+              <img src="{{item.imageURL}}" height="213" width="153">
+              </a>
+          </ul>
+        </div>
 
-
-<ng-template #noItems>
-  <hr>
-  <h5>No items here!</h5>
-
-</ng-template>
+  </ng-template>
