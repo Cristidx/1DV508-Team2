@@ -11,6 +11,7 @@ export class DataCloudService {
   categoriesData: Observable<categoriesData[]>
   categoryDoc: AngularFirestoreDocument<categoriesData>;
 
+  movieArray: movieData[];
   movieCollection: AngularFirestoreCollection<movieData>
   movieData: Observable<movieData[]>
   movieDoc: AngularFirestoreDocument<movieData>;
@@ -27,7 +28,24 @@ export class DataCloudService {
       });
     });
 
-
+    this.movieArray = [];
+    this.movieCollection.ref.get().then(querySnapshot => {
+      querySnapshot.forEach((doc) => {
+        let data: movieData = {
+          title: doc.data()['title'],
+          genre: doc.data()['genre'],
+          imageURL: doc.data()['imageURL'],
+          price: doc.data()['price'],
+          year: doc.data()['year'],
+          plot: doc.data()['plot'],
+          stock: doc.data()['stock'],
+          director: doc.data()['director'],
+          dateAdded: doc.data()['dateAdded'],
+          id: doc.id
+        }
+        this.movieArray.push(data);
+      })
+    });
     //this.categoriesData = this.afs.collection('Categories').valueChanges();
     this.categoriesCollection = this.afs.collection('Categories');
     this.categoriesData = this.afs.collection('Categories').snapshotChanges().map(changes => {
@@ -46,8 +64,8 @@ export class DataCloudService {
   getMovie() {
     return this.movieData;
   }
-  getMovieCollection() {
-    return this.movieCollection;
+  getMovies() {
+    return this.movieArray;
   }
   addProduct(movieData: movieData) {
     this.movieCollection.add(movieData);

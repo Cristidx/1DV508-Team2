@@ -31,26 +31,8 @@ export class ProductDesignComponent implements OnInit {
   
   ngOnInit() {
     // this.movie = this.importMovieData.getMovieInfo();
-      this.movieArray = [];
-
-      this.dataService.getMovieCollection().ref.get().then(querySnapshot => {
-        querySnapshot.forEach((doc) => {
-          let data: movieData = {
-            title: doc.data()['title'],
-            genre: doc.data()['genre'],
-            imageURL: doc.data()['imageURL'],
-            price: doc.data()['price'],
-            year: doc.data()['year'],
-            plot: doc.data()['plot'],
-            stock: doc.data()['stock'],
-            director: doc.data()['director'],
-            dateAdded: doc.data()['dateAdded'],
-            id: doc.id
-          }
-          this.movieArray.push(data);
-        }),
-        this.route.params.subscribe(param => this.handleRouteChange(param));
-      });
+      this.movieArray = this.dataService.getMovies();
+      this.route.params.subscribe(param => this.handleRouteChange(param));
     }
 
     handleRouteChange(param) {
