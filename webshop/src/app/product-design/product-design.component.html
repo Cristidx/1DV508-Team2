@@ -34,7 +34,7 @@
       <ng-template #outOfStockButton> Out of stock </ng-template>
                 </div>
     <div>
-      <button class="editButton" mat-button="Edit" routerLink = "app-edit-product">Edit</button>
+      <button class="editButton" mat-button="Edit" (click)="openEditDialog()">Edit</button>
       <button mat-button  type="submit" class="delete" value="Delete" (click)="deleteMovies($event,movieImport)" routerLink="/"> Delete</button>
     </div>
     </div>

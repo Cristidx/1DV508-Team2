@@ -25,6 +25,7 @@ import { DataCloudComponent } from './components/data-cloud/data-cloud.component
 import { DataCloudService } from './services/data-cloud.service';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { DataService } from './services/data.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,7 @@ import { DataService } from './services/data.service';
     AngularFireAuthModule,
     MatModule
   ],
-  providers: [AuthService, CrudService, DataCloudService, DataService],
+  providers: [AuthService, CrudService, DataCloudService, DataService, MatDialog],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

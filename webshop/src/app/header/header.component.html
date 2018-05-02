@@ -22,11 +22,11 @@
                 <mat-menu #menu="matMenu"  > 
                         <button mat-menu-item value=all (click)="genreValue($event, '')">Show All </button>
                         <button mat-menu-item *ngFor ="let item of categories" value={{item.genre}} (click)="genreValue($event, item.genre)">{{item.genre}} </button>
-                        <button *ngIf="user != null && user.admin == true;" routerLink="/add-category" mat-menu-item>+Add Category</button>   
+                        <button *ngIf="user != null && user.admin == true;" (click)="openAddCategoryDialog()" mat-menu-item>+Add Category</button>   
                 </mat-menu>
 
                 <form class="navbar-form navbar-left" role="Add Product">
-                  <button *ngIf="user != null && user.admin == true;" mat-button type="submit" class="btn1" routerLink="/app-add-product">Add Product</button>
+                  <button *ngIf="user != null && user.admin == true;" mat-button type="submit" class="btn1" (click)="openAddProductDialog()">Add Product</button>
                 </form>
                 <div class="left-container">
                   <button *ngIf="user == null; else showLogout" mat-button type="submit" routerLink="/login">Sign in/Create account</button>

@@ -5,6 +5,8 @@ import { categoriesData } from '../model/data';
 import { AddCategoryComponent } from '../add-category/add-category.component'
 import { User } from '../model/user';
 import { DataService } from '../services/data.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AddProductComponent } from '../add-product/add-product.component';
 
 @Component({
   selector: 'app-header',
@@ -16,7 +18,9 @@ export class HeaderComponent implements OnInit {
   user: User;
   categories: categoriesData[];
   selectedGenre:string;
-  constructor(private dataService: DataCloudService,private authService: AuthService, private data: DataService) { }
+  
+  constructor(private dataService: DataCloudService,private authService: AuthService, 
+              private data: DataService, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.dataService.getCategories().subscribe(Catdata => {
@@ -35,5 +39,13 @@ export class HeaderComponent implements OnInit {
   genreValue(event, value){
   this.selectedGenre = value;
   this.data.changeHeaderGenre(this.selectedGenre)
+  }
+
+  openAddProductDialog() {
+    let dialogRef = this.dialog.open(AddProductComponent);
+  }
+
+  openAddCategoryDialog() {
+    let dialogRef = this.dialog.open(AddCategoryComponent);
   }
 }
