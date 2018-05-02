@@ -34,7 +34,8 @@ export class HeaderComponent implements OnInit {
     console.log(this.selectedGenre);
   }
   private signOut() {
-    this.authService.signOut();   
+    this.authService.signOut();
+    location.reload();   
   }
   genreValue(event, value){
   this.selectedGenre = value;
