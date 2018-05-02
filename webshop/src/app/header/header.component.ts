@@ -42,7 +42,10 @@ export class HeaderComponent implements OnInit {
   }
 
   openAddProductDialog() {
-    let dialogRef = this.dialog.open(AddProductComponent);
+    let dialogRef = this.dialog.open(AddProductComponent,{
+      height: '85%',
+      width: '50%'
+    });
   }
 
   openAddCategoryDialog() {
