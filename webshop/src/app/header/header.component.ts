@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
     });
     this.authService.user.subscribe((user) => {
       this.user = user;
-    })
+    });
 
     this.data.currentHeaderGenreSelected.subscribe(selectedGenre=>this.selectedGenre = selectedGenre);
     console.log(this.selectedGenre);

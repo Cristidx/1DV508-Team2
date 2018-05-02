@@ -4,6 +4,8 @@ import { DataCloudService } from '../services/data-cloud.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditProductComponent } from '../edit-product/edit-product.component';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { User } from '../model/user';
 @Component({
   selector: 'app-product-design',
   templateUrl: './product-design.component.html',
@@ -12,8 +14,10 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductDesignComponent implements OnInit {
 
 
-  constructor(public dataService: DataCloudService, private dialog: MatDialog, private route: ActivatedRoute) { }
+  constructor(public dataService: DataCloudService, private dialog: MatDialog, 
+              private route: ActivatedRoute, private authService: AuthService) { }
 
+  user: User;              
   isDataAvailabe: boolean = false;
   movieArray: movieData[];
   movie: movieData = {
@@ -31,6 +35,9 @@ export class ProductDesignComponent implements OnInit {
   
   ngOnInit() {
     // this.movie = this.importMovieData.getMovieInfo();
+      this.authService.user.subscribe((user) => {
+        this.user = user;
+      })
       this.movieArray = this.dataService.getMovies();
       this.route.params.subscribe(param => this.handleRouteChange(param));
     }
@@ -56,7 +63,7 @@ export class ProductDesignComponent implements OnInit {
     openEditDialog() {
       let dialogRef = this.dialog.open(EditProductComponent, {
         height: '85%',
-        width: '50%'
-      });
+        width: '50%',
+        data: this.movie});
     }
   }

@@ -1,42 +1,42 @@
 <div class="form">
     <div class = "example-container">
       <mat-form-field>
-        <input matInput placeholder="Title" [(ngModel)] = "movies.title" name="title">
+        <input matInput placeholder="Title" ng-value="movie.title" [(ngModel)] = "movie.title" name="title">
       </mat-form-field>
     </div>
     <div class ="example-container">
         <mat-form-field>
-      <input matInput placeholder="Image Url" [(ngModel)] = "movies.imageURL" name="imageURL"> 
+      <input matInput placeholder="Image Url" [(ngModel)] = "movie.imageURL" name="imageURL"> 
         </mat-form-field>
     </div>
       <div class="example-container">
-          <mat-select placeholder="Genre"  [(value)]="selected" [(ngModel)] = "movies.genre" name="genre">
-            <mat-option *ngFor ="let item of categories" value={{item.genre}}>{{item.genre}}</mat-option>
+          <mat-select placeholder="Genre"  [(value)]="selected" [(ngModel)] = "movie.genre" name="genre">
+              <mat-option *ngFor ="let item of genres" value={{item.genre}}>{{item.genre}}</mat-option>
           </mat-select>
       </div>
     <div class="example-container">
       <mat-form-field>
-        <input matInput placeholder="Year" [(ngModel)] = "movies.year" name="year"> 
+        <input matInput placeholder="Year" [(ngModel)] = "movie.year" name="year"> 
       </mat-form-field>
     </div>  
     <div class="example-container">
       <mat-form-field>
-        <input matInput placeholder="Price" [(ngModel)] = "movies.price" name="price"> 
+        <input matInput placeholder="Price" [(ngModel)] = "movie.price" name="price"> 
       </mat-form-field>
     </div>
     <div class = "example-container">
       <mat-form-field>
-          <input matInput placeholder="Director" [(ngModel)] = "movies.director" name="director">
+          <input matInput placeholder="Director" [(ngModel)] = "movie.director" name="director">
       </mat-form-field>
     </div>
     <div class = "example-container">
         <mat-form-field>
-          <textarea matInput placeholder="Plot" [(ngModel)] = "movies.plot" name="plot"> </textarea>  
+          <textarea matInput placeholder="Plot" [(ngModel)] = "movie.plot" name="plot"> </textarea>  
         </mat-form-field>
     </div>
     <div class = "example-container">
         <mat-form-field>
-        <input matInput placeholder="Stock" [(ngModel)] = "movies.stock" name="stock">
+        <input matInput placeholder="Stock" [(ngModel)] = "movie.stock" name="stock">
         </mat-form-field>
     </div>
     <div class = "example-container">
