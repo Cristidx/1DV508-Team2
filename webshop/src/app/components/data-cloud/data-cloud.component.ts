@@ -43,7 +43,7 @@ selectedGenre:string;
     this.data.currentHeaderGenreSelected.subscribe(selectedGenre=>this.selectedGenre = selectedGenre);
  }
 
- accesProduct(event, item) {
-  this.movie=item;
+  accesProduct(event, item) {
+    this.movie=item;
   }
 }

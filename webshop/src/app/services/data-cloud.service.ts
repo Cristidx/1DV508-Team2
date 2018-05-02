@@ -46,6 +46,9 @@ export class DataCloudService {
   getMovie() {
     return this.movieData;
   }
+  getMovieCollection() {
+    return this.movieCollection;
+  }
   addProduct(movieData: movieData) {
     this.movieCollection.add(movieData);
   }
