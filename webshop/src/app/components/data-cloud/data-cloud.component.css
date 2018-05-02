@@ -2,3 +2,20 @@
 .nav3 > * {
     display: inline-block;
 }
+.button {
+    background:#3e423e;
+    color: white;
+    
+}
+.price {
+    background:#009900;
+    color: white;
+    display: inline-block;
+    font-size: 20px;
+    text-align: center;
+    padding: 10px;
+    height: 35px;
+    
+    
+    
+}
