@@ -9,7 +9,8 @@ import { User } from '../model/user';
 @Component({
   selector: 'app-product-design',
   templateUrl: './product-design.component.html',
-  styleUrls: ['./product-design.component.css']
+  styleUrls: ['./product-design.component.css'],
+  providers: [DataCloudService]
 })
 export class ProductDesignComponent implements OnInit {
 
@@ -62,7 +63,7 @@ export class ProductDesignComponent implements OnInit {
 
     openEditDialog() {
       let dialogRef = this.dialog.open(EditProductComponent, {
-        
+        data: this.movie,
         width: '35%'
       });
     }
