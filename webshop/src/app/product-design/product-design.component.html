@@ -13,33 +13,29 @@
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <body>
   <div>
-  <div class="MainBox">
-     <div>
-      <h2> {{movieImport.title}} </h2>
-      <h3> ({{movieImport.year}}) </h3> </div>
-      <br>
-    <div class = "genre"> <div>{{movieImport.genre}}</div> </div>
-
-    <div class = "director"> <div>Directed by: {{movieImport.director}}</div> </div>
-
-    <div class = "stock"> <div>Left in stock: {{movieImport.stock}}</div> </div>
-    <br>
-     
-      <div> <img src="{{movieImport.imageURL}}" height="282" width="204"> </div>
-      <div class= "price">
-          {{movieImport.price}}:-
-              </div>
-              <div class= "buy">
-      <button *ngIf = "movieImport.stock > 0; else outOfStockButton" mat-button>Add to cart</button>
-      <ng-template #outOfStockButton> Out of stock </ng-template>
-                </div>
-    <div>
-      <button class="editButton" mat-button="Edit" (click)="openEditDialog()">Edit</button>
-      <button mat-button  type="submit" class="delete" value="Delete" (click)="deleteMovies($event,movieImport)" routerLink="/"> Delete</button>
-    </div>
-    </div>
+        <div class="MainBox">
+          <div>
+          <h2> {{movie.title}} </h2>
+          <h3> ({{movie.year}}) </h3> </div>
+          <br>
+          <div class = "genre"> <div>{{movie.genre}}</div> </div>
+          <div class = "director"> <div>Directed by: {{movie.director}}</div> </div>
+          <div class = "stock"> <div>Left in stock: {{movie.stock}}</div> </div>
+          <br>        
+          <div> <img src="{{movie.imageURL}}" height="282" width="204"> </div>
+          <div class= "price">
+            {{movie.price}}:-
+          </div>
+          <div class= "buy">
+          <button *ngIf = "movie.stock > 0; else outOfStockButton" mat-button>Add to cart</button>
+          <ng-template #outOfStockButton> Out of stock </ng-template>
+        </div>
+        <div>
+          <button class="editButton" mat-button="Edit" (click)="openEditDialog()">Edit</button>
+          <button mat-button  type="submit" class="delete" value="Delete" (click)="deleteMovies($event,movie)" routerLink="/"> Delete</button>
+        </div>
+      </div>
   </div>
-
   </body>
   </html>
 

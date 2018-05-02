@@ -1,6 +1,3 @@
-<div *ngIf="movie.title.length > 0">
-    <app-product-design [movieImport] = "movie"></app-product-design>
-</div>
 
 <h1>Movies: {{selectedGenre}}</h1>
 
@@ -30,12 +27,18 @@
     <div  class="nav3" *ngIf="movies?.length > 0">
         <ul *ngFor ="let item of movies" >
               <h5>{{item.title}}</h5>
+
             <a href="#" (click)="accesProduct($event, item)" >
               <img src="{{item.imageURL}}" height="213" width="153">
               </a>              
               <div>
                 <button class="button" mat-button>Add to cart</button><div class="price">456</div>                
               </div>
+
+
+              <a routerLink="app-product-design/{{item.id}}">
+                <img src="{{item.imageURL}}" height="213" width="153">
+              </a>
 
           </ul>
         </div>
