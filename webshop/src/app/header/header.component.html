@@ -29,7 +29,7 @@
                   <button *ngIf="user != null && user.admin == true;" mat-button type="submit" class="btn1" (click)="openAddProductDialog()">Add Product</button>
                 </form>
                 <div class="left-container">
-                  <button *ngIf="user == null; else showLogout" mat-button type="submit" routerLink="/login">Sign in/Create account</button>
+                  <button *ngIf="user == null; else showLogout" mat-button type="submit" (click)="openLoginComponentDialog()">Sign in/Create account</button>
                   <ng-template #showLogout>
                       <button (click)="signOut()" mat-button routerLink="">Sign Out</button>
                   </ng-template>

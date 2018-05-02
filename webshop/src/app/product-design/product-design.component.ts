@@ -55,8 +55,8 @@ export class ProductDesignComponent implements OnInit {
 
     openEditDialog() {
       let dialogRef = this.dialog.open(EditProductComponent, {
-        height: '85%',
-        width: '50%'
+        
+        width: '35%'
       });
     }
   }

@@ -7,6 +7,8 @@ import { User } from '../model/user';
 import { DataService } from '../services/data.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddProductComponent } from '../add-product/add-product.component';
+import { LoginComponent } from '../login/login.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +22,7 @@ export class HeaderComponent implements OnInit {
   selectedGenre:string;
   
   constructor(private dataService: DataCloudService,private authService: AuthService, 
-              private data: DataService, private dialog: MatDialog) { }
+              private data: DataService, private dialog: MatDialog, private router: Router) { }
 
   ngOnInit() {
     this.dataService.getCategories().subscribe(Catdata => {
@@ -35,7 +37,7 @@ export class HeaderComponent implements OnInit {
   }
   private signOut() {
     this.authService.signOut();
-    location.reload();   
+    this.router.navigate(['']);  
   }
   genreValue(event, value){
   this.selectedGenre = value;
@@ -44,12 +46,16 @@ export class HeaderComponent implements OnInit {
 
   openAddProductDialog() {
     let dialogRef = this.dialog.open(AddProductComponent,{
-      height: '85%',
-      width: '50%'
+
+      width: '35%'
     });
   }
 
   openAddCategoryDialog() {
     let dialogRef = this.dialog.open(AddCategoryComponent);
+  }
+
+  openLoginComponentDialog() {
+    let dialogRef = this.dialog.open(LoginComponent);
   }
 }
