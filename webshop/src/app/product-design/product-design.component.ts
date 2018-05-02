@@ -6,11 +6,12 @@ import { EditProductComponent } from '../edit-product/edit-product.component';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { User } from '../model/user';
+import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
 @Component({
   selector: 'app-product-design',
   templateUrl: './product-design.component.html',
   styleUrls: ['./product-design.component.css'],
-  providers: [DataCloudService]
+  providers: [DataCloudService, AuthService]
 })
 export class ProductDesignComponent implements OnInit {
 
@@ -28,7 +29,7 @@ export class ProductDesignComponent implements OnInit {
     price:0,
     year:0,
     plot:'',
-    stock:0,
+    stock: 0,
     director:'',
     dateAdded:'',
     id: ''
@@ -38,12 +39,14 @@ export class ProductDesignComponent implements OnInit {
     // this.movie = this.importMovieData.getMovieInfo();
       this.authService.user.subscribe((user) => {
         this.user = user;
-      })
-      this.movieArray = this.dataService.getMovies();
-      this.route.params.subscribe(param => this.handleRouteChange(param));
+      });
+      this.dataService.getMovie().subscribe((movies) => {  
+        this.movieArray = movies;
+        this.route.params.subscribe(() => this.handleRouteChange());
+      });
     }
 
-    handleRouteChange(param) {
+    handleRouteChange() {
       let id = this.route.snapshot.paramMap.get('id');
       for (let i = 0; i < this.movieArray.length; i++) {
         if (this.movieArray[i].id === id) {
