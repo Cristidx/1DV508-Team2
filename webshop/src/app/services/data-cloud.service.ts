@@ -64,7 +64,8 @@ export class DataCloudService {
   /* To delete movies item by id */
   deleteMovie(movieData: movieData) {
     this.movieDoc = this.afs.doc(`Movies/${movieData.id}`);
-    this.movieDoc.delete().then(()=>window.alert('A movie is Successfully deleted'),console.error);
+    this.movieDoc.delete().then(()=>window.alert('A movie is Successfully deleted')).then(()=>location.reload(),console.error);
+  
   }
 
   getDate(date:Date):string{

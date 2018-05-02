@@ -34,7 +34,8 @@ export class HeaderComponent implements OnInit {
     console.log(this.selectedGenre);
   }
   private signOut() {
-    this.authService.signOut();   
+    this.authService.signOut();
+    location.reload();   
   }
   genreValue(event, value){
   this.selectedGenre = value;
@@ -42,7 +43,10 @@ export class HeaderComponent implements OnInit {
   }
 
   openAddProductDialog() {
-    let dialogRef = this.dialog.open(AddProductComponent);
+    let dialogRef = this.dialog.open(AddProductComponent,{
+      height: '85%',
+      width: '50%'
+    });
   }
 
   openAddCategoryDialog() {

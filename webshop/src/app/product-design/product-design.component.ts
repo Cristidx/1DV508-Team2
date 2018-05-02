@@ -64,7 +64,7 @@ export class ProductDesignComponent implements OnInit {
     }
 
     deleteMovies(event,item){
-      if(confirm("Want to delte the movie?")){
+      if(confirm("Do you want to delete the movie?")){
         this.dataService.deleteMovie(item);
       }
      else 
