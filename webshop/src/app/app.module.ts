@@ -26,6 +26,7 @@ import { DataCloudService } from './services/data-cloud.service';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { DataService } from './services/data.service';
 import { MatDialog, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { RatingComponent } from './rating/rating.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { MatDialog, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog'
     ProductDesignComponent,
     DataCloudComponent,
     AddCategoryComponent,
-    EditProductComponent
+    EditProductComponent,
+    RatingComponent
   ],
   imports: [
     BrowserModule,

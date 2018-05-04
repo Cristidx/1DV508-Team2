@@ -73,10 +73,10 @@ export class DataCloudService {
   }
 
   addProduct(movieData: movieData) {
-    this.movieCollection.add(movieData);
+    this.movieCollection.add(movieData).then(()=>window.alert('A film is successfully added'),console.error);
   }
   addCategory(categoriesData: categoriesData) {
-    this.categoriesCollection.add(categoriesData);
+    this.categoriesCollection.add(categoriesData).then(()=>window.alert('A category is successfully Added'),console.error);
 
   }
    /* To delete categories */
@@ -93,7 +93,7 @@ export class DataCloudService {
 
   editMovie(data: movieData) {
     this.movieDoc = this.afs.doc(`Movies/${data.id}`);
-    this.movieDoc.update(data);
+    this.movieDoc.update(data).then(()=>window.alert('A movie is Successfully updated'),console.error);
   }
 
   getDate(date:Date):string{

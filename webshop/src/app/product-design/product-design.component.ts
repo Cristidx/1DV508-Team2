@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { User } from '../model/user';
 import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
+import { DataService } from '../services/data.service';
 @Component({
   selector: 'app-product-design',
   templateUrl: './product-design.component.html',
@@ -17,7 +18,8 @@ export class ProductDesignComponent implements OnInit {
 
 
   constructor(public dataService: DataCloudService, private dialog: MatDialog, 
-              private route: ActivatedRoute, private authService: AuthService) { }
+              private route: ActivatedRoute, private authService: AuthService,
+              private data: DataService) { }
 
   user: User;              
   isDataAvailabe: boolean = false;
@@ -44,6 +46,9 @@ export class ProductDesignComponent implements OnInit {
         this.movieArray = movies;
         this.route.params.subscribe(() => this.handleRouteChange());
       });
+      console.log(this.movie);
+      this.data.getCurrentMovieID(this.movie.id);
+        
     }
 
     handleRouteChange() {
@@ -70,4 +75,5 @@ export class ProductDesignComponent implements OnInit {
         width: '35%'
       });
     }
+    
   }
