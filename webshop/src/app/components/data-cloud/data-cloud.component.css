@@ -1,21 +1,53 @@
 
+h1 {
+    margin: 0% 0% 5% 0%;
+}
+
+img {
+
+    margin: 0% 0% 0% 0%;
+}
 .nav3 > * {
     display: inline-block;
 }
 .button {
+
     background:#3e423e;
     color: white;
+    padding: 0px;
+    width: 101px;
+    height: 35px;
     
 }
 .price {
+    margin: 0% 0%;
     background:#009900;
     color: white;
-    display: inline-block;
+    /* display: inline-block; */
     font-size: 20px;
     text-align: center;
     padding: 10px;
     height: 35px;
+    }
+  
+.buy {
+    margin: 1% 0% 0% 20%;
+    background:#3e423e;
+    color: white;
+    padding: 0px;
+    width: 101px;
+    height: 35px;
+    text-align: center;
     
-    
+      }
+
+.outOfStock {
+    margin: 1% 0% 0% 20%;
+    background:#3e423e;
+    color: white;
+    padding: 0px;
+    width: 101px;
+    height: 35px;
+    text-align: center;
     
 }
