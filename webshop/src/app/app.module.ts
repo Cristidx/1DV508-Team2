@@ -27,6 +27,7 @@ import { EditProductComponent } from './edit-product/edit-product.component';
 import { DataService } from './services/data.service';
 import { MatDialog, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { RatingComponent } from './rating/rating.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { RatingComponent } from './rating/rating.component';
     AngularFirestoreModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    MatModule
+    MatModule,
+    BrowserAnimationsModule
   ],
   providers: [AuthService, CrudService, DataCloudService, DataService, MatDialog],
   bootstrap: [AppComponent]

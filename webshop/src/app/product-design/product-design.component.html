@@ -37,8 +37,8 @@
             <button class="editButton" mat-button="Edit" (click)="openEditDialog()">Edit</button>
             <button mat-button  type="submit" class="delete" value="Delete" (click)="deleteMovies($event,movie)" routerLink="/"> Delete</button>
           </div>
-          Do not clik the stars, or you are going to spend your entire fucking day deleting usles items from the data base!!!
-          <app-rating></app-rating>
+        
+          <app-rating [movieID]="movie.id"></app-rating>
       </div>
   </div>
   </body>

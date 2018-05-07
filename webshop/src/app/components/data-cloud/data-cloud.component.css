@@ -4,42 +4,44 @@ h1 {
 }
 
 img {
-
     margin: 0% 0% 0% 0%;
 }
 .nav3 > * {
     display: inline-block;
 }
-.button {
 
-    background:#3e423e;
-    color: white;
-    padding: 0px;
-    width: 101px;
-    height: 35px;
-    
-}
 .price {
-    margin: 0% 0%;
-    background:#009900;
+    position: absolute;
+    margin: -25% 0% 0% 0%;
+    background:#0096db;
     color: white;
     /* display: inline-block; */
     font-size: 20px;
     text-align: center;
-    padding: 10px;
-    height: 35px;
-    }
-  
-.buy {
-    margin: 1% 0% 0% 20%;
-    background:#3e423e;
-    color: white;
     padding: 0px;
-    width: 101px;
-    height: 35px;
-    text-align: center;
-    
-      }
+    width: 80px;
+    height: 30px;
+    border-radius: 0px  10px  10px   0px;
+    }
+
+.shopButton {
+    background:#00bd2f;
+}
+
+.outStock {
+    background:#bd0000;
+}
+
+
+
+
+ .grid-container {
+    white-space: nowrap; 
+    width: 153px; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+   
+    }
 
 .outOfStock {
     margin: 1% 0% 0% 20%;
@@ -51,3 +53,85 @@ img {
     text-align: center;
     
 }
+
+
+  .box:hover {
+    transform: scale(1.2);
+    top: 0;
+      left: 0;
+      clear: float;
+      width: 100%;
+      height: 100%;
+      color: #ffffff;
+  }
+  
+  .zoom {
+    color: #ffffff;
+    -webkit-transition: all 0.5s ease-in-out;
+      -moz-transition: all 0.5s ease-in-out;
+      -o-transition: all 0.5s ease-in-out;
+      transition: all 0.5s ease-in-out;
+  }
+  
+  .zoom:hover {
+    -webkit-transition: all 0.2s ease-in-out;
+      -moz-transition: all 0.2s ease-in-out;
+      -o-transition: all 1s ease-in-out;
+      transition: all 0.2s ease-in-out;
+  }
+
+
+  .boxMovies { 
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 5px solid black;
+    border-radius: 10px  10px  10px   10px;
+}
+
+.imgContainer {
+    position: relative;
+  }
+  
+  .movieImage {
+    display: block;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .4s ease;
+    background-color: rgb(0, 0, 0);
+  }
+ 
+  .middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  .stars{
+    top: 9%;
+  }
+  .imgContainer:hover .overlay {
+    opacity: 0.5;
+  }
+  .imgContainer:hover .middle {
+    position: absolute;
+    opacity: 1;
+  }
+
+  .text {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    padding: 16px 32px;
+  }

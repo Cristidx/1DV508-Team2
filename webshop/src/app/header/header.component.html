@@ -12,7 +12,7 @@
   </head>
   <body>
       <body>
-          <mat-toolbar style="display: flex" color = "primary" >
+          <mat-toolbar class="toolbar" style="display: flex" color = "primary" >
               <mat-toolbar-row>
                 <h1><a routerLink="">Bluray Shop</a></h1> 
                 <h2 *ngIf="user != null && user.admin == true;">Admin Mode <i class="fas fa-exclamation-triangle"></i></h2> 
@@ -37,6 +37,7 @@
               </mat-toolbar-row>
             </mat-toolbar>
 
+            
     <!-- <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
         <div class="navbar-header">
