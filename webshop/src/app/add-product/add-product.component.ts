@@ -27,7 +27,9 @@ export class AddProductComponent implements OnInit {
     plot:'',
     stock:0,
     director:'',
-    dateAdded:''
+    dateAdded:'',
+    avgRating:0,
+    totalRatings:0
   }
 
   constructor(private dataService: DataCloudService, private authService: AuthService, private crud: CrudService) { }
@@ -56,6 +58,8 @@ export class AddProductComponent implements OnInit {
       this.movies.stock = 0;
       this.movies.director = '';
       this.movies.dateAdded ='';
+      this.movies.totalRatings = 0;
+      this.movies.avgRating = 0;
     }
   }
 

@@ -47,6 +47,7 @@ export class DataCloudService {
       })
     });
 
+
     //this.categoriesData = this.afs.collection('Categories').valueChanges();
     this.categoriesCollection = this.afs.collection('Categories');
     this.categoriesData = this.afs.collection('Categories').snapshotChanges().map(changes => {
@@ -67,9 +68,6 @@ export class DataCloudService {
   }
   getMoviePromise() {
     return this.movieData.toPromise();
-  }
-  getMovies() {
-    return this.movieArray;
   }
 
   addProduct(movieData: movieData) {
@@ -92,6 +90,7 @@ export class DataCloudService {
   }
 
   editMovie(data: movieData) {
+    console.log('Data ID ' + data.id);
     this.movieDoc = this.afs.doc(`Movies/${data.id}`);
     this.movieDoc.update(data).then(()=>window.alert('A movie is Successfully updated'),console.error);
   }

@@ -17,6 +17,7 @@ export class RatingComponent implements OnInit {
   movies: movieData = {
     avgRating:0,
     totalRatings:0,
+    id: ''
   }
 
   selectedID: string='s';
@@ -29,7 +30,7 @@ export class RatingComponent implements OnInit {
 
     this.data.currentMovieIDSelected.subscribe(selectedID=>this.selectedID = selectedID);
     this.movies.id=this.selectedID;
-    console.log(this.movieID);
+    console.log('INSIDE rating: ' + this.movies.id);
   }
   starHandler(num){
     this.starValue=num;
