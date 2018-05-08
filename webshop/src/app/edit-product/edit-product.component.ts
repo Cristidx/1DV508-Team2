@@ -15,10 +15,11 @@ export class EditProductComponent implements OnInit {
 
   selectedGenre:string;
   genres: categoriesData[];
+  selected: any;
   //movie: movieData;
   movie: movieData;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: movieData, private dataService: DataCloudService,
-                                       private dialog: MatDialog) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: movieData, public dataService: DataCloudService,
+                                       public dialog: MatDialog) { }
 
   ngOnInit() {
     this.dataService.getCategories().subscribe(data => {

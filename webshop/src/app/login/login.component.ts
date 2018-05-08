@@ -21,28 +21,28 @@ export class LoginComponent implements OnInit {
 
   }
 
-  private signInWithGoogle() {
+  signInWithGoogle() {
     this.authService.googleLogin()
     // .then((user) => this.router.navigate([''])
     .catch((error) => console.log(error));
     this.dialog.closeAll();
   }
 
-  private signInWithGithub() {
+  signInWithGithub() {
     this.authService.githubLogin()
     // .then((user) => this.router.navigate([''])
     .catch((error) => console.log(error));
     this.dialog.closeAll();
   }
 
-  private signIn(): void {
+  signIn(): void {
     this.authService.signInWithRegularEmail(this.user.email, this.user.password)
     // .then((user) => this.router.navigate([''])
     .catch((error) => console.log(error));
     this.dialog.closeAll();
   }
 
-  private toCreateAccount() {
+  toCreateAccount() {
     this.dialog.closeAll();
     this.router.navigate(['/create']);
   }

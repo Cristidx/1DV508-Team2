@@ -18,7 +18,7 @@ export class AdminLogInComponent implements OnInit {
   ngOnInit() {
   }
 
-  private signIn(): void {
+  signIn(): void {
     this.authService.signInAsAdmin(this.user.email, this.user.password);
   }
 }

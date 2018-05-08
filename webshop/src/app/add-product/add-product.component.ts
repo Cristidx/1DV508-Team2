@@ -17,7 +17,8 @@ export class AddProductComponent implements OnInit {
   
   currentDate = new Date();
   categories: categoriesData[];
-  
+  selected: any;
+
   movies: movieData = {
     title:'',
     genre:'',
@@ -32,7 +33,7 @@ export class AddProductComponent implements OnInit {
     totalRatings:0
   }
 
-  constructor(private dataService: DataCloudService, private authService: AuthService, private crud: CrudService) { }
+  constructor(public dataService: DataCloudService, public authService: AuthService, public crud: CrudService) { }
 
   ngOnInit() {
     this.dataService.getCategories().subscribe(Catdata => {
