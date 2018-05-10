@@ -6,6 +6,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { DataCloudService } from '../services/data-cloud.service';
 import {movieData} from '../model/data';
 import {categoriesData} from '../model/data';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-product',
@@ -33,7 +34,7 @@ export class AddProductComponent implements OnInit {
     totalRatings:0
   }
 
-  constructor(public dataService: DataCloudService, public authService: AuthService, public crud: CrudService) { }
+  constructor(public dataService: DataCloudService, public authService: AuthService, public crud: CrudService, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.dataService.getCategories().subscribe(Catdata => {
@@ -61,6 +62,7 @@ export class AddProductComponent implements OnInit {
       this.movies.dateAdded ='';
       this.movies.totalRatings = 0;
       this.movies.avgRating = 0;
+      this.dialog.closeAll();
     }
   }
 
