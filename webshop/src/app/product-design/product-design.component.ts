@@ -47,9 +47,6 @@ export class ProductDesignComponent implements OnInit {
         this.route.params.subscribe(() => this.handleRouteChange());
         this.data.getCurrentMovieID(this.movie.id);
       });
-      
-      console.log(this.movie);
-
     }
 
     handleRouteChange() {
@@ -57,7 +54,7 @@ export class ProductDesignComponent implements OnInit {
       for (let i = 0; i < this.movieArray.length; i++) {
         if (this.movieArray[i].id === id) {
           this.movie = this.movieArray[i];
-          console.log(this.movie);
+          window.scrollTo(0, 0);
           break;
         }
       }
