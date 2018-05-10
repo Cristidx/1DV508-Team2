@@ -3,6 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { Observable } from 'rxjs/Observable';
 import { movieData } from '../model/data';
 import { categoriesData } from '../model/data';
+import { Order } from '../model/order';
 
 @Injectable()
 export class DataCloudService {
@@ -16,6 +17,9 @@ export class DataCloudService {
   movieData: Observable<movieData[]>
   movieDoc: AngularFirestoreDocument<movieData>;
   
+  orderCollection: AngularFirestoreCollection<Order>;
+  orders: Observable<Order[]>;
+
   constructor(public afs: AngularFirestore) {
 
     //this.movieData = this.afs.collection('Movies').valueChanges();
@@ -57,6 +61,15 @@ export class DataCloudService {
         return data;
       });
     });
+
+    this.orderCollection = this.afs.collection('Orders');
+    this.orders = this.orderCollection.snapshotChanges().map(changes => {
+      return changes.map(a => { 
+        const data = a.payload.doc.data() as Order;
+        data.uid = a.payload.doc.id;
+        return data;
+      });
+    });
   }
 
 
@@ -66,8 +79,8 @@ export class DataCloudService {
   getMovie() {
     return this.movieData;
   }
-  getMoviePromise() {
-    return this.movieData.toPromise();
+  getOrders() {
+    return this.orders;
   }
 
   addProduct(movieData: movieData) {
@@ -75,7 +88,9 @@ export class DataCloudService {
   }
   addCategory(categoriesData: categoriesData) {
     this.categoriesCollection.add(categoriesData).then(()=>window.alert('A category is successfully Added'),console.error);
-
+  }
+  addOrder(order: Order) {
+    return this.orderCollection.add(order);
   }
    /* To delete categories */
   deleteCategory(categoriesData: categoriesData) {
