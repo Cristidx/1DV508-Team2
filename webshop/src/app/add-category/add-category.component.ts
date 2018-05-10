@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataCloudService } from '../services/data-cloud.service';
 import {categoriesData} from '../model/data';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-category',
@@ -12,7 +13,7 @@ export class AddCategoryComponent implements OnInit {
   categories: categoriesData = {
     genre:''
   }
-  constructor(private dataService: DataCloudService) { }
+  constructor(private dataService: DataCloudService, private dialog: MatDialog) { }
 
   ngOnInit() {
   }
@@ -21,6 +22,8 @@ export class AddCategoryComponent implements OnInit {
     if(this.categories.genre != ''){
       this.dataService.addCategory(this.categories);
       this.categories.genre = '';
+      this.dialog.closeAll();
+      
       
     }
   }
