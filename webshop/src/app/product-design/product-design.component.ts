@@ -8,18 +8,19 @@ import { AuthService } from '../services/auth.service';
 import { User } from '../model/user';
 import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
 import { DataService } from '../services/data.service';
+import { OrderService } from '../services/order.service';
 @Component({
   selector: 'app-product-design',
   templateUrl: './product-design.component.html',
   styleUrls: ['./product-design.component.css'],
-  providers: [DataCloudService, AuthService]
+  providers: [DataCloudService, AuthService, OrderService]
 })
 export class ProductDesignComponent implements OnInit {
 
 
   constructor(public dataService: DataCloudService, private dialog: MatDialog, 
               private route: ActivatedRoute, private authService: AuthService,
-              private data: DataService) { }
+              private data: DataService, private orderService: OrderService) { }
 
   user: User;              
   isDataAvailabe: boolean = false;
@@ -42,6 +43,7 @@ export class ProductDesignComponent implements OnInit {
       this.authService.user.subscribe((user) => {
         this.user = user;
       });
+      
       this.dataService.getMovie().subscribe((movies) => {  
         this.movieArray = movies;
         this.route.params.subscribe(() => this.handleRouteChange());
@@ -75,4 +77,8 @@ export class ProductDesignComponent implements OnInit {
       });
     }
     
+    testOrderFunction() {
+      this.orderService.createOrder(this.movie);  
+    }
+
   }

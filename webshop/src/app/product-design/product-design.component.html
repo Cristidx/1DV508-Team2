@@ -33,6 +33,7 @@
           <button *ngIf = "movie.stock > 0; else outOfStockButton" mat-button>Add to cart</button>
           <ng-template #outOfStockButton> Out of stock </ng-template>
         </div>
+        <button mat-button (click)="testOrderFunction()">Test Order</button>  
           <div *ngIf="user != null && user.admin == true">
             <button class="editButton" mat-button="Edit" (click)="openEditDialog()">Edit</button>
             <button mat-button  type="submit" class="delete" value="Delete" (click)="deleteMovies($event,movie)" routerLink="/"> Delete</button>

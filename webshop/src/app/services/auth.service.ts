@@ -11,10 +11,13 @@ import { query } from '@angular/animations';
 @Injectable()
 export class AuthService {
   user: Observable<User>;
+  uid: string;
 
   constructor(private afAuth: AngularFireAuth, private db: AngularFirestore, private router: Router) {
     this.user = this.afAuth.authState.switchMap(user => {
       if (user != null) {
+        this.uid = user.uid;
+        console.log(this.uid);
         return this.db.doc<User>(`Users/${user.uid}`).valueChanges();
       } else {
         return Observable.of(null);

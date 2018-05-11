@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { movieData } from '../model/data';
 import { categoriesData } from '../model/data';
 import { Order } from '../model/order';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable()
 export class DataCloudService {
@@ -12,7 +13,6 @@ export class DataCloudService {
   categoriesData: Observable<categoriesData[]>
   categoryDoc: AngularFirestoreDocument<categoriesData>;
 
-  movieArray: movieData[];
   movieCollection: AngularFirestoreCollection<movieData>
   movieData: Observable<movieData[]>
   movieDoc: AngularFirestoreDocument<movieData>;
@@ -20,7 +20,7 @@ export class DataCloudService {
   orderCollection: AngularFirestoreCollection<Order>;
   orders: Observable<Order[]>;
 
-  constructor(public afs: AngularFirestore) {
+  constructor(public afs: AngularFirestore, private snackBar: MatSnackBar) {
 
     //this.movieData = this.afs.collection('Movies').valueChanges();
     this.movieCollection = this.afs.collection('Movies', ref => ref.orderBy('dateAdded', 'desc'));
@@ -31,26 +31,6 @@ export class DataCloudService {
         return data;
       });
     });
-
-    this.movieArray = [];
-    this.movieCollection.ref.get().then(querySnapshot => {
-      querySnapshot.forEach((doc) => {
-        let data: movieData = {
-          title: doc.data()['title'],
-          genre: doc.data()['genre'],
-          imageURL: doc.data()['imageURL'],
-          price: doc.data()['price'],
-          year: doc.data()['year'],
-          plot: doc.data()['plot'],
-          stock: doc.data()['stock'],
-          director: doc.data()['director'],
-          dateAdded: doc.data()['dateAdded'],
-          id: doc.id
-        }
-        this.movieArray.push(data);
-      })
-    });
-
 
     //this.categoriesData = this.afs.collection('Categories').valueChanges();
     this.categoriesCollection = this.afs.collection('Categories');
@@ -66,7 +46,6 @@ export class DataCloudService {
     this.orders = this.orderCollection.snapshotChanges().map(changes => {
       return changes.map(a => { 
         const data = a.payload.doc.data() as Order;
-        data.uid = a.payload.doc.id;
         return data;
       });
     });
@@ -84,30 +63,29 @@ export class DataCloudService {
   }
 
   addProduct(movieData: movieData) {
-    this.movieCollection.add(movieData).then(()=>window.alert('A film is successfully added'),console.error);
+    this.movieCollection.add(movieData).then(()=>this.snackBar.open('A movie was succesfully added', 'Dismiss'),console.error);
   }
   addCategory(categoriesData: categoriesData) {
-    this.categoriesCollection.add(categoriesData).then(()=>window.alert('A category is successfully Added'),console.error);
+    this.categoriesCollection.add(categoriesData).then(()=>this.snackBar.open('A category was succesfully created', 'Dismiss'), console.error);
   }
   addOrder(order: Order) {
-    return this.orderCollection.add(order);
+    return this.orderCollection.add(order).then(() => this.snackBar.open('Order created', 'Dismiss'));
   }
    /* To delete categories */
   deleteCategory(categoriesData: categoriesData) {
     this.categoryDoc=this.afs.doc(`Categories/${categoriesData.id}`);
-    this.categoryDoc.delete().then(()=>window.alert('A category is successfully deleted'),console.error);
+    this.categoryDoc.delete().then(()=>this.snackBar.open('A category was successfully deleted', 'Dismiss'), console.error);
   }
   /* To delete movies item by id */
   deleteMovie(movieData: movieData) {
     this.movieDoc = this.afs.doc(`Movies/${movieData.id}`);
-    this.movieDoc.delete().then(()=>window.alert('A movie is Successfully deleted')).then(()=>location.reload(),console.error);
-  
+    this.movieDoc.delete().then(()=>this.snackBar.open('A movie was successfully deleted', 'Dismiss')).then(()=>location.reload(), console.error); 
   }
 
   editMovie(data: movieData) {
     console.log('Data ID ' + data.id);
     this.movieDoc = this.afs.doc(`Movies/${data.id}`);
-    this.movieDoc.update(data).then(()=>window.alert('A movie is Successfully updated'),console.error);
+    this.movieDoc.update(data).then(()=>this.snackBar.open('A movie was successfully updated', 'Dismiss'), console.error);
   }
 
   getDate(date:Date):string{
