@@ -79,7 +79,7 @@ export class DataCloudService {
   /* To delete movies item by id */
   deleteMovie(movieData: movieData) {
     this.movieDoc = this.afs.doc(`Movies/${movieData.id}`);
-    this.movieDoc.delete().then(()=>this.snackBar.open('A movie was successfully deleted', 'Dismiss')).then(()=>location.reload(), console.error); 
+    this.movieDoc.delete().then(()=>this.snackBar.open('A movie was successfully deleted', 'Dismiss'), console.error); 
   }
 
   editMovie(data: movieData) {
