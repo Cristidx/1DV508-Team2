@@ -17,7 +17,6 @@ export class AuthService {
     this.user = this.afAuth.authState.switchMap(user => {
       if (user != null) {
         this.uid = user.uid;
-        console.log(this.uid);
         return this.db.doc<User>(`Users/${user.uid}`).valueChanges();
       } else {
         return Observable.of(null);

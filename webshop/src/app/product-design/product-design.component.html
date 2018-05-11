@@ -37,8 +37,7 @@
           <div *ngIf="user != null && user.admin == true">
             <button class="editButton" mat-button="Edit" (click)="openEditDialog()">Edit</button>
             <button mat-button  type="submit" class="delete" value="Delete" (click)="deleteMovies($event,movie)" routerLink="/"> Delete</button>
-          </div>
-        
+          </div>        
           <app-rating [movieID]="movie.id"></app-rating>
       </div>
   </div>

@@ -28,6 +28,7 @@ import { DataService } from './services/data.service';
 import { MatDialog, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { RatingComponent } from './rating/rating.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DataCloudComponent,
     AddCategoryComponent,
     EditProductComponent,
-    RatingComponent
+    RatingComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
