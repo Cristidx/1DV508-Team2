@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
-import { movieData } from '../model/data';
+import { movieData, starData } from '../model/data';
 import { categoriesData } from '../model/data';
 import { Order } from '../model/order';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -17,6 +17,10 @@ export class DataCloudService {
   movieData: Observable<movieData[]>
   movieDoc: AngularFirestoreDocument<movieData>;
   
+  starCollection: AngularFirestoreCollection<starData>
+  starData: Observable<starData[]>
+  starDoc: AngularFirestoreDocument<starData>;
+
   orderCollection: AngularFirestoreCollection<Order>;
   orders: Observable<Order[]>;
 
@@ -49,6 +53,16 @@ export class DataCloudService {
         return data;
       });
     });
+
+    this.starCollection = this.afs.collection('Stars');
+    this.starData = this.afs.collection('Stars').snapshotChanges().map(changes => {
+      return changes.map(a => {
+        const data = a.payload.doc.data() as starData;
+        data.id = a.payload.doc.id;
+        return data;
+      });
+    });
+    
   }
 
 
@@ -60,6 +74,11 @@ export class DataCloudService {
   }
   getOrders() {
     return this.orders;
+  }
+
+  getMovieStars(movieId) {
+    const starsRef = this.afs.collection('Stars', ref => ref.where('movieId', '==', movieId) );
+    return starsRef.valueChanges();
   }
 
   addProduct(movieData: movieData) {
@@ -86,6 +105,14 @@ export class DataCloudService {
     console.log('Data ID ' + data.id);
     this.movieDoc = this.afs.doc(`Movies/${data.id}`);
     this.movieDoc.update(data).then(()=>this.snackBar.open('A movie was successfully updated', 'Dismiss'), console.error);
+  }
+
+ 
+
+  setStar(userId, movieId, value) {
+    const star: starData = { userId, movieId, value };
+    const starPath = `Stars/${star.userId}_${star.movieId}`;
+    return this.afs.doc(starPath).set(star)
   }
 
   getDate(date:Date):string{

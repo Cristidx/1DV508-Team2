@@ -18,3 +18,10 @@
     avgRating?:number;
     totalRatings?:number;
   }
+
+  export interface starData {
+    id?:string;
+    movieId?:string;
+    userId?:string;
+    value?:number;
+  }

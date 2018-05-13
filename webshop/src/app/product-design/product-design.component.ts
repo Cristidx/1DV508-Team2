@@ -40,7 +40,7 @@ export class ProductDesignComponent implements OnInit {
     id: ''
   }
 
-
+  qwe: string ='RCn6upR27BH3IyRSMRZr';
   ngOnInit() {
     // this.movie = this.importMovieData.getMovieInfo();
     this.authService.user.subscribe((user) => {
@@ -51,6 +51,7 @@ export class ProductDesignComponent implements OnInit {
       this.movieArray = movies;
       this.route.params.subscribe(() => this.handleRouteChange());
     });
+    this.data.getCurrentMovieID(this.qwe);
   }
 
   handleRouteChange() {
