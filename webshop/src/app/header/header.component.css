@@ -31,12 +31,12 @@ a {
 }
 
 a:hover {
-    text-decoration: none; 
+    text-decoration: none;
     color: beige;
 }
 
 a:focus {
-    text-decoration: none; 
+    text-decoration: none;
     color: beige;
 }
 
@@ -58,4 +58,39 @@ h5 {
 
 .left-containter {
     margin-right: auto;
+}
+
+.addTOCart{
+  background: #00bd2f;
+  font-size: medium;
+
+
+}
+.menu{
+
+  position: relative;
+  display: inline-block;
+  float: right;
+}
+.drop-down{
+  display: none;
+  position: absolute;
+  background: #0096db;
+  min-width: 160px;
+}
+.drop-down a{
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.drop-down a :hover{
+  background: #00bd2f;
+  color: #0096db;
+}
+.menu:hover .drop-down{
+  display: block;
+}
+.menu:hover .addTOCart{
+  background-color: transparent;
 }
