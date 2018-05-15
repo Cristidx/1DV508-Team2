@@ -19,3 +19,16 @@
     padding: 5px 5px 5px 5px;
     float: right;
 }
+
+.main {
+    /* text-align: center; */
+    float: center;
+    width: 650px;
+
+
+    margin: 5% auto;
+    padding: 10px;
+    background-color: #f2f2f2;
+    border: 1px solid black;
+    /* margin-left: 50%; */
+}
