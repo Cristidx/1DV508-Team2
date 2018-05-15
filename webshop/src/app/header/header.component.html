@@ -25,6 +25,9 @@
                         <button *ngIf="user != null && user.admin == true;" (click)="openAddCategoryDialog()" mat-menu-item>+Add Category</button>   
                 </mat-menu>
 
+                <button mat-button routerLink="/orderview" >Eriks test button!</button>
+
+
                 <form class="navbar-form navbar-left" role="Add Product">
                   <button *ngIf="user != null && user.admin == true;" mat-button type="submit" class="btn1" (click)="openAddProductDialog()">Add Product</button>
                 </form>
