@@ -28,12 +28,12 @@
                 <div class = "menu"> 
                   <button class="btn addTOCart">Cart <span class="glyphicon glyphicon-shopping-cart"></span>
                 </button>
-                  <div class="drop-down" >
-                    <a href="#" > Product 1</a>
-                    <a href="#" > Product 2</a>
-                    <a href="#" > Product 3</a>
-                    <a href="#" > Product 4</a>
-                  </div>
+                   <div class="drop-down" >
+                   
+                   <app-shopping-cart></app-shopping-cart>
+               
+                  </div> 
+           
                 <button mat-button *ngIf="user != null">Profile <i class="fas fa-user"></i></button>
                 <button *ngIf="user == null; else showLogout" mat-button type="submit" (click)="openLoginComponentDialog()" class="signIn">Sign in/Create account</button>
                 <ng-template #showLogout>

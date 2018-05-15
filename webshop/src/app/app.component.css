@@ -9,6 +9,12 @@ background-repeat: no-repeat;
 background-size: cover;
 }
 .logo{
-        margin: 2% 25% 0%;
+        margin: -1% 15% -2%;
+        height: 30%;
+        width: 20%;
     
+}
+.search-container{
+        
+        margin: -3% 42% 2%;
 }

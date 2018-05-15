@@ -29,6 +29,7 @@ import { MatDialog, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog'
 import { RatingComponent } from './rating/rating.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchComponent } from './search/search.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { SearchComponent } from './search/search.component';
     AddCategoryComponent,
     EditProductComponent,
     RatingComponent,
-    SearchComponent
+    SearchComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,
