@@ -3,6 +3,8 @@ import { DataCloudService } from '../services/data-cloud.service';
 import {movieData, starData} from '../model/data';
 import { Observable } from 'rxjs/Observable';
 import { DataService } from '../services/data.service';
+import { AuthService } from '../services/auth.service';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-rating',
@@ -14,6 +16,7 @@ export class RatingComponent implements OnInit, OnChanges {
 
   @Input() movieID: string;
 
+  user: User;
   stars: Observable<any>;
   avgRating: Observable<any>;
 
@@ -24,7 +27,7 @@ export class RatingComponent implements OnInit, OnChanges {
   }
 
   selectedID: string ='';
-  constructor(private dataService: DataCloudService, private data: DataService) { }
+  constructor(private dataService: DataCloudService, private data: DataService, private auth: AuthService) { }
  
   ngOnInit() {
     this.data.currentMovieIDSelected.subscribe(selectedID=> {
@@ -38,6 +41,7 @@ export class RatingComponent implements OnInit, OnChanges {
       return ratings.length ? ratings.reduce((total, val) => total + val) / arr.length : 'not reviewed'
     })
 
+    this.auth.user.subscribe((user) => this.user);
     
   }
 
@@ -51,6 +55,8 @@ export class RatingComponent implements OnInit, OnChanges {
   
 
   starHandler(value){
-    this.dataService.setStar( this.movie.userId, this.movieID, value);
+    console.log(this.user.uid);
+    console.log(this.movieID);
+    this.dataService.setStar( this.user.uid, this.movieID, value);
   }
 }
