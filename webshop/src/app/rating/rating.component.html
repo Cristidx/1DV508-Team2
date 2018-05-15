@@ -1,6 +1,11 @@
 
 <fieldset class="rating">
-    
+ <!-- <h3>Average Rating</h3>
+  {{ avgRating | async }}
+  <div *ngFor="let star of stars | async">
+    {{ star.userId }} gave {{ star.movieId }} {{ star.value }} stars
+  </div> -->
+
   <ng-container  *ngFor="let num of [5, 4, 3, 2, 1]">
       
       <!-- full star -->
@@ -15,5 +20,5 @@
 
 
   </ng-container>
-  <p>{{starValue}}</p>
+  
 </fieldset>

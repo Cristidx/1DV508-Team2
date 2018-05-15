@@ -23,22 +23,22 @@ export class LoginComponent implements OnInit {
 
   signInWithGoogle() {
     this.authService.googleLogin()
-    // .then((user) => this.router.navigate([''])
-    .catch((error) => console.log(error));
+    .then((user) => this.router.navigate([''])
+    .catch((error) => console.log(error)));
     this.dialog.closeAll();
   }
 
   signInWithGithub() {
     this.authService.githubLogin()
-    // .then((user) => this.router.navigate([''])
-    .catch((error) => console.log(error));
+    .then((user) => this.router.navigate([''])
+    .catch((error) => console.log(error)));
     this.dialog.closeAll();
   }
 
   signIn(): void {
     this.authService.signInWithRegularEmail(this.user.email, this.user.password)
-    // .then((user) => this.router.navigate([''])
-    .catch((error) => console.log(error));
+    .then((user) => this.router.navigate([''])
+    .catch((error) => console.log(error)));
     this.dialog.closeAll();
   }
 

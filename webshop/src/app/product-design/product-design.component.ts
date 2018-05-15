@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnChanges } from '@angular/core';
 import { movieData } from '../model/data';
 import { DataCloudService } from '../services/data-cloud.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -8,19 +8,22 @@ import { AuthService } from '../services/auth.service';
 import { User } from '../model/user';
 import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
 import { DataService } from '../services/data.service';
+import { OrderService } from '../services/order.service';
+import { Observable } from '@firebase/util';
 @Component({
   selector: 'app-product-design',
   templateUrl: './product-design.component.html',
   styleUrls: ['./product-design.component.css'],
-  providers: [DataCloudService, AuthService]
+  providers: [DataCloudService, AuthService, OrderService]
 })
 export class ProductDesignComponent implements OnInit {
 
 
   constructor(public dataService: DataCloudService, private dialog: MatDialog, 
               private route: ActivatedRoute, private authService: AuthService,
-              private data: DataService) { }
+              private data: DataService, private orderService: OrderService) { }
 
+  message: string;
   user: User;              
   isDataAvailabe: boolean = false;
   movieArray: movieData[];
@@ -36,43 +39,49 @@ export class ProductDesignComponent implements OnInit {
     dateAdded:'',
     id: ''
   }
-  
+
+  qwe: string ='RCn6upR27BH3IyRSMRZr';
   ngOnInit() {
     // this.movie = this.importMovieData.getMovieInfo();
-      this.authService.user.subscribe((user) => {
-        this.user = user;
-      });
-      this.dataService.getMovie().subscribe((movies) => {  
-        this.movieArray = movies;
-        this.route.params.subscribe(() => this.handleRouteChange());
-        this.data.getCurrentMovieID(this.movie.id);
-      });
-    }
-
-    handleRouteChange() {
-      let id = this.route.snapshot.paramMap.get('id');
-      for (let i = 0; i < this.movieArray.length; i++) {
-        if (this.movieArray[i].id === id) {
-          this.movie = this.movieArray[i];
-          window.scrollTo(0, 0);
-          break;
-        }
-      }
-    }
-
-    deleteMovies(event,item){
-      if(confirm("Do you want to delete the movie?")){
-        this.dataService.deleteMovie(item);
-      }
-     else 
-       return false;
-    }
-
-    openEditDialog() {
-      let dialogRef = this.dialog.open(EditProductComponent, {
-        data: this.movie,
-        width: '35%'
-      });
-    }
+    this.authService.user.subscribe((user) => {
+      this.user = user;
+    });
     
+    this.dataService.getMovie().subscribe((movies) => {  
+      this.movieArray = movies;
+      this.route.params.subscribe(() => this.handleRouteChange());
+    });
+    this.data.getCurrentMovieID(this.qwe);
   }
+
+  handleRouteChange() {
+    let id = this.route.snapshot.paramMap.get('id');
+    for (let i = 0; i < this.movieArray.length; i++) {
+      if (this.movieArray[i].id === id) {
+        this.movie = this.movieArray[i];
+        this.movie.id = this.movieArray[i].id;
+        window.scrollTo(0, 0);
+        break;
+      }
+    }
+  }
+
+  deleteMovies(event,item){
+    if(confirm("Do you want to delete the movie?")){
+      this.dataService.deleteMovie(item);
+    }
+    else 
+      return false;
+  }
+
+  openEditDialog() {
+    let dialogRef = this.dialog.open(EditProductComponent, {
+      data: this.movie,
+      width: '35%'
+    });
+  }
+
+  testOrderFunction() {
+    this.orderService.createOrder(this.movie);  
+  }
+}

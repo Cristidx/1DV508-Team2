@@ -1,7 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, OnChanges, SimpleChange } from '@angular/core';
 import { DataCloudService } from '../services/data-cloud.service';
-import {movieData} from '../model/data';
+import {movieData, starData} from '../model/data';
+import { Observable } from 'rxjs/Observable';
 import { DataService } from '../services/data.service';
+import { AuthService } from '../services/auth.service';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-rating',
@@ -9,33 +12,51 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./rating.component.css'],
   providers: [DataCloudService]
 })
-export class RatingComponent implements OnInit {
-  starValue = 4;
-  avgRating =3;
-@Input() movieID: string;
-  
-  movies: movieData = {
-    avgRating:0,
-    totalRatings:0,
-    id: ''
+export class RatingComponent implements OnInit, OnChanges {
+
+  @Input() movieID: string;
+
+  user: User;
+  stars: Observable<any>;
+  avgRating: Observable<any>;
+
+  movie: starData = {
+    movieId: '',
+    userId: 'user3',
+    value: 0,
   }
 
-  selectedID: string='s';
-  constructor(private dataService: DataCloudService, private data: DataService) { }
-
+  selectedID: string ='';
+  constructor(private dataService: DataCloudService, private data: DataService, private auth: AuthService) { }
+ 
   ngOnInit() {
+    this.data.currentMovieIDSelected.subscribe(selectedID=> {
+      this.selectedID = selectedID;
+    });
 
-    this.starValue=2;
+    this.stars = this.dataService.getMovieStars(this.selectedID)
+
+    this.avgRating = this.stars.map(arr => {
+      const ratings = arr.map(v => v.value)
+      return ratings.length ? ratings.reduce((total, val) => total + val) / arr.length : 'not reviewed'
+    })
+
+    this.auth.user.subscribe((user) => this.user);
     
+  }
 
-    this.data.currentMovieIDSelected.subscribe(selectedID=>this.selectedID = selectedID);
-    this.movies.id=this.selectedID;
-    console.log('INSIDE rating: ' + this.movies.id);
-  }
-  starHandler(num){
-    this.starValue=num;
-    this.movies.avgRating=num;
-    this.dataService.editMovie(this.movies);
-  }
+  ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
+    for (let propName in changes) {
+      let newID = changes[propName];
+      this.movie.id = newID.currentValue;
+    }
+    console.log('... '+this.movieID+' --- '+this.selectedID+' ...');
+  } 
   
+
+  starHandler(value){
+    console.log(this.user.uid);
+    console.log(this.movieID);
+    this.dataService.setStar( this.user.uid, this.movieID, value);
+  }
 }
