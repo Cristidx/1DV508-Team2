@@ -6,7 +6,7 @@
 <div class="detail5">{{movie.year2}}</div>
 <div class="detail6">{{movie.details}}</div>
 <ul class="detail7"> -->
-  <!DOCTYPE html>
+  <!-- <!DOCTYPE html>
   <html>
   <title>Movie Title</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,7 +42,7 @@
       </div>
   </div>
   </body>
-  </html>
+  </html> -->
 
 <!-- <li *ngFor="let i of items" class="detail8">
   <a href="https://www.google.co.uk/{{i}}">{{i}}</a>
@@ -51,3 +51,30 @@
 <img class="movieImage" src="https://i.pinimg.com/originals/65/68/58/656858f9faa6cac13c4f1c14661ce1a9.jpg" height="500" width="350">
 <button class="detail9" mat-raised-button>Add to Cart</button> -->
 
+<!DOCTYPE html>
+<html lang="en"> 
+<html>
+    <body>
+      <div class="grid">
+        <div class="image-container">
+          <img src="{{ movie.imageURL }}" alt="{{ movie.title }}" class="responsive">
+        </div> 
+        <div class="info-container">
+          <h1>{{ movie.title }}</h1>
+          <h2>{{ movie.genre }}</h2>
+          <h3>{{ movie.director }} (Director)</h3>
+          <p>{{ movie.plot }}</p>
+          <hr/>
+          <app-rating class="rating"></app-rating>
+          <h4 *ngIf="movie.stock > 0; else notInStock">Available</h4>
+          <ng-template #notInStock><h4>Not available</h4></ng-template>
+          <h4>{{ movie.price }} sek</h4>
+        </div>
+        <div class="button-container">
+          <button mat-raised-button class="buy">Buy <i class="fas fa-shopping-cart"></i></button>
+          <button mat-raised-button (click)="openEditDialog()" *ngIf="user != null && user.admin == true" class="edit">Edit</button>
+          <button mat-raised-button (click)="deleteMovies($event, movie)" *ngIf="user != null && user.admin == true" class="delete">Delete</button>
+        </div>
+      </div>
+    </body>
+</html>
