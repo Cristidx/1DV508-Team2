@@ -21,25 +21,19 @@ export class RatingComponent implements OnInit, OnChanges {
   avgRating: Observable<any>; 
   avgg:  Observable<number>;
 
-  movie: starData = {
-    movieId: '',
-    userId: 'user3',
-    value: 0,
-  }
-
- 
   selectedID: string ='';
 
   constructor(private dataService: DataCloudService, private data: DataService, private auth: AuthService) { }
  
   ngOnInit() {
    // this.avgg = this.avgRating as number;
+   this.auth.user.subscribe((user) => { this.user = user; console.log('uste---' + this.user.uid) }); 
+
   }
 
   ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
     for (let propName in changes) {
       let newID = changes[propName];
-      this.movie.id = newID.currentValue;
     }
     console.log('... '+this.movieID+' --- '+this.selectedID+' ...');
 
@@ -51,13 +45,12 @@ export class RatingComponent implements OnInit, OnChanges {
       return ratings.length ? ratings.reduce((total, val) => total + val) / arr.length : 'not reviewed'
     })
 
-    this.auth.user.subscribe((user) => this.user);
     
   } 
   
 
   starHandler(value){
     console.log('user' + this.user);
-    this.dataService.setStar( this.movie.userId, this.movieID, value);
+    this.dataService.setStar( this.user.uid, this.movieID, value);
   }
 }
