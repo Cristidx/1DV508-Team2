@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddProductComponent } from '../add-product/add-product.component';
 import { LoginComponent } from '../login/login.component';
 import { Router } from '@angular/router';
+import { UserDetailsComponent } from '../user-details/user-details.component';
 
 @Component({
   selector: 'app-header',
@@ -57,5 +58,12 @@ export class HeaderComponent implements OnInit {
 
   openLoginComponentDialog() {
     let dialogRef = this.dialog.open(LoginComponent);
+  }
+  
+  openUserDetails() {
+    let dialogRef = this.dialog.open(UserDetailsComponent,{
+
+      width: '35%'
+    });
   }
 }

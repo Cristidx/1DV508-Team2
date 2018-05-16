@@ -28,6 +28,11 @@
                 <form class="navbar-form navbar-left" role="Add Product">
                   <button *ngIf="user != null && user.admin == true;" mat-button type="submit" class="btn1" (click)="openAddProductDialog()">Add Product</button>
                 </form>
+
+                <form class="example-container" role="User Details">
+                  <button *ngIf="user != null && user.admin == true;" mat-button type="submit" class="btn1" (click)="openUserDetails()">User Details</button>
+                </form>
+
                 <div class="left-container">
                   <button *ngIf="user == null; else showLogout" mat-button type="submit" (click)="openLoginComponentDialog()">Sign in/Create account</button>
                   <ng-template #showLogout>
