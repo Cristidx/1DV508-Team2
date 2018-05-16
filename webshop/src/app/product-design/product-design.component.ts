@@ -10,6 +10,7 @@ import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
 import { DataService } from '../services/data.service';
 import { OrderService } from '../services/order.service';
 import { Observable } from '@firebase/util';
+import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
 @Component({
   selector: 'app-product-design',
   templateUrl: './product-design.component.html',
@@ -51,7 +52,9 @@ export class ProductDesignComponent implements OnInit {
       this.movieArray = movies;
       this.route.params.subscribe(() => this.handleRouteChange());
     });
-    this.data.getCurrentMovieID(this.qwe);
+  
+
+    console.log("////" + this.movie.id);
   }
 
   handleRouteChange() {
@@ -83,5 +86,11 @@ export class ProductDesignComponent implements OnInit {
 
   testOrderFunction() {
     this.orderService.createOrder(this.movie);  
+  }
+
+  addToCart() {
+    if(this.movie.stock > 0 && this.user !=null) {
+      this.data.getCurrentMovieID(this.qwe);
+    }
   }
 }
