@@ -67,7 +67,9 @@ export class HeaderComponent implements OnInit {
 	});
   }
 
-  goToOrderView() {
-    this.router.navigate(['/orderview']);
+  goToCart() {
+    this.router.navigate(['/app-shopping-cart']);
   }
+
+
 }

@@ -30,7 +30,7 @@ const routes: Routes = [
   { path: 'admin-orders', component:AdminOrdersComponent},
   { path: 'app-shopping-cart', component: ShoppingCartComponent},
   { path: 'profile', component: ProfileComponent}
-
+ 
 ];
 
 @NgModule({
