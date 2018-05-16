@@ -1,9 +1,36 @@
 <!doctype html>
-<html>
 <head>
-	<meta charset="utf-8">
-</head>
-<body>
+    <style>
+        div {
+            background-color: rgb(211, 211, 211);
+            width: 700px;
+            padding: 10px;
+            margin: 0%;
+            
+        }
+        </style>
+    <style>
+    #customers {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+    }
+    
+    #customers td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+    
+    #customers tr:nth-child(even){background-color: #f2f2f2;}
+    #customers tr:hover {background-color: #ddd;}
+    #customers th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: rgb(76, 144, 175);
+        color: white;
+    }
+    </style>
+    </head>
 	<ul>
 		<li>Email: </li>
 		<li>
@@ -13,21 +40,24 @@
 			</button>
 		</li>
 		<li *ngIf="showsOrders == true;">
-			<table>
-				<tr>
-					<th>Product</th>
-					<th>Copies</th>
-					<th>Cost</th>
-					<th>Status</th>
-				</tr>
-				<tr>
-					<td>Title</td>
-					<td>2</td>
-					<td>200</td>
-					<td>Shipped</td>
-				</tr>
-			</table>
-		</li>
-	</ul>
-</body>
-</html>
+    <div class="box">
+<table class="main" id="customers">
+    <tr>  
+      <th>Product </th>
+      <th>Cost </th>
+      <th><span style="color:black">
+          <i class="fa fa-shopping-cart"></i>   
+        </span> </th>
+  </tr>
+  
+  <tr>
+    <td><a href="#">Product 1</a></td>
+    <td>1</td>
+    <td>200</td>
+  </tr>
+  <tr>
+  <td>Total</td>
+    <td>2</td>
+    <td>350</td>
+  </tr>
+</table>
