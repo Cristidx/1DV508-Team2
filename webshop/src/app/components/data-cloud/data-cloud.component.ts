@@ -31,6 +31,7 @@ import { Observable } from 'rxjs/Observable';
 export class DataCloudComponent implements OnInit {
 state: string = 'small';
 movies: movieData[];
+allMovies: movieData[];
 categories: categoriesData[];
 movie = {
   title:'',
@@ -48,32 +49,49 @@ title;
 
 selectedGenre:string;
 
+searchTarget: string;
+
 stars: Observable<any>;
 avgRating: Observable<any>;
 
 currentID: string ='RCn6upR27BH3IyRSMRZr';
 
 showMovieCheck: boolean=true;
-  constructor(public dataService: DataCloudService, private data: DataService) {  }
+  constructor(public dataCloudService: DataCloudService, private data: DataService) {  }
 
   ngOnInit() {
-    this.dataService.getMovie().subscribe(Moviedata => {
-      this.movies = Moviedata;
+    this.dataCloudService.getMovie().subscribe(Moviedata => {
+      this.allMovies = Moviedata;
+      this.movies = this.allMovies;
     });
 
-    this.dataService.getCategories().subscribe(Catdata => {
+    this.dataCloudService.getCategories().subscribe(Catdata => {
       this.categories = Catdata;
     });
     
     this.data.currentHeaderGenreSelected.subscribe(selectedGenre=>this.selectedGenre = selectedGenre);
     this.data.currentListCheck.subscribe(showMovieCheck=>this.showMovieCheck = showMovieCheck);
 
-    this.stars = this.dataService.getMovieStars(this.currentID)
+    this.stars = this.dataCloudService.getMovieStars(this.currentID)
 
     this.avgRating = this.stars.map(arr => {
       const ratings = arr.map(v => v.value)
       return ratings.length ? ratings.reduce((total, val) => total + val) / arr.length : 'not reviewed'
     })
+
+    this.data.currentSearchTarget.subscribe((value) => { 
+      this.searchTarget = value; 
+      console.log(this.searchTarget);
+      this.filterMovies(this.searchTarget); 
+    });
+  }
+
+  filterMovies(searchTarget: string) {
+    if (!(searchTarget === '')) {
+      this.movies = this.allMovies.filter((movie) => movie.title === searchTarget);
+    } else {
+      this.movies = this.allMovies;
+    }
   }
 
   accesProduct(event, item) {

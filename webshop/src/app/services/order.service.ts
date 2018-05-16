@@ -10,7 +10,7 @@ export class OrderService {
   order: Order;
 
   constructor(private cloudService: DataCloudService, private authService: AuthService) {
-    console.log(this.getOrdersByUid('DnSShRPe1YZr8d6QBifg30oBUA83'));
+    
   }
 
   createOrder(movie: movieData) {
