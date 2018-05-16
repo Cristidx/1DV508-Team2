@@ -1,21 +1,31 @@
 <!doctype html>
 <html>
-    <body >
-    <app-header></app-header>
-    <img class = "logo" src="https://firebasestorage.googleapis.com/v0/b/dv508webshop.appspot.com/o/logo.png?alt=media&token=163c7146-8a5e-409f-bbc9-4a73e5443228" height="153" width="213" >
-    
-    <div class="search-container">
-        <form >
-          <input type="text" placeholder="" name="search">
-          <button type="submit">Search</button>
-        </form>
-      </div>
-    <div class="container">  
-        <router-outlet></router-outlet>
-    </div>
-  
-    <div class="container">
-        <app-data-cloud></app-data-cloud>
-    </div>
-</body>
+    <body>
+        <div class="grid">
+            <header>
+                <app-header></app-header>
+            </header>
+        
+            <aside class="sidebar-left">
+            </aside>
+        
+            <main>
+                <div class="search-container top-bot-margin">
+                    <a routerLink="/"><img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/8/8c/Blu_ray_logo.png" height="153" width="213" ></a>
+                    <form class="search">
+                        <input type="text" placeholder="" name="search">
+                        <button type="submit">Search</button>
+                    </form>
+                </div>
+                <router-outlet></router-outlet>
+                <app-data-cloud></app-data-cloud>
+            </main>
+        
+            <aside class="sidebar-right">
+            </aside>
+            
+            <footer>
+            </footer>
+        </div>
+    </body>
 </html>
