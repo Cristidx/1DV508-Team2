@@ -1,0 +1,21 @@
+ul{
+	list-style-type: none;
+}
+
+li{
+	margin-top: 1em;
+}
+
+table{
+	width: 40em;
+	margin-top: 1em;
+}
+
+tr{
+	height: 2em;
+}
+
+th, td{
+	text-align: center;
+	border: 0.25em solid black;
+}

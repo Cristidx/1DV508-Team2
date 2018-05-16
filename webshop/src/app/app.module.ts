@@ -34,6 +34,7 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
 import { OrdersListComponent } from './orders-list/orders-list.component';
 import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -55,7 +56,9 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     OrderviewComponent,
     SearchComponent,
     AdminOrdersComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    ProfileComponent
+    
   ],
   imports: [
     BrowserModule,
