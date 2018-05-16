@@ -12,36 +12,32 @@
   </head>
   <body>
       <body>
-        <mat-toolbar>
-          <div class="container">
-            <mat-toolbar-row class="toolbar">
-                <button class="dropdown" mat-button [matMenuTriggerFor]="menu">Genres</button>
-                <mat-menu #menu="matMenu"> 
-                  <button mat-menu-item value=all (click)="genreValue($event, '')">Show All </button>
-                  <button mat-menu-item *ngFor ="let item of categories" value={{item.genre}} (click)="genreValue($event, item.genre)">{{item.genre}} </button>
-                  <button *ngIf="user != null && user.admin == true;" (click)="openAddCategoryDialog()" mat-menu-item>+Add Category</button>   
-                </mat-menu>
-                <form class="navbar-form navbar-left" role="Add Product">
-                  <button *ngIf="user != null && user.admin == true;" mat-button type="submit" class="btn1" (click)="openAddProductDialog()">Add Product</button>
-                </form>
-              <div class="right-container">
-                <div class = "menu"> 
-                  <button class="btn addTOCart">Cart <span class="glyphicon glyphicon-shopping-cart"></span>
-                </button>
-                  <div class="drop-down" >
-                    <a href="#" > Product 1</a>
-                    <a href="#" > Product 2</a>
-                    <a href="#" > Product 3</a>
-                    <a href="#" > Product 4</a>
-                  </div>
-                <button mat-button *ngIf="user != null">Profile <i class="fas fa-user"></i></button>
-                <button *ngIf="user == null; else showLogout" mat-button type="submit" (click)="openLoginComponentDialog()" class="signIn">Sign in/Create account</button>
-                <ng-template #showLogout>
-                  <button class="signIn" (click)="signOut()" mat-button routerLink="">Sign Out</button>
-                </ng-template>
+         <mat-toolbar>
+          <div class="container toolbar">
+            <button mat-button [matMenuTriggerFor]="menu">Genres</button>
+            <mat-menu #menu="matMenu"> 
+                <button mat-menu-item value=all (click)="genreValue($event, '')">Show All </button>
+                <button mat-menu-item *ngFor ="let item of categories" value={{item.genre}} (click)="genreValue($event, item.genre)">{{item.genre}} </button>
+                <button *ngIf="user != null && user.admin == true;" (click)="openAddCategoryDialog()" mat-menu-item>+Add Category</button>   
+            </mat-menu>
+            <button *ngIf="user != null && user.admin == true;" mat-button type="submit" class="btn1" (click)="openAddProductDialog()">Add Product</button>
+            <div class="admin-message"><p *ngIf="user != null && user.admin == true;">Signed in as admin</p></div>
+            <div class="right-container">
+              <div class="menu">
+                <button class="btn addTOCart">Cart <span class="glyphicon glyphicon-shopping-cart"></span></button>
+                <div class="drop-down" >
+                  <a href="#" > Product 1</a>
+                  <a href="#" > Product 2</a>
+                  <a href="#" > Product 3</a>
+                  <a href="#" > Product 4</a>
                 </div>
               </div>
-            </mat-toolbar-row>
+              <button mat-button *ngIf="user != null">Profile <i class="fas fa-user"></i></button>
+              <button *ngIf="user == null; else showLogout" mat-button type="submit" (click)="openLoginComponentDialog()" class="signIn">Sign in/Create account</button>
+              <ng-template #showLogout>
+                <button class="signIn" (click)="signOut()" mat-button routerLink="">Sign Out</button>
+              </ng-template>
+            </div>
           </div>
         </mat-toolbar>
     <script src="js/jquery-1.11.3.min.js"></script>

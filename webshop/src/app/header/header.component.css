@@ -5,6 +5,11 @@ mat-toolbar {
     -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 }
 
+p  {
+    margin: 2px 0px 0px 15px;
+    padding: 0px;
+}
+
 button {
     font-family: 'Roboto:300', 'sans-serif';
 }
@@ -53,7 +58,7 @@ h5 {
 }
 
 .right-container {
-    margin-left: auto;
+    margin-left: auto;   
 }
 
 .left-containter {
@@ -67,10 +72,8 @@ h5 {
 
 }
 .menu{
-
   position: relative;
   display: inline-block;
-  float: right;
 }
 .drop-down{
   display: none;
@@ -93,4 +96,10 @@ h5 {
 }
 .menu:hover .addTOCart{
   background-color: transparent;
+}
+
+.admin-message {
+    font-size: 15px;
+    font-family: 'Font Awesome';
+    align-items: center;
 }
