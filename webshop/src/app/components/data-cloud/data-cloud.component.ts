@@ -71,7 +71,6 @@ currentID: string ='RCn6upR27BH3IyRSMRZr';
       const ratings = arr.map(v => v.value)
       return ratings.length ? ratings.reduce((total, val) => total + val) / arr.length : 'not reviewed'
     })
-console.log('qwe' + this.currentID);
   }
 
   accesProduct(event, item) {
