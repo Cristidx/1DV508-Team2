@@ -46,10 +46,11 @@ export class DataCloudService {
       });
     });
 
-    this.orderCollection = this.afs.collection('Orders', ref => ref.orderBy('orderDate'));
+    this.orderCollection = this.afs.collection('Orders', ref => ref.orderBy('orderDate', 'desc'));
     this.orders = this.orderCollection.snapshotChanges().map(changes => {
       return changes.map(a => { 
         const data = a.payload.doc.data() as Order;
+        data.id = a.payload.doc.id;
         return data;
       });
     });
@@ -62,12 +63,6 @@ export class DataCloudService {
         return data;
       });
     });
-    
-  }
-
-  ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
     
   }
 

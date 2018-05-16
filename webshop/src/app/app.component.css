@@ -31,6 +31,15 @@ header, footer {
 
 .search-container {
 	display: flex;
+	align-items: center;
+}
+
+.search-container > form {
+	justify-content: center;
+}
+
+.search-container > img {
+	justify-content: left;
 }
 
 aside,

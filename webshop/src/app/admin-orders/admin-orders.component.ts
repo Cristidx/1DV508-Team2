@@ -17,7 +17,6 @@ export class AdminOrdersComponent implements OnInit {
   ngOnInit() {
     this.dataService.getOrders().subscribe(orders => {
       this.orders = orders;
-      console.log(this.orders);
     });
   }
 }
