@@ -25,7 +25,7 @@
             <button *ngIf="user != null && user.admin == true;" mat-button type="submit" routerLink="admin-orders/"  class="btn1" >Orders overview</button>           
              <div class="right-container">
               <div class="menu">
-                <button class="btn addTOCart">Cart <span class="glyphicon glyphicon-shopping-cart"></span></button>
+                <button class="btn addTOCart" (click)="goToOrderView()">Cart <span class="glyphicon glyphicon-shopping-cart"></span></button>
                 <div class="drop-down" >
                   <a href="#" > Product 1</a>
                   <a href="#" > Product 2</a>

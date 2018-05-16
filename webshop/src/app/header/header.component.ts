@@ -12,6 +12,7 @@ import { ProfileComponent } from '../profile/profile.component';
 import { Router } from '@angular/router';
 import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
 
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -64,5 +65,9 @@ export class HeaderComponent implements OnInit {
 	let dialogRef = this.dialog.open(ProfileComponent,{
 	  width: '50%'
 	});
+  }
+
+  goToOrderView() {
+    this.router.navigate(['/orderview']);
   }
 }
