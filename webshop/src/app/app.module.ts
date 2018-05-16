@@ -29,6 +29,8 @@ import { MatDialog, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog'
 import { RatingComponent } from './rating/rating.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchComponent } from './search/search.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
+import { OrdersListComponent } from './orders-list/orders-list.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { SearchComponent } from './search/search.component';
     AddCategoryComponent,
     EditProductComponent,
     RatingComponent,
-    SearchComponent
+    SearchComponent,
+    OrderDetailsComponent,
+    OrdersListComponent
   ],
   imports: [
     BrowserModule,
