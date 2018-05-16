@@ -12,69 +12,35 @@
   </head>
   <body>
       <body>
-          <mat-toolbar class="toolbar" style="display: flex" color = "primary" >
-              <mat-toolbar-row>
-                <h1><a routerLink="">Bluray Shop</a></h1>
-                <h2 *ngIf="user != null && user.admin == true;">Admin Mode <i class="fas fa-exclamation-triangle"></i></h2>
-                <button class="dropdown" mat-button [matMenuTriggerFor]="menu">Genres</button>
-
-
-                <mat-menu #menu="matMenu"  >
-                        <button mat-menu-item value=all (click)="genreValue($event, '')">Show All </button>
-                        <button mat-menu-item *ngFor ="let item of categories" value={{item.genre}} (click)="genreValue($event, item.genre)">{{item.genre}} </button>
-                        <button *ngIf="user != null && user.admin == true;" (click)="openAddCategoryDialog()" mat-menu-item>+Add Category</button>
-                </mat-menu>
-
-                <form class="navbar-form navbar-left" role="Add Product">
-                  <button *ngIf="user != null && user.admin == true;" mat-button type="submit" class="btn1" (click)="openAddProductDialog()">Add Product</button>
-                </form>
-
-                <div class="left-container">
-                  <div class = "menu"> <button class="btn addTOCart">Cart <span class="glyphicon glyphicon-shopping-cart"></span>
-                  </button>
-                    <div class="drop-down" >
-                      <a href="#" > Product 1</a>
-                      <a href="#" > Product 2</a>
-                      <a href="#" > Product 3</a>
-                      <a href="#" > Product 4</a>
-                    </div>
-
-                  <button *ngIf="user == null; else showLogout" mat-button type="submit" (click)="openLoginComponentDialog()">Sign in/Create account</button>
-                  <ng-template #showLogout>
-                      <button (click)="signOut()" mat-button routerLink="">Sign Out</button>
-                  </ng-template>
-                  </div>
+         <mat-toolbar>
+          <div class="container toolbar">
+            <button mat-button [matMenuTriggerFor]="menu">Genres</button>
+            <mat-menu #menu="matMenu"> 
+                <button mat-menu-item value=all (click)="genreValue($event, '')">Show All </button>
+                <button mat-menu-item *ngFor ="let item of categories" value={{item.genre}} (click)="genreValue($event, item.genre)">{{item.genre}} </button>
+                <button *ngIf="user != null && user.admin == true;" (click)="openAddCategoryDialog()" mat-menu-item>+Add Category</button>   
+            </mat-menu>
+            <button *ngIf="user != null && user.admin == true;" mat-button type="submit" class="btn1" (click)="openAddProductDialog()">Add Product</button>
+            <div class="admin-message"><p *ngIf="user != null && user.admin == true;">Signed in as admin</p></div>
+            <button *ngIf="user != null && user.admin == true;" mat-button type="submit" routerLink="admin-orders/"  class="btn1" >Orders overview</button>           
+             <div class="right-container">
+              <div class="menu">
+                <button class="btn addTOCart">Cart <span class="glyphicon glyphicon-shopping-cart"></span></button>
+                <div class="drop-down" >
+                  <a href="#" > Product 1</a>
+                  <a href="#" > Product 2</a>
+                  <a href="#" > Product 3</a>
+                  <a href="#" > Product 4</a>
                 </div>
-              </mat-toolbar-row>
-            </mat-toolbar>
-
-
-    <!-- <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#topFixedNavbar1" aria-expanded="false"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-          <a class="navbar-brand" routerLink="/">BluRay Shop</a></div>
-        <div class="collapse navbar-collapse" id="topFixedNavbar1">
-
-          <!-- <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search">
-            </div>
-            <button type="submit" class="btn btn-default">Search</button>
-          </form> -->
-          <!-- <ul class="nav navbar-nav navbar-right">
-            <li>
-              <a *ngIf="authService.User == null; else showLogout" routerLink="/login">Sign in/Create account</a>
+              </div>
+              <button mat-button *ngIf="user != null">Profile <i class="fas fa-user"></i></button>
+              <button *ngIf="user == null; else showLogout" mat-button type="submit" (click)="openLoginComponentDialog()" class="signIn">Sign in/Create account</button>
               <ng-template #showLogout>
-                <a href="#" (click)="signOut()">Sign Out</a>
+                <button class="signIn" (click)="signOut()" mat-button routerLink="">Sign Out</button>
               </ng-template>
-            </li>
-            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Checkout<span class="caret"></span></a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav> -->
+            </div>
+          </div>
+        </mat-toolbar>
     <script src="js/jquery-1.11.3.min.js"></script>
     <script src="js/bootstrap.js"></script>
   </body>

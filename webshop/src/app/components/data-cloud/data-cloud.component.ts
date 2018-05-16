@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DataCloudService } from '../../services/data-cloud.service';
 import { CrudService } from '../../services/crud.service';
 import {movieData} from '../../model/data';
@@ -7,6 +7,7 @@ import { Title } from '@angular/platform-browser';
 import { DataService } from '../../services/data.service';
 import { trigger,state,style,transition,animate,keyframes } from '@angular/animations';
 import { templateJitUrl } from '@angular/compiler';
+import { Observable } from 'rxjs/Observable';
 
 
 @Component({
@@ -40,12 +41,19 @@ movie = {
   plot:'',
   stock:0,
   director:'',
+  
   dateAdded:''
 }
 title;
 
 selectedGenre:string;
 
+stars: Observable<any>;
+avgRating: Observable<any>;
+
+currentID: string ='RCn6upR27BH3IyRSMRZr';
+
+showMovieCheck: boolean=true;
   constructor(public dataService: DataCloudService, private data: DataService) {  }
 
   ngOnInit() {
@@ -58,7 +66,14 @@ selectedGenre:string;
     });
     
     this.data.currentHeaderGenreSelected.subscribe(selectedGenre=>this.selectedGenre = selectedGenre);
- }
+
+    this.stars = this.dataService.getMovieStars(this.currentID)
+
+    this.avgRating = this.stars.map(arr => {
+      const ratings = arr.map(v => v.value)
+      return ratings.length ? ratings.reduce((total, val) => total + val) / arr.length : 'not reviewed'
+    })
+  }
 
   accesProduct(event, item) {
     this.movie=item;

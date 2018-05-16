@@ -65,10 +65,12 @@
           <h3>{{ movie.director }} (Director)</h3>
           <p>{{ movie.plot }}</p>
           <hr/>
-          <app-rating class="rating"></app-rating>
           <h4 *ngIf="movie.stock > 0; else notInStock">Available</h4>
           <ng-template #notInStock><h4>Not available</h4></ng-template>
           <h4>{{ movie.price }} sek</h4>
+          <div class="rating">
+            <app-rating [movieID]="movie.id"></app-rating>
+          </div> 
         </div>
         <div class="button-container">
           <button mat-raised-button class="buy">Buy <i class="fas fa-shopping-cart"></i></button>

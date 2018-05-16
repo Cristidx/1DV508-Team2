@@ -1,5 +1,5 @@
 body {
- background-image: url("https://i.ytimg.com/vi/QtFUJ_Bg9e8/maxresdefault.jpg");
+ 
 min-height: 500px; 
 
 /* Create the parallax scrolling effect */
@@ -9,6 +9,12 @@ background-repeat: no-repeat;
 background-size: cover;
 }
 .logo{
-        margin: 2% 25% 0%;
+        margin: -1% 15% -2%;
+        height: 30%;
+        width: 20%;
     
+}
+.search-container{
+        
+        margin: -3% 42% 2%;
 }

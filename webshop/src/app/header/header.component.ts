@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddProductComponent } from '../add-product/add-product.component';
 import { LoginComponent } from '../login/login.component';
 import { Router } from '@angular/router';
+import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
 
 @Component({
   selector: 'app-header',
@@ -33,7 +34,6 @@ export class HeaderComponent implements OnInit {
     });
 
     this.data.currentHeaderGenreSelected.subscribe(selectedGenre=>this.selectedGenre = selectedGenre);
-    console.log(this.selectedGenre);
   }
   private signOut() {
     this.authService.signOut();

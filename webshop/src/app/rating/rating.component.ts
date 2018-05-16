@@ -3,6 +3,8 @@ import { DataCloudService } from '../services/data-cloud.service';
 import {movieData, starData} from '../model/data';
 import { Observable } from 'rxjs/Observable';
 import { DataService } from '../services/data.service';
+import { AuthService } from '../services/auth.service';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-rating',
@@ -14,43 +16,49 @@ export class RatingComponent implements OnInit, OnChanges {
 
   @Input() movieID: string;
 
+  user: User;
   stars: Observable<any>;
-  avgRating: Observable<any>;
+  avgRating: Observable<any>; 
 
-  movie: starData = {
-    movieId: '',
-    userId: 'user3',
-    value: 0,
-  }
 
   selectedID: string ='';
-  constructor(private dataService: DataCloudService, private data: DataService) { }
+
+  constructor(private dataService: DataCloudService, private data: DataService, private auth: AuthService) { }
  
   ngOnInit() {
-    this.data.currentMovieIDSelected.subscribe(selectedID=> {
-      this.selectedID = selectedID;
-    });
 
-    this.stars = this.dataService.getMovieStars(this.selectedID)
+   this.auth.user.subscribe((user) => { this.user = user }); 
 
-    this.avgRating = this.stars.map(arr => {
-      const ratings = arr.map(v => v.value)
-      return ratings.length ? ratings.reduce((total, val) => total + val) / arr.length : 'not reviewed'
-    })
-
-    
   }
 
   ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
     for (let propName in changes) {
       let newID = changes[propName];
-      this.movie.id = newID.currentValue;
     }
-    console.log('... '+this.movieID+' --- '+this.selectedID+' ...');
+
+
+    this.stars = this.dataService.getMovieStars(this.movieID)
+
+    this.avgRating = this.stars.map(arr => {
+      const ratings = arr.map(v => v.value)
+      let average =  ratings.length ? ratings.reduce((total, val) => total + val) / arr.length : 'not reviewed';
+      if (typeof average === 'number') {
+        return this.round(average, 1);
+      } else {
+        return average;
+      }
+    })
   } 
   
+  round(number, precision) {
+    var shift = function (number, precision) {
+      var numArray = ("" + number).split("e");
+      return +(numArray[0] + "e" + (numArray[1] ? (+numArray[1] + precision) : precision));
+    };
+    return shift(Math.round(shift(number, +precision)), -precision);
+  }
 
   starHandler(value){
-    this.dataService.setStar( this.movie.userId, this.movieID, value);
+    this.dataService.setStar( this.user.uid, this.movieID, value);
   }
 }

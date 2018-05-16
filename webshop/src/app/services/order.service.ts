@@ -25,14 +25,18 @@ export class OrderService {
     this.cloudService.addOrder(this.order);
   }
 
-  getDate() {
+  getDate(): string {
     let date = new Date();
     return date.getFullYear() + '-' + date.getMonth() + '-' + date.getDay() + ' ' 
       + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
   }
 
-  getTotalPrice() {
-
+  getTotalPrice(movies: movieData[]): number {
+    let totalprice: number;
+    movies.forEach(movie => {
+      totalprice += movie.price;
+    });
+    return totalprice;
   }
 
 }

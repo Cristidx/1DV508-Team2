@@ -20,7 +20,7 @@ import { ProductDesignComponent } from './product-design/product-design.componen
 import { CrudService } from './services/crud.service';
 import {AddCategoryComponent} from './add-category/add-category.component';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
-import {HttpClientModule, HttpClient} from '@angular/common/http'; // DON'T TOUCH THIS LINE OR EVERYTHING DIES!!!!!
+import {HttpClientModule, HttpClient} from '@angular/common/http'; 
 import { DataCloudComponent } from './components/data-cloud/data-cloud.component';
 import { DataCloudService } from './services/data-cloud.service';
 import { EditProductComponent } from './edit-product/edit-product.component';
@@ -28,9 +28,13 @@ import { DataService } from './services/data.service';
 import { MatDialog, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { RatingComponent } from './rating/rating.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OrderviewComponent } from './orderview/orderview.component';
 import { SearchComponent } from './search/search.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { OrdersListComponent } from './orders-list/orders-list.component';
+import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+
 
 @NgModule({
   declarations: [
@@ -47,7 +51,11 @@ import { OrdersListComponent } from './orders-list/orders-list.component';
     RatingComponent,
     SearchComponent,
     OrderDetailsComponent,
-    OrdersListComponent
+    OrdersListComponent,
+    OrderviewComponent,
+    SearchComponent,
+    AdminOrdersComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,
