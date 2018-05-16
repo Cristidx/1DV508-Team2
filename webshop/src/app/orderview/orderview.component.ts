@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderviewComponent implements OnInit {
 
-  test = false;
+  
   checked = true;
   constructor() { }
 
