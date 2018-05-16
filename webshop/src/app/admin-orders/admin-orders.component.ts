@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Order } from '../model/order';
 import { DataCloudService } from '../services/data-cloud.service';
+import { DataService } from '../services/data.service';
 
 
 @Component({
@@ -12,11 +13,15 @@ import { DataCloudService } from '../services/data-cloud.service';
 export class AdminOrdersComponent implements OnInit {
   orders: Order[];
 
-  constructor(private dataService: DataCloudService) { }
+  currentlistCheck: boolean = false;
+  constructor(private dataService: DataCloudService, private data: DataService) { }
+
 
   ngOnInit() {
     this.dataService.getOrders().subscribe(orders => {
       this.orders = orders;
     });
+
+    this.data.getavgRating(this.currentlistCheck);
   }
 }

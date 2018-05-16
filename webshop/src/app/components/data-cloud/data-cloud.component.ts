@@ -66,6 +66,7 @@ showMovieCheck: boolean=true;
     });
     
     this.data.currentHeaderGenreSelected.subscribe(selectedGenre=>this.selectedGenre = selectedGenre);
+    this.data.currentListCheck.subscribe(showMovieCheck=>this.showMovieCheck = showMovieCheck);
 
     this.stars = this.dataService.getMovieStars(this.currentID)
 
