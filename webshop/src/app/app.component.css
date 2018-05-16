@@ -24,13 +24,13 @@ header, footer {
 
 .search-container {
 	display: flex;
-	position: relative;
+	
 	align-items: center;
 	justify-content: flex-start;
 }
 
 .search {
-	position: absolute;
+	margin-left: 25%;
 	left: 50%;
 	transform: translateX(-50%);
 }

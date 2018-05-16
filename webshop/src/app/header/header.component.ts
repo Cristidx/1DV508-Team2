@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
   user: User;
   categories: categoriesData[];
   selectedGenre:string;
-  
+  showMovieCheck: boolean;
   constructor(private dataService: DataCloudService,private authService: AuthService, 
               private data: DataService, private dialog: MatDialog, private router: Router) { }
 
@@ -35,6 +35,7 @@ export class HeaderComponent implements OnInit {
       this.user = user;
     });
 
+    this.data.currentListCheck.subscribe(showMovieCheck=>this.showMovieCheck = showMovieCheck);
     this.data.currentHeaderGenreSelected.subscribe(selectedGenre=>this.selectedGenre = selectedGenre);
   }
   private signOut() {
@@ -44,16 +45,19 @@ export class HeaderComponent implements OnInit {
   genreValue(event, value){
   this.selectedGenre = value;
   this.data.changeHeaderGenre(this.selectedGenre)
-  }
+  this.showMovieCheck=true;
+  this.data.getavgRating(this.showMovieCheck);
+  this.router.navigate(['/']);
+}
 
   openAddProductDialog() {
     let dialogRef = this.dialog.open(AddProductComponent,{
-
       width: '35%'
     });
   }
 
   openAddCategoryDialog() {
+   
     let dialogRef = this.dialog.open(AddCategoryComponent);
   }
 
@@ -62,9 +66,7 @@ export class HeaderComponent implements OnInit {
   }
   
   openProfileDialog() {
-	let dialogRef = this.dialog.open(ProfileComponent,{
-	  width: '50%'
-	});
+	this.router.navigate(['/profile']);
   }
 
   goToCart() {

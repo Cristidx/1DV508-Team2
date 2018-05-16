@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { DataCloudService } from '../../services/data-cloud.service';
 import { CrudService } from '../../services/crud.service';
 import {movieData} from '../../model/data';
@@ -28,7 +28,7 @@ import { Observable } from 'rxjs/Observable';
     ]),
   ]
 })
-export class DataCloudComponent implements OnInit {
+export class DataCloudComponent implements OnInit, AfterViewInit{
 state: string = 'small';
 movies: movieData[];
 allMovies: movieData[];
@@ -60,10 +60,7 @@ showMovieCheck: boolean=true;
   constructor(public dataCloudService: DataCloudService, private data: DataService) {  }
 
   ngOnInit() {
-    this.dataCloudService.getMovie().subscribe(Moviedata => {
-      this.allMovies = Moviedata;
-      this.movies = this.allMovies;
-    });
+    
 
     this.dataCloudService.getCategories().subscribe(Catdata => {
       this.categories = Catdata;
@@ -79,10 +76,20 @@ showMovieCheck: boolean=true;
       return ratings.length ? ratings.reduce((total, val) => total + val) / arr.length : 'not reviewed'
     })
 
+    
     this.data.currentSearchTarget.subscribe((value) => { 
       this.searchTarget = value; 
       console.log(this.searchTarget);
       this.filterMovies(this.searchTarget); 
+    });
+  }
+
+  ngAfterViewInit() {
+    this.showMovieCheck = true;
+    
+    this.dataCloudService.getMovie().subscribe(Moviedata => {
+      this.allMovies = Moviedata;
+      this.movies = this.allMovies;
     });
   }
 
