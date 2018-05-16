@@ -30,6 +30,8 @@ import { RatingComponent } from './rating/rating.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OrderviewComponent } from './orderview/orderview.component';
 import { SearchComponent } from './search/search.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
+import { OrdersListComponent } from './orders-list/orders-list.component';
 import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
@@ -47,7 +49,9 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     AddCategoryComponent,
     EditProductComponent,
     RatingComponent,
-
+    SearchComponent,
+    OrderDetailsComponent,
+    OrdersListComponent,
     OrderviewComponent,
     SearchComponent,
     AdminOrdersComponent,
