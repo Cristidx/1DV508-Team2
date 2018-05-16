@@ -1,14 +1,39 @@
 body {
- 
-min-height: 500px; 
-
-/* Create the parallax scrolling effect */
-background-attachment: fixed;
-background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
+	min-height: 500px; 
+	/* Create the parallax scrolling effect */
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
-.logo{
-        margin: 2% 25% 0%;
-    
+
+.grid {
+	display: grid;
+	grid-template-columns: 1fr 3fr 1fr;
+	grid-gap: 1em;
+}
+
+header, footer {
+	grid-column: 1 / 4;
+}
+
+@media all and (max-width: 700px) {
+	aside,
+	article {
+		grid-column: 1 / 4;
+	}
+}  		
+
+.top-bot-margin {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+aside,
+article,
+footer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 15vh;
 }

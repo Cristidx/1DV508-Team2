@@ -1,14 +1,25 @@
 <!doctype html>
 <html>
-    <body >
-    <app-header></app-header>
-    <img class = "logo" src="https://upload.wikimedia.org/wikipedia/commons/8/8c/Blu_ray_logo.png" height="153" width="213" >
-    <div class="container">  
-        <router-outlet></router-outlet>
-    </div>
-  
-    <div class="container">
-        <app-data-cloud></app-data-cloud>
-    </div>
-</body>
+    <body>
+        <div class="grid">
+            <header>
+                <app-header></app-header>
+            </header>
+        
+            <aside class="sidebar-left">
+            </aside>
+        
+            <main class="top-bot-margin">
+                <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/8/8c/Blu_ray_logo.png" height="153" width="213" >
+                <router-outlet></router-outlet>
+                <app-data-cloud></app-data-cloud>
+            </main>
+        
+            <aside class="sidebar-right">
+            </aside>
+            
+            <footer>
+            </footer>
+        </div>
+    </body>
 </html>

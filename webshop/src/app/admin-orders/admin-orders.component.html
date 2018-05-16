@@ -1,18 +1,18 @@
 <body>
-<h1>My Orders</h1>
-<table align="center">
-  <tr>
-    <th> Product Name</th>
-    <th>Customer ID</th>
-    <th>Date</th>
-  </tr>
-  <tr *ngFor ="let item of orders" >
-
-    <td>{{item.price}}</td>
-    <td>gasd@hotmail.com</td>
-    <td>9/2/2018</td>
-  </tr>
-
-</table>
+  <div class="top-bot-margin">
+    <h1>My Orders</h1>
+    <table align="center">
+      <tr>
+        <th>Order ID</th>
+        <th>Customer ID</th>
+        <th>Date</th>
+      </tr>
+      <tr *ngFor ="let item of orders" >
+        <td>{{item.price}}</td>
+        <td>{{item.uid}}</td>
+        <td>{{item.date}}</td>
+      </tr>
+    </table>
+  </div>
 </body>
 
