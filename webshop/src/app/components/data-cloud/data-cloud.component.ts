@@ -52,6 +52,8 @@ stars: Observable<any>;
 avgRating: Observable<any>;
 
 currentID: string ='RCn6upR27BH3IyRSMRZr';
+
+showMovieCheck: boolean=true;
   constructor(public dataService: DataCloudService, private data: DataService) {  }
 
   ngOnInit() {

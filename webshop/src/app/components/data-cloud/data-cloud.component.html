@@ -14,37 +14,39 @@
         </div>
       </div>
 
-    
 
-<ng-template #allItems>
-    <div  class="nav3 boxMovies" *ngIf="movies?.length > 0">
-     
-        <ul  *ngFor ="let item of movies" >
-          
-            <div class="box zoom"> 
-                <br>    
-          <h5 class="grid-container">{{item.title}}</h5>
-          
-                <div class="imgContainer"> 
-                    <a routerLink="app-product-design/{{item.id}}">
-                  <img src="{{item.imageURL}}" height="213" width="153" class="movieImage">
-                  <div class= "price">
-                      {{item.price}}:-  
+
+    <ng-template #allItems>
+      <div *ngIf="showMovieCheck == true;">
+        <div  class="nav3 boxMovies" *ngIf="movies?.length > 0">
+            
+            <ul  *ngFor ="let item of movies" >
+              
+                <div class="box zoom"> 
+                    <br>    
+              <h5 class="grid-container">{{item.title}}</h5>
+              
+                    <div class="imgContainer"> 
+                        <a routerLink="app-product-design/{{item.id}}">
+                      <img src="{{item.imageURL}}" height="213" width="153" class="movieImage">
+                      <div class= "price">
+                          {{item.price}}:-  
+                        </div>
+                        <div class="overlay">
+                            
+                        </div>
+                      </a>
+                      
+                      <p class="stars middle "> {{ avgRating | async }} /5 <i class="fas fa-star"></i></p>
+                        <div class="middle">                                             
+                            <button *ngIf = "item.stock > 0; else outOfStockButton" mat-button class="shopButton">Add to cart <i class="fas fa-shopping-cart"></i> </button>
+                            <ng-template #outOfStockButton > <button mat-button class="outStock"> Out of stock <i class="fas fa-ban"></i> </button>  </ng-template>
+                        </div>
                     </div>
-                    <div class="overlay">
-                        
-                    </div>
-                  </a>
-                  
-                  <p class="stars middle "> {{ avgRating | async }} /5 <i class="fas fa-star"></i></p>
-                    <div class="middle">                                             
-                        <button *ngIf = "item.stock > 0; else outOfStockButton" mat-button class="shopButton">Add to cart <i class="fas fa-shopping-cart"></i> </button>
-                        <ng-template #outOfStockButton > <button mat-button class="outStock"> Out of stock <i class="fas fa-ban"></i> </button>  </ng-template>
-                    </div>
-                </div>
-    
-              </div>          
-          </ul>
-        </div>
-  </ng-template>
+        
+                  </div>          
+              </ul>
+            </div>  
+          </div>
+      </ng-template>
 
