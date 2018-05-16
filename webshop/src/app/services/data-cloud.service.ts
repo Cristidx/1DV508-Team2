@@ -108,7 +108,6 @@ export class DataCloudService {
   }
 
  
-
   setStar(userId, movieId, value) {
     const star: starData = { userId, movieId, value };
     const starPath = `Stars/${star.userId}_${star.movieId}`;
