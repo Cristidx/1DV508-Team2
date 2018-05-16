@@ -70,40 +70,39 @@ h5 {
   background: #00bd2f;
   font-size: medium;
 }
+
+
 .menu{
   position: relative;
   display: inline-block;
+ 
 }
 .drop-down{
-   width: 50%;
+    margin-top: -90%;
+    margin-left: 8%;
+    width: 49%;
     border-radius: 1px;
-    display: none;
     position: absolute;
+    display: none;
     min-width: 25%;
     color: black;
-    
+    transform: scale(0.6);
   }
-  /* .drop-down a{
-    color: rgb(60, 135, 235);
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    -ms-flex: 25%; /* IE10 */
-    /* flex: 25%; */
-  /* } */ 
-.drop-down a :hover{
-  background: #00bd2f;
-  color: #0096db;
-}
+
+
 .menu:hover .drop-down{
   display: block;
+
+
 }
 .menu:hover .addTOCart{
   background-color: transparent;
+  background: #018a25;
 }
 
 .admin-message {
     font-size: 15px;
-    font-family: 'Font Awesome';
+    font-family: sans-serif;
     align-items: center;
+    color: rgb(2, 57, 102);
 }
