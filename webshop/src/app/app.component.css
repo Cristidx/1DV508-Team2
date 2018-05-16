@@ -17,13 +17,6 @@ header, footer {
 	grid-column: 1 / 4;
 }
 
-@media all and (max-width: 700px) {
-	aside,
-	article {
-		grid-column: 1 / 4;
-	}
-}  		
-
 .top-bot-margin {
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -31,15 +24,15 @@ header, footer {
 
 .search-container {
 	display: flex;
+	position: relative;
 	align-items: center;
+	justify-content: flex-start;
 }
 
-.search-container > form {
-	justify-content: center;
-}
-
-.search-container > img {
-	justify-content: left;
+.search {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
 aside,
