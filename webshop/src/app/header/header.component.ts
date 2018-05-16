@@ -33,7 +33,6 @@ export class HeaderComponent implements OnInit {
     });
 
     this.data.currentHeaderGenreSelected.subscribe(selectedGenre=>this.selectedGenre = selectedGenre);
-    console.log(this.selectedGenre);
   }
   private signOut() {
     this.authService.signOut();

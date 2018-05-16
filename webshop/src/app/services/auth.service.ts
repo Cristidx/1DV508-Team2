@@ -79,6 +79,22 @@ export class AuthService {
     });
   }
 
+  getCurrentlySignedInUser() {
+    if (this.user != null) {
+      return this.user;
+    } else {
+      console.log('No user is signed in');
+    }
+  }
+
+  getUid() {
+    if (this.uid != null) {
+      return this.uid;
+    } else {
+      console.log('No user is signed in');
+    }
+  }
+
   isSignedIn() {
     if (this.user) {
       return true;
