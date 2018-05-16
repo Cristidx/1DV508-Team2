@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
+	<ul>
+		<li>Email: </li>
+		<li>
+			<button mat-button>
+				<a *ngIf="showsOrders == false;" (click)="viewOrders()">View my orders</a>
+				<a *ngIf="showsOrders == true;" (click)="hideOrders()">Hide my orders</a>
+			</button>
+		</li>
+		<li *ngIf="showsOrders == true;">
+			<table>
+				<tr>
+					<th>Product</th>
+					<th>Copies</th>
+					<th>Cost</th>
+					<th>Status</th>
+				</tr>
+				<tr>
+					<td>Title</td>
+					<td>2</td>
+					<td>200</td>
+					<td>Shipped</td>
+				</tr>
+			</table>
+		</li>
+	</ul>
+</body>
+</html>
