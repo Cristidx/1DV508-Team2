@@ -75,22 +75,22 @@ h5 {
   display: inline-block;
 }
 .drop-down{
-    width:150%;
-    border-radius: 5px;
+   width: 50%;
+    border-radius: 1px;
     display: none;
     position: absolute;
-    min-width: 50%;
-    border: 1px solid;
-    box-shadow: 3px 3px 5px grey;
+    min-width: 25%;
+    color: black;
+    
   }
-  .drop-down a{
+  /* .drop-down a{
     color: rgb(60, 135, 235);
     padding: 12px 16px;
     text-decoration: none;
     display: block;
     -ms-flex: 25%; /* IE10 */
-    flex: 25%;
-  }
+    /* flex: 25%; */
+  /* } */ 
 .drop-down a :hover{
   background: #00bd2f;
   color: #0096db;
