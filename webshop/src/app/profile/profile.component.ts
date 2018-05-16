@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { OrderService } from '../services/order.service';
 
 @Component({
   selector: 'app-profile',
@@ -23,10 +24,6 @@ export class ProfileComponent implements OnInit {
   
   hideOrders(): void {
 	this.showsOrders = false;
-  }
-  
-  getUserOrders() {
-	  
   }
 
 }

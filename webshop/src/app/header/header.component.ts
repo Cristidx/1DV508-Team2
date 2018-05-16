@@ -62,9 +62,7 @@ export class HeaderComponent implements OnInit {
   }
   
   openProfileDialog() {
-	let dialogRef = this.dialog.open(ProfileComponent,{
-	  width: '50%'
-	});
+	this.router.navigate(['/profile']);
   }
 
   goToCart() {
