@@ -30,6 +30,7 @@ import { RatingComponent } from './rating/rating.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OrderviewComponent } from './orderview/orderview.component';
 import { SearchComponent } from './search/search.component';
+import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { SearchComponent } from './search/search.component';
     EditProductComponent,
     RatingComponent,
     OrderviewComponent,
-    SearchComponent
+    SearchComponent,
+    AdminOrdersComponent
   ],
   imports: [
     BrowserModule,

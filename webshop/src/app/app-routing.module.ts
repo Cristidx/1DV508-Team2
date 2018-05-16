@@ -9,6 +9,8 @@ import {ProductDesignComponent} from './product-design/product-design.component'
 import { AddCategoryComponent } from './add-category/add-category.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { OrderviewComponent } from './orderview/orderview.component';
+import {AdminOrdersComponent} from "./admin-orders/admin-orders.component";
+
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'create', component: CreateAccountComponent },
@@ -18,7 +20,8 @@ const routes: Routes = [
   { path: 'add-category', component: AddCategoryComponent},
   { path: 'app-edit-product', component: EditProductComponent},
   { path: 'app-product-design/:id', component: ProductDesignComponent},
-  { path: 'orderview', component: OrderviewComponent}
+  { path: 'orderview', component: OrderviewComponent},
+  { path: 'admin-orders', component:AdminOrdersComponent}
 ];
 
 @NgModule({
@@ -28,4 +31,3 @@ const routes: Routes = [
 
 export class AppRoutingModule { }
 
- 
