@@ -69,7 +69,7 @@
           <ng-template #notInStock><h4>Not available</h4></ng-template>
           <h4>{{ movie.price }} sek</h4>
           <div class="rating">
-            <app-rating></app-rating>
+            <app-rating [movieID]="movie.id"></app-rating>
           </div> 
         </div>
         <div class="button-container">

@@ -18,7 +18,8 @@ export class RatingComponent implements OnInit, OnChanges {
 
   user: User;
   stars: Observable<any>;
-  avgRating: Observable<any>;
+  avgRating: Observable<any>; 
+  avgg:  Observable<number>;
 
   movie: starData = {
     movieId: '',
@@ -26,23 +27,13 @@ export class RatingComponent implements OnInit, OnChanges {
     value: 0,
   }
 
+ 
   selectedID: string ='';
+
   constructor(private dataService: DataCloudService, private data: DataService, private auth: AuthService) { }
  
   ngOnInit() {
-    this.data.currentMovieIDSelected.subscribe(selectedID=> {
-      this.selectedID = selectedID;
-    });
-
-    this.stars = this.dataService.getMovieStars(this.selectedID)
-
-    this.avgRating = this.stars.map(arr => {
-      const ratings = arr.map(v => v.value)
-      return ratings.length ? ratings.reduce((total, val) => total + val) / arr.length : 'not reviewed'
-    })
-
-    this.auth.user.subscribe((user) => this.user);
-    
+   // this.avgg = this.avgRating as number;
   }
 
   ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
@@ -51,12 +42,22 @@ export class RatingComponent implements OnInit, OnChanges {
       this.movie.id = newID.currentValue;
     }
     console.log('... '+this.movieID+' --- '+this.selectedID+' ...');
+
+
+    this.stars = this.dataService.getMovieStars(this.movieID)
+
+    this.avgRating = this.stars.map(arr => {
+      const ratings = arr.map(v => v.value)
+      return ratings.length ? ratings.reduce((total, val) => total + val) / arr.length : 'not reviewed'
+    })
+
+    this.auth.user.subscribe((user) => this.user);
+    
   } 
   
 
   starHandler(value){
-    console.log(this.user.uid);
-    console.log(this.movieID);
-    this.dataService.setStar( this.user.uid, this.movieID, value);
+    console.log('user' + this.user);
+    this.dataService.setStar( this.movie.userId, this.movieID, value);
   }
 }

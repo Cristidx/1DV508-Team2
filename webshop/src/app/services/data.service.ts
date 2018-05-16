@@ -10,6 +10,8 @@ export class DataService {
   private movieID = new BehaviorSubject<string>('');
   currentMovieIDSelected = this.movieID.asObservable();
 
+  private avgRating = new BehaviorSubject<string>('');
+  currentAvgRating = this.movieID.asObservable();
   constructor() { }
 
 
@@ -19,6 +21,10 @@ export class DataService {
 
   getCurrentMovieID(selectedID: string) {
     this.movieID.next(selectedID)
+  }
+
+  getavgRating(selectedAvgRating: string) {
+    this.avgRating.next(selectedAvgRating)
   }
 
 }
