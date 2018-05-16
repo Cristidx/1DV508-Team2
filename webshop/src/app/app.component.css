@@ -29,6 +29,10 @@ header, footer {
 	margin-bottom: 10px;
 }
 
+.search-container {
+	display: flex;
+}
+
 aside,
 article,
 footer {

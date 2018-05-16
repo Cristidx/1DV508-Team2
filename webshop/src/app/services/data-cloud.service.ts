@@ -46,7 +46,7 @@ export class DataCloudService {
       });
     });
 
-    this.orderCollection = this.afs.collection('Orders', ref => ref.orderBy('date'));
+    this.orderCollection = this.afs.collection('Orders', ref => ref.orderBy('orderDate'));
     this.orders = this.orderCollection.snapshotChanges().map(changes => {
       return changes.map(a => { 
         const data = a.payload.doc.data() as Order;

@@ -20,7 +20,7 @@ import { ProductDesignComponent } from './product-design/product-design.componen
 import { CrudService } from './services/crud.service';
 import {AddCategoryComponent} from './add-category/add-category.component';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
-import {HttpClientModule, HttpClient} from '@angular/common/http'; // DON'T TOUCH THIS LINE OR EVERYTHING DIES!!!!!
+import {HttpClientModule, HttpClient} from '@angular/common/http'; 
 import { DataCloudComponent } from './components/data-cloud/data-cloud.component';
 import { DataCloudService } from './services/data-cloud.service';
 import { EditProductComponent } from './edit-product/edit-product.component';
@@ -31,6 +31,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OrderviewComponent } from './orderview/orderview.component';
 import { SearchComponent } from './search/search.component';
 import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+
 
 @NgModule({
   declarations: [
@@ -45,9 +47,11 @@ import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
     AddCategoryComponent,
     EditProductComponent,
     RatingComponent,
+
     OrderviewComponent,
     SearchComponent,
-    AdminOrdersComponent
+    AdminOrdersComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,
