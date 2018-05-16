@@ -73,7 +73,7 @@
           </div> 
         </div>
         <div class="button-container">
-          <button mat-raised-button class="buy">Buy <i class="fas fa-shopping-cart"></i></button>
+          <button mat-raised-button (click)="addToCart()" class="buy">Add to Cart <i class="fas fa-shopping-cart"></i></button>
           <button mat-raised-button (click)="openEditDialog()" *ngIf="user != null && user.admin == true" class="edit">Edit</button>
           <button mat-raised-button (click)="deleteMovies($event, movie)" *ngIf="user != null && user.admin == true" class="delete">Delete</button>
         </div>

@@ -53,8 +53,6 @@ export class ProductDesignComponent implements OnInit {
       this.route.params.subscribe(() => this.handleRouteChange());
     });
   
-
-    console.log("////" + this.movie.id);
   }
 
   handleRouteChange() {
@@ -89,8 +87,10 @@ export class ProductDesignComponent implements OnInit {
   }
 
   addToCart() {
+   // console.log(this.movie.id)
     if(this.movie.stock > 0 && this.user !=null) {
-      this.data.getCurrentMovieID(this.qwe);
+      this.data.getCurrentMovieID(this.movie.id);
+      
     }
   }
 }

@@ -17,8 +17,13 @@ export class ShoppingCartComponent implements OnInit {
   ngOnInit() {
     this.data.currentMovieIDSelected.subscribe(selectedID=> {
       this.selectedID = selectedID;
+      this.cartProducts.push(selectedID);
+      
+        console.log(this.cartProducts);
+      
+  
     });
-    
+
   }
 
 
