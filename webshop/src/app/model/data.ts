@@ -15,8 +15,6 @@
     stock?:number;
     director?:string;
     dateAdded?:string;
-    avgRating?:number;
-    totalRatings?:number;
   }
 
   export interface starData {

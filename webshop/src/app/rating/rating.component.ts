@@ -19,14 +19,14 @@ export class RatingComponent implements OnInit, OnChanges {
   user: User;
   stars: Observable<any>;
   avgRating: Observable<any>; 
-  avgg:  Observable<number>;
+
 
   selectedID: string ='';
 
   constructor(private dataService: DataCloudService, private data: DataService, private auth: AuthService) { }
  
   ngOnInit() {
-   // this.avgg = this.avgRating as number;
+
    this.auth.user.subscribe((user) => { this.user = user }); 
 
   }
