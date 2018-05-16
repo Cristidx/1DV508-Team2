@@ -12,6 +12,7 @@ import { ProfileComponent } from '../profile/profile.component';
 import { Router } from '@angular/router';
 import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
 
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -65,4 +66,10 @@ export class HeaderComponent implements OnInit {
 	  width: '50%'
 	});
   }
+
+  goToCart() {
+    this.router.navigate(['/app-shopping-cart']);
+  }
+
+
 }
