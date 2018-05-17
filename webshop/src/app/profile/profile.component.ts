@@ -3,6 +3,7 @@ import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { OrderService } from '../services/order.service';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-profile',
@@ -12,10 +13,13 @@ import { OrderService } from '../services/order.service';
 export class ProfileComponent implements OnInit {
 
   showsOrders = false;
-
-  constructor(private authService: AuthService, private router: Router, private dialog: MatDialog) { }
+  currentlistCheck: boolean = false;
+  constructor(private authService: AuthService, private router: Router, 
+    private dialog: MatDialog, private data: DataService) { }
 
   ngOnInit() {
+    this.data.getavgRating(this.currentlistCheck,);
+
   }
 
   viewOrders(): void {
