@@ -56,8 +56,8 @@ export class ProductDesignComponent implements OnInit {
   }
 
   handleRouteChange() {
-    let id = this.route.snapshot.paramMap.get('id');
     for (let i = 0; i < this.movieArray.length; i++) {
+      let id = this.route.snapshot.paramMap.get('id');
       if (this.movieArray[i].id === id) {
         this.movie = this.movieArray[i];
         this.movie.id = this.movieArray[i].id;
