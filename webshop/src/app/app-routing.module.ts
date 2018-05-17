@@ -13,7 +13,7 @@ import { OrdersListComponent } from './orders-list/orders-list.component'
 import { OrderviewComponent } from './orderview/orderview.component';
 import {AdminOrdersComponent} from "./admin-orders/admin-orders.component";
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -28,7 +28,8 @@ const routes: Routes = [
   { path: 'app-orders-list', component: OrdersListComponent},
   { path: 'orderview', component: OrderviewComponent},
   { path: 'admin-orders', component:AdminOrdersComponent},
-  { path: 'app-shopping-cart', component: ShoppingCartComponent}
+  { path: 'app-shopping-cart', component: ShoppingCartComponent},
+  { path: 'profile', component: ProfileComponent}
 
 ];
 
