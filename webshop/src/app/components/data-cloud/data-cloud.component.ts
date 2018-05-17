@@ -74,6 +74,7 @@ showMovieCheck: boolean=true;
       const ratings = arr.map(v => v.value)
       return ratings.length ? ratings.reduce((total, val) => total + val) / arr.length : 'not reviewed'
     })
+    this.showMovieCheck = true;
   }
 
   accesProduct(event, item) {
