@@ -2,27 +2,27 @@
   
     <form>        
         <mat-form-field >
-          <textarea matInput placeholder="Adress"></textarea>
+          <textarea matInput required placeholder="Street" [(ngModel)]="address.street" name="street"></textarea>
         </mat-form-field>
     </form>
     <form>        
       <mat-form-field >
-        <textarea matInput placeholder="Zip-code"></textarea>
+        <textarea matInput required placeholder="Zip-code" [(ngModel)]="address.zipCode" name="zip-code"></textarea>
       </mat-form-field>
   </form>
   <form>        
     <mat-form-field >
-      <textarea matInput placeholder="City"></textarea>
+      <textarea matInput required placeholder="City" [(ngModel)]="address.city" name="city"></textarea>
     </mat-form-field>
 </form>
     <form>        
       <mat-form-field >
-        <textarea matInput placeholder="Phonenumber"></textarea>
+        <textarea matInput required placeholder="Phonenumber" [(ngModel)]="address.phoneNumber" name="phone-number"></textarea>
       </mat-form-field>
   </form>
       
-    <mat-checkbox [(ngModel)] = "checked">Remember my adress for future purchases</mat-checkbox> 
+    <mat-checkbox  [(ngModel)] = "checked">Remember my adress for future purchases</mat-checkbox> 
     
-    <button mat-button  >Cash me outside!</button>
+    <button mat-button (click)="createOrder()" >Cash me outside!</button>
 
   </div>

@@ -35,7 +35,7 @@
         </div>
 
     <ng-template #allItems>
-      <div *ngIf="showMovieCheck == true;">
+      <div *ngIf="showMovieCheck">
         <div  class="nav3 boxMovies" *ngIf="movies?.length > 0">
             
             <ul  *ngFor ="let item of movies" >

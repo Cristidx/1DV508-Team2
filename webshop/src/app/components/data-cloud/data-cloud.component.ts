@@ -57,11 +57,13 @@ avgRating: Observable<any>;
 currentID: string ='RCn6upR27BH3IyRSMRZr';
 
 showMovieCheck: boolean=true;
-  constructor(public dataCloudService: DataCloudService, private data: DataService) {  }
+
+  constructor(public dataCloudService: DataCloudService, private data: DataService) {
+    
+   }
 
   ngOnInit() {
     
-
     this.dataCloudService.getCategories().subscribe(Catdata => {
       this.categories = Catdata;
     });
@@ -79,14 +81,12 @@ showMovieCheck: boolean=true;
     
     this.data.currentSearchTarget.subscribe((value) => { 
       this.searchTarget = value; 
-      console.log(this.searchTarget);
       this.filterMovies(this.searchTarget); 
     });
   }
 
   ngAfterViewInit() {
-    this.showMovieCheck = true;
-    
+    this.showMovieCheck = true; 
     this.dataCloudService.getMovie().subscribe(Moviedata => {
       this.allMovies = Moviedata;
       this.movies = this.allMovies;
