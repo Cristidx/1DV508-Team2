@@ -89,7 +89,7 @@ export class ProductDesignComponent implements OnInit {
   addToCart() {
    // console.log(this.movie.id)
     if(this.movie.stock > 0 && this.user !=null) {
-      this.data.getCurrentMovieID(this.movie.id);
+      this.data.getCurrentMovie(this.movie);
       
     }
   }

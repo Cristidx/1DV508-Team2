@@ -12,15 +12,15 @@ export class ShoppingCartComponent implements OnInit {
 
   constructor(private data: DataService) {}
 
-   cartProducts = [];
+   
    selectedMovie:movieData;
 
   ngOnInit() {
-    this.data.currentMovieIDSelected.subscribe(selectedID=> {
-      this.selectedID = selectedID;
-      this.cartProducts.push(selectedID);
+    this.data.currentMovieSelected.subscribe(selectedMovie=> {
+      this.selectedMovie = selectedMovie;
+      this.data.cartProducts.push(this.selectedMovie);
       
-        console.log(this.cartProducts);
+        console.log(this.data.cartProducts);
       
   
     });
