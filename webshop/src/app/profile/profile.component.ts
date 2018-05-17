@@ -5,6 +5,7 @@ import { OrderService } from '../services/order.service';
 import { DataService } from '../services/data.service';
 import { Order } from '../model/order';
 
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -14,6 +15,7 @@ import { Order } from '../model/order';
 export class ProfileComponent implements OnInit {
 
   showsOrders = false;
+
   uid: string;
   orders: Order[];
   currentlistCheck: boolean = false;
@@ -22,6 +24,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
 	this.data.getavgRating(this.currentlistCheck,);
+
   }
 
   viewOrders(): void {

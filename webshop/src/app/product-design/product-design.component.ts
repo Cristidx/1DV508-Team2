@@ -80,8 +80,4 @@ export class ProductDesignComponent implements OnInit {
       width: '35%'
     });
   }
-
-  testOrderFunction() {
-    this.orderService.createOrder(this.movie);  
-  }
 }

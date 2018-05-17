@@ -7,6 +7,8 @@ import * as firebase from 'firebase/app';
 import { User } from '../model/user';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { query } from '@angular/animations';
+import { Address } from '../model/address';
+import { DocumentReference } from '@firebase/firestore-types';
 
 @Injectable()
 export class AuthService {
@@ -41,6 +43,22 @@ export class AuthService {
       });
   }
 
+  saveUserAddress(address: Address) {
+    const userRef =  this.getUserRef();
+    return userRef.update(address);
+  }
+
+  emptyAddress: Address = {
+    street: '',
+    city: '',
+    zipCode: '',
+    phoneNumber: ''
+  }
+  setUserAddressEmpty() {
+    const userRef =  this.getUserRef();
+    return userRef.update(this.emptyAddress);
+  }
+
   signInWithRegularEmail(email: string, password: string) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password);
   }
@@ -64,8 +82,12 @@ export class AuthService {
         .catch((error) => console.log(error));
   }
 
+  getUserRef() {
+    return this.db.firestore.doc(`Users/${this.uid}`);
+  }
+
   createUserDocument(user) {
-    const userRef = this.db.firestore.doc(`Users/${user.uid}`);
+    const userRef = this.getUserRef();
       return userRef.get().then((value) => {
         if (!value.exists) {
           const data: User = {

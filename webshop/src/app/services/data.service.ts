@@ -12,8 +12,11 @@ export class DataService {
 
   private listCheck = new BehaviorSubject<boolean>(true);
   currentListCheck  = this.listCheck.asObservable();
-  constructor() { }
 
+  private searchTarget = new BehaviorSubject<string>('');
+  currentSearchTarget = this.searchTarget.asObservable();
+
+  constructor() { }
 
   changeHeaderGenre(selectedGenre: string) {
     this.headerGenre.next(selectedGenre)
@@ -27,5 +30,8 @@ export class DataService {
     this.listCheck.next(selectedListCheck)
   }
 
+  updateSearchTarget(newSearchTarget: string) {
+    this.searchTarget.next(newSearchTarget);
+  }
 }
 

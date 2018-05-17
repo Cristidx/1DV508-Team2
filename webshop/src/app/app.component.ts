@@ -8,20 +8,29 @@ import { DataService } from './services/data.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  templateUrl: './app.component.html',  
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  item: Observable<any>;
-  title = 'Title';
-  showMovieCheck:boolean=true;
+  showMovieCheck: boolean = true;
+  searchTarget: '';
 
-  constructor(private db: AngularFireDatabase, private router: Router, private data: DataService) {
-    this.item = db.object('object').valueChanges();
+  constructor(private data: DataService, private router: Router) {
+
+  }
+
+  updateSearchTarget(e) {
+    
+  }
+
+  updateSearchTargetClick() {
+    this.data.updateSearchTarget(this.searchTarget);
   }
 
   goToHome() {
     this.router.navigate(['/']);
+    this.searchTarget = '';
+    this.updateSearchTargetClick();
     this.data.getavgRating(this.showMovieCheck);
   }
 }

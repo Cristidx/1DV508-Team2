@@ -1,11 +1,12 @@
 import { movieData } from "./data";
 import { User } from "./user";
+import { Address } from "./address";
 
 export interface Order {
     uid?: string;
     orderDate?: string;
-    address?: string;        
-    items?: movieData[];
+    address?: Address;        
+    items?: string[];
     status?: Status;
     price?: number;
     id?: string;

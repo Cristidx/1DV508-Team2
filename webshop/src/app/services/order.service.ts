@@ -4,25 +4,33 @@ import { movieData } from '../model/data';
 import { Order, Status } from '../model/order';
 import { AuthService } from './auth.service';
 import { User } from '../model/user';
+import { Address } from '../model/address';
 
 @Injectable()
 export class OrderService {
-  order: Order;
-
   constructor(private cloudService: DataCloudService, private authService: AuthService) {
-    console.log(this.getOrdersByUid('DnSShRPe1YZr8d6QBifg30oBUA83'));
+    
   }
 
-  createOrder(movie: movieData) {
-    let movies = [movie];
-    this.order = {
-      orderDate: this.getDate(),
-      uid: this.authService.uid,
-      items: movies,
-      status: Status.New,
-      price: movie.price
-    } 
-    this.cloudService.addOrder(this.order);
+  sendOrder(order: Order, saveAddress: boolean) {
+    if (saveAddress) {
+      this.authService.saveUserAddress(order.address);
+    } else {
+      this.authService.setUserAddressEmpty();
+    }
+    return this.cloudService.addOrder(order);
+  }
+
+  getOrdersByUid(uid: string) {
+    let ordersByCustomer = [];
+    this.cloudService.getOrders().subscribe(orders => {
+      orders.forEach((order, i) => {
+        if (order.uid === uid) {
+          ordersByCustomer.push(order);
+        }
+      });
+    });
+    return ordersByCustomer;
   }
 
   getDate(): string {
@@ -38,17 +46,4 @@ export class OrderService {
     });
     return totalprice;
   }
-
-  getOrdersByUid(uid: string) {
-    let ordersByCustomer = [];
-    this.cloudService.getOrders().subscribe(orders => {
-      orders.forEach((order, i) => {
-        if (order.uid === uid) {
-          ordersByCustomer.push(order);
-        }
-      });
-    });
-    return ordersByCustomer;
-  }
-
 }

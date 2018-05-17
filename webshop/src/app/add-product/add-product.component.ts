@@ -36,10 +36,7 @@ export class AddProductComponent implements OnInit {
 
   ngOnInit() {
     this.dataService.getCategories().subscribe(Catdata => {
-      console.log(Catdata);
       this.categories = Catdata;
-      console.log(this.dataService.getDate(this.currentDate));
-      
     });
     
   }
