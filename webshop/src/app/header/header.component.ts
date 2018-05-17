@@ -52,7 +52,6 @@ export class HeaderComponent implements OnInit {
 
   openAddProductDialog() {
     let dialogRef = this.dialog.open(AddProductComponent,{
-
       width: '35%'
     });
   }
