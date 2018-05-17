@@ -8,7 +8,7 @@
             margin: 0%;
             
         }
-        </style>
+    </style>
     <style>
     #customers {
         font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -30,34 +30,37 @@
         color: white;
     }
     </style>
-    </head>
-	<ul>
-		<li>Email: </li>
-		<li>
-			<button mat-button>
-				<a *ngIf="showsOrders == false;" (click)="viewOrders()">View my orders</a>
-				<a *ngIf="showsOrders == true;" (click)="hideOrders()">Hide my orders</a>
-			</button>
-		</li>
-		<li *ngIf="showsOrders == true;">
-    <div class="box">
-<table class="main" id="customers">
-    <tr>  
-      <th>Product </th>
-      <th>Cost </th>
-      <th><span style="color:black">
-          <i class="fa fa-shopping-cart"></i>   
-        </span> </th>
-  </tr>
-  
-  <tr>
-    <td><a href="#">Product 1</a></td>
-    <td>1</td>
-    <td>200</td>
-  </tr>
-  <tr>
-  <td>Total</td>
-    <td>2</td>
-    <td>350</td>
-  </tr>
-</table>
+</head>
+<ul>
+	<li>Email: </li>
+	<li *ngFor="let order of orders">{{order.id}}</li>
+	<li>
+		<button mat-button>
+			<a *ngIf="showsOrders == false;" (click)="viewOrders()">View my orders</a>
+			<a *ngIf="showsOrders == true;" (click)="hideOrders()">Hide my orders</a>
+		</button>
+	</li>
+	<li *ngIf="showsOrders == true;">
+		<div class="box">
+			<table class="main" id="customers">
+				<tr>  
+				  <th>Product </th>
+				  <th><span style="color:black">
+					  <i class="fa fa-shopping-cart"></i>   
+				  </span> </th>
+				  <th>Status </th>
+				</tr>		  
+				<tr>
+			      <td>Product 1</td>
+				  <td>200</td>
+				  <td>new</td>
+				</tr>
+				<tr>
+				  <td>Total</td>
+				  <td>350</td>
+				  <td></td>
+				</tr>
+			</table>
+		</div>
+	</li>
+</ul>
