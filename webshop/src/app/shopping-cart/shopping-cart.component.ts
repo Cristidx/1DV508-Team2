@@ -18,16 +18,6 @@ export class ShoppingCartComponent implements OnInit {
   }
 
 
-
-
-
-
-
-
-
-
-
-
   goToOverview() {
     this.router.navigate(['/orderview']);
   }
