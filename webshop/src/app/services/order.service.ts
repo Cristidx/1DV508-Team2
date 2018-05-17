@@ -10,7 +10,7 @@ export class OrderService {
   order: Order;
 
   constructor(private cloudService: DataCloudService, private authService: AuthService) {
-
+    console.log(this.getOrdersByUid('DnSShRPe1YZr8d6QBifg30oBUA83'));
   }
 
   createOrder(movie: movieData) {
@@ -37,6 +37,18 @@ export class OrderService {
       totalprice += movie.price;
     });
     return totalprice;
+  }
+
+  getOrdersByUid(uid: string) {
+    let ordersByCustomer = [];
+    this.cloudService.getOrders().subscribe(orders => {
+      orders.forEach((order, i) => {
+        if (order.uid === uid) {
+          ordersByCustomer.push(order);
+        }
+      });
+    });
+    return ordersByCustomer;
   }
 
 }

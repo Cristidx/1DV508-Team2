@@ -46,10 +46,11 @@ export class DataCloudService {
       });
     });
 
-    this.orderCollection = this.afs.collection('Orders');
+    this.orderCollection = this.afs.collection('Orders', ref => ref.orderBy('orderDate', 'desc'));
     this.orders = this.orderCollection.snapshotChanges().map(changes => {
       return changes.map(a => { 
         const data = a.payload.doc.data() as Order;
+        data.id = a.payload.doc.id;
         return data;
       });
     });
@@ -64,7 +65,6 @@ export class DataCloudService {
     });
     
   }
-
 
   getCategories() {
     return this.categoriesData;

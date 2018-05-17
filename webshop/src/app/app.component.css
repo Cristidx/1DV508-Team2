@@ -1,20 +1,45 @@
 body {
- 
-min-height: 500px; 
+	min-height: 500px; 
+	/* Create the parallax scrolling effect */
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
 
-/* Create the parallax scrolling effect */
-background-attachment: fixed;
-background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
+.grid {
+	display: grid;
+	grid-template-columns: 1fr 3fr 1fr;
+	grid-gap: 1em;
 }
-.logo{
-        margin: -1% 15% -2%;
-        height: 30%;
-        width: 20%;
-    
+
+header, footer {
+	grid-column: 1 / 4;
 }
-.search-container{
-        
-        margin: -3% 42% 2%;
+
+.top-bot-margin {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.search-container {
+	display: flex;
+	position: relative;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.search {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+aside,
+article,
+footer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 15vh;
 }

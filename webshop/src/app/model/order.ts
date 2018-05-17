@@ -8,6 +8,7 @@ export interface Order {
     items?: movieData[];
     status?: Status;
     price?: number;
+    id?: string;
 }
 
 export enum Status {

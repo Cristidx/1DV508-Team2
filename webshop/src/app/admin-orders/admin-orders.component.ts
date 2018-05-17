@@ -7,22 +7,21 @@ import { DataService } from '../services/data.service';
 @Component({
   selector: 'app-admin-orders',
   templateUrl: './admin-orders.component.html',
-  styleUrls: ['./admin-orders.component.css']
+  styleUrls: ['./admin-orders.component.css'],
+  providers: [DataCloudService]
 })
 export class AdminOrdersComponent implements OnInit {
   orders: Order[];
-  movieOders:Order;
 
   currentlistCheck: boolean = false;
   constructor(private dataService: DataCloudService, private data: DataService) { }
 
 
   ngOnInit() {
-    this.dataService.getOrders().subscribe( movieOrders => {
-      this.orders = movieOrders ;
+    this.dataService.getOrders().subscribe(orders => {
+      this.orders = orders;
     });
 
     this.data.getavgRating(this.currentlistCheck);
   }
-
 }
