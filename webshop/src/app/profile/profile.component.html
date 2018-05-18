@@ -6,7 +6,6 @@
             width: 700px;
             padding: 10px;
             margin: 0%;
-            
         }
     </style>
     <style>
@@ -35,10 +34,8 @@
 	<li>Email: </li>
 	<li *ngFor="let order of orders">{{order.id}}</li>
 	<li>
-		<button mat-button>
-			<a *ngIf="showsOrders == false;" (click)="viewOrders()">View my orders</a>
-			<a *ngIf="showsOrders == true;" (click)="hideOrders()">Hide my orders</a>
-		</button>
+		<button mat-button class="orderbutton" *ngIf="showsOrders == false;" (click)="viewOrders()">View my orders</button>
+		<button mat-button class="orderbutton" *ngIf="showsOrders == true;" (click)="hideOrders()">Hide my orders</button>
 	</li>
 	<li *ngIf="showsOrders == true;">
 		<div class="box">
