@@ -8,6 +8,7 @@ import { DataService } from '../../services/data.service';
 import { trigger,state,style,transition,animate,keyframes } from '@angular/animations';
 import { templateJitUrl } from '@angular/compiler';
 import { Observable } from 'rxjs/Observable';
+import { CartService } from '../../services/cart.service';
 
 
 @Component({
@@ -58,7 +59,7 @@ currentID: string ='RCn6upR27BH3IyRSMRZr';
 
 showMovieCheck: boolean=true;
 
-  constructor(public dataCloudService: DataCloudService, private data: DataService) {
+  constructor(public dataCloudService: DataCloudService, private data: DataService,private cartService: CartService) {
     
    }
 
@@ -111,6 +112,10 @@ showMovieCheck: boolean=true;
 theclick(){
   var x = document.getElementById("demo");
   x.style.color = "red";
+}
+
+addToCart() {
+ this.cartService.addMovieToCart(this.movie);
 }
 
 }

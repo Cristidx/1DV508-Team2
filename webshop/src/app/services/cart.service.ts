@@ -7,12 +7,17 @@ export class CartService {
 
   constructor(private auth: AuthService) { }
 
-  cartProducts = [];
-
+  cartProducts = new Map();
+  counter: number = 1;
 
   addMovieToCart(movie: movieData) {
-    if(this.auth.user != null && movie.stock > 0) {
-      this.cartProducts.push(movie);
+    if(this.auth.user != null && !this.cartProducts.has(movie) ) {
+      this.cartProducts.set(movie,this.counter); 
+    } else {
+      let numOfmovies = this.cartProducts.get(movie);
+      if(movie.stock >= ++numOfmovies) {
+      this.cartProducts.set(movie, numOfmovies);
+      }
     }
     console.log(this.cartProducts);
   }

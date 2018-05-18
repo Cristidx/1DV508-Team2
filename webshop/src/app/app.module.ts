@@ -35,6 +35,7 @@ import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ProfileComponent } from './profile/profile.component';
 import { OrderService } from './services/order.service';
+import { CartService } from './services/cart.service';
 
 
 @NgModule({
@@ -70,7 +71,7 @@ import { OrderService } from './services/order.service';
     MatModule,
     BrowserAnimationsModule
   ],
-  providers: [AuthService, CrudService, DataCloudService, DataService, MatDialog, OrderService],
+  providers: [AuthService, CrudService, DataCloudService, DataService, MatDialog, OrderService, CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
