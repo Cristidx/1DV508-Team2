@@ -51,10 +51,6 @@ selectedGenre:string;
 
 searchTarget: string;
 
-stars: Observable<any>;
-avgRating: Observable<any>;
-
-currentID: string ='RCn6upR27BH3IyRSMRZr';
 
 showMovieCheck: boolean=true;
 
@@ -71,18 +67,14 @@ showMovieCheck: boolean=true;
     this.data.currentHeaderGenreSelected.subscribe(selectedGenre=>this.selectedGenre = selectedGenre);
     this.data.currentListCheck.subscribe(showMovieCheck=>this.showMovieCheck = showMovieCheck);
 
-    this.stars = this.dataCloudService.getMovieStars(this.currentID)
-
-    this.avgRating = this.stars.map(arr => {
-      const ratings = arr.map(v => v.value)
-      return ratings.length ? ratings.reduce((total, val) => total + val) / arr.length : 'not reviewed'
-    })
-
-    
     this.data.currentSearchTarget.subscribe((value) => { 
       this.searchTarget = value; 
       this.filterMovies(this.searchTarget); 
     });
+  }
+
+  addToCart(item) {
+    console.log(item);
   }
 
   ngAfterViewInit() {
