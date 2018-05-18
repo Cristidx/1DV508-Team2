@@ -21,7 +21,7 @@
                 <button *ngIf="user != null && user.admin == true;" (click)="openAddCategoryDialog()" mat-menu-item>+Add Category</button>   
             </mat-menu>
             <button *ngIf="user != null && user.admin == true;" mat-button type="submit" class="btn1" (click)="openAddProductDialog()">Add Product</button>
-            <button *ngIf="user != null && user.admin == true;" mat-button type="submit" routerLink="admin-orders/"  class="btn1" >Orders overview</button>           
+            <button *ngIf="user != null && user.admin == true;" mat-button type="submit" routerLink="app-orders-list/"  class="btn1" >Orders overview</button>           
             <div class="admin-message"><p *ngIf="user != null && user.admin == true;">Signed in as admin</p></div>
              <div class="right-container">
               <div class="menu">
