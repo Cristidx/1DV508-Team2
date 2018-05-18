@@ -20,6 +20,7 @@ export class RatingComponent implements OnInit, OnChanges {
   stars: Observable<any>;
   avgRating: Observable<any>; 
 
+  rating: any;
 
   selectedID: string ='';
 
@@ -48,6 +49,8 @@ export class RatingComponent implements OnInit, OnChanges {
         return average;
       }
     })
+    this.avgRating.subscribe((value) => this.rating = value);
+    console.log(this.rating);
   } 
   
   round(number, precision) {
