@@ -85,6 +85,10 @@ showMovieCheck: boolean=true;
     });
   }
 
+  addToCart(item) {
+    console.log(item);
+  }
+
   ngAfterViewInit() {
     this.showMovieCheck = true; 
     this.dataCloudService.getMovie().subscribe(Moviedata => {
