@@ -42,8 +42,8 @@ movie = {
   plot:'',
   stock:0,
   director:'',
-  
-  dateAdded:''
+  dateAdded:'',
+  rating:''
 }
 title;
 
