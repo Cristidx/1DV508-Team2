@@ -82,29 +82,29 @@ export class DataCloudService {
   }
 
   addProduct(movieData: movieData) {
-    this.movieCollection.add(movieData).then(()=>this.snackBar.open('A movie was succesfully added', 'Dismiss'),console.error);
+    this.movieCollection.add(movieData).then(()=>this.snackBar.open('A movie was succesfully added', 'Dismiss', { duration: 3000 }),console.error);
   }
   addCategory(categoriesData: categoriesData) {
-    this.categoriesCollection.add(categoriesData).then(()=>this.snackBar.open('A category was succesfully created', 'Dismiss'), console.error);
+    this.categoriesCollection.add(categoriesData).then(()=>this.snackBar.open('A category was succesfully created', 'Dismiss', { duration: 3000 }), console.error);
   }
   addOrder(order: Order) {
-    return this.orderCollection.add(order).then(() => this.snackBar.open('Order created', 'Dismiss'));
+    return this.orderCollection.add(order).then(() => this.snackBar.open('Order created', 'Dismiss', { duration: 3000 }));
   }
    /* To delete categories */
   deleteCategory(categoriesData: categoriesData) {
     this.categoryDoc=this.afs.doc(`Categories/${categoriesData.id}`);
-    this.categoryDoc.delete().then(()=>this.snackBar.open('A category was successfully deleted', 'Dismiss'), console.error);
+    this.categoryDoc.delete().then(()=>this.snackBar.open('A category was successfully deleted', 'Dismiss', { duration: 3000 }), console.error);
   }
   /* To delete movies item by id */
   deleteMovie(movieData: movieData) {
     this.movieDoc = this.afs.doc(`Movies/${movieData.id}`);
-    this.movieDoc.delete().then(()=>this.snackBar.open('A movie was successfully deleted', 'Dismiss'), console.error); 
+    this.movieDoc.delete().then(()=>this.snackBar.open('A movie was successfully deleted', 'Dismiss', { duration: 3000 }), console.error); 
   }
 
   editMovie(data: movieData) {
     console.log('Data ID ' + data.id);
     this.movieDoc = this.afs.doc(`Movies/${data.id}`);
-    this.movieDoc.update(data).then(()=>this.snackBar.open('A movie was successfully updated', 'Dismiss'), console.error);
+    this.movieDoc.update(data).then(()=>this.snackBar.open('A movie was successfully updated', 'Dismiss', { duration: 3000 }), console.error);
   }
 
  
