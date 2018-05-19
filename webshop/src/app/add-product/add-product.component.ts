@@ -30,7 +30,8 @@ export class AddProductComponent implements OnInit {
     plot:'',
     stock:0,
     director:'',
-    dateAdded:''
+    dateAdded:'',
+    rating:0
   }
 
   constructor(public dataService: DataCloudService, public authService: AuthService, public crud: CrudService, private dialog: MatDialog) { }

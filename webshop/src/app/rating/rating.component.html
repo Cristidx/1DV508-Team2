@@ -17,7 +17,14 @@
             type="radio" />
 
             <label class="full" [for]="'star'+num"></label>
+        <!-- half star -->
+        <input (click)="starHandler(num-0.5)" 
+        [value]="num-0.5"
+        [id]="'halfstar'+num" 
+        name="rating" 
+        type="radio"  />
 
+        <label class="half" [for]="'halfstar'+num"></label>
   </ng-container>
   
 </fieldset>

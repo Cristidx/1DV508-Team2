@@ -51,9 +51,8 @@ selectedGenre:string;
 
 searchTarget: string;
 
-
 showMovieCheck: boolean=true;
-
+stars: number = -1;
   constructor(public dataCloudService: DataCloudService, private data: DataService) {
     
    }
@@ -105,4 +104,11 @@ theclick(){
   x.style.color = "red";
 }
 
+reciveStars($event) {
+  this.stars = $event -1;
+}
+
+resetStars($event) {
+  this.stars = $event;
+}
 }

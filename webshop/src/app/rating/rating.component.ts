@@ -23,7 +23,7 @@ export class RatingComponent implements OnInit, OnChanges {
   
   rating: movieData = {
     id:'',
-    rating:2
+    rating:0
   };
 
   selectedID: string ='';

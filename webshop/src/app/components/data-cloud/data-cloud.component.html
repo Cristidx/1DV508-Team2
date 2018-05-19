@@ -1,10 +1,13 @@
+ 
 
     <div *ngIf="selectedGenre.length > 0; else allItems">
       <div *ngIf="showMovieCheck == true;">
+          <app-toolbar (StarEvent)="reciveStars($event)" (resetStarEvent)="resetStars($event)" ></app-toolbar>
         <div  class="nav3 boxMovies" *ngIf="movies?.length > 0">
             
             <ul  *ngFor ="let item of movies" >
               <div *ngIf="selectedGenre == item.genre">
+                  <div *ngIf="item.rating > stars">
                 <div class="box zoom"> 
                     <br>    
               <h5 class="grid-container">{{item.title}}</h5>
@@ -27,6 +30,7 @@
                         </div>
                     </div>
                   </div>
+                </div>
                 </div>           
               </ul>
               
@@ -36,10 +40,11 @@
 
     <ng-template #allItems>
       <div *ngIf="showMovieCheck">
+          <app-toolbar (StarEvent)="reciveStars($event)" (resetStarEvent)="resetStars($event)"></app-toolbar>
         <div  class="nav3 boxMovies" *ngIf="movies?.length > 0">
             
             <ul  *ngFor ="let item of movies" >
-              
+                <div *ngIf="item.rating > stars">
                 <div class="box zoom"> 
                     <br>    
               <h5 class="grid-container">{{item.title}}</h5>
@@ -61,7 +66,7 @@
                             <ng-template #outOfStockButton > <button mat-button class="outStock"> Out of stock <i class="fas fa-ban"></i> </button>  </ng-template>
                         </div>
                     </div>
-        
+                  </div> 
                   </div>          
               </ul>
             </div>  
