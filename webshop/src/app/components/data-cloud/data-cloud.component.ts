@@ -8,7 +8,7 @@ import { DataService } from '../../services/data.service';
 import { trigger,state,style,transition,animate,keyframes } from '@angular/animations';
 import { templateJitUrl } from '@angular/compiler';
 import { Observable } from 'rxjs/Observable';
-
+import * as Fuse from 'fuse-js-latest'
 
 @Component({
   selector: 'app-data-cloud',
@@ -47,6 +47,20 @@ movie = {
 }
 title;
 
+fuse: Fuse;
+options = {
+  shouldSort: true,
+  threshold: 0.5,
+  location: 0,
+  distance: 100,
+  maxPatternLength: 32,
+  minMatchCharLength: 1,
+  keys: [
+    "title",
+    "director"
+  ]
+};
+
 selectedGenre:string;
 
 searchTarget: string;
@@ -81,12 +95,13 @@ stars: number = -1;
     this.dataCloudService.getMovie().subscribe(Moviedata => {
       this.allMovies = Moviedata;
       this.movies = this.allMovies;
+      this.fuse = new Fuse(this.movies, this.options);
     });
   }
 
   filterMovies(searchTarget: string) {
     if (!(searchTarget === '')) {
-      this.movies = this.allMovies.filter((movie) => movie.title === searchTarget);
+      this.movies = this.fuse.search(searchTarget);
     } else {
       this.movies = this.allMovies;
     }
