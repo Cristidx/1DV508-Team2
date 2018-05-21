@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, AfterContentInit } from '@angular/core';
 import { DataCloudService } from '../../services/data-cloud.service';
 import { CrudService } from '../../services/crud.service';
 import {movieData} from '../../model/data';
@@ -91,8 +91,8 @@ stars: number = -1;
   }
 
   ngAfterViewInit() {
-    this.showMovieCheck = true; 
     this.dataCloudService.getMovie().subscribe(Moviedata => {
+      this.showMovieCheck = true; 
       this.allMovies = Moviedata;
       this.movies = this.allMovies;
       this.fuse = new Fuse(this.movies, this.options);

@@ -10,10 +10,6 @@ p  {
     padding: 0px;
 }
 
-button {
-    font-family: 'Roboto:300', 'sans-serif';
-}
-
 .toolbar{
     display: flex;
     color: #FFF;
@@ -102,7 +98,6 @@ h5 {
 
 .admin-message {
     font-size: 15px;
-    font-family: sans-serif;
     align-items: center;
-    color: rgb(2, 57, 102);
+    color: #FFF;
 }
