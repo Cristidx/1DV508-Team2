@@ -1,4 +1,5 @@
 
+
    export interface categoriesData {
     id?:string;
     genre?:string;
@@ -15,6 +16,7 @@
     stock?:number;
     director?:string;
     dateAdded?:string;
+    rating?:number;
   }
 
   export interface starData {

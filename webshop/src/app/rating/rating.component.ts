@@ -18,9 +18,13 @@ export class RatingComponent implements OnInit, OnChanges {
 
   user: User;
   stars: Observable<any>;
-  avgRating: Observable<any>; 
 
-  rating: any;
+  avgRating: Observable<any>;
+  
+  rating: movieData = {
+    id:'',
+    rating:0
+  };
 
   selectedID: string ='';
 
@@ -49,8 +53,8 @@ export class RatingComponent implements OnInit, OnChanges {
         return average;
       }
     })
-    this.avgRating.subscribe((value) => this.rating = value);
-    console.log(this.rating);
+  
+    
   } 
   
   round(number, precision) {
@@ -63,5 +67,10 @@ export class RatingComponent implements OnInit, OnChanges {
 
   starHandler(value){
     this.dataService.setStar( this.user.uid, this.movieID, value);
+    
+    this.rating.id=this.movieID;
+    this.avgRating.subscribe((value) => this.rating.rating = value);
+    this.dataService.editMovie(this.rating);
   }
+
 }

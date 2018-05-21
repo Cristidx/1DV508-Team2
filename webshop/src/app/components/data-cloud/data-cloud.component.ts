@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, AfterContentInit } from '@angular/core';
 import { DataCloudService } from '../../services/data-cloud.service';
 import { CrudService } from '../../services/crud.service';
 import {movieData} from '../../model/data';
@@ -9,7 +9,7 @@ import { trigger,state,style,transition,animate,keyframes } from '@angular/anima
 import { templateJitUrl } from '@angular/compiler';
 import { Observable } from 'rxjs/Observable';
 import { CartService } from '../../services/cart.service';
-
+//commented this out because it was complaining import * as Fuse from 'fuse-js-latest';
 
 @Component({
   selector: 'app-data-cloud',
@@ -43,21 +43,31 @@ movie = {
   plot:'',
   stock:0,
   director:'',
-  
-  dateAdded:''
+  dateAdded:'',
+  rating:''
 }
 title;
+
+fuse: Fuse;
+options = {
+  shouldSort: true,
+  threshold: 0.5,
+  location: 0,
+  distance: 100,
+  maxPatternLength: 32,
+  minMatchCharLength: 1,
+  keys: [
+    "title",
+    "director"
+  ]
+};
 
 selectedGenre:string;
 
 searchTarget: string;
 
-stars: Observable<any>;
-avgRating: Observable<any>;
-
-currentID: string ='RCn6upR27BH3IyRSMRZr';
-
 showMovieCheck: boolean=true;
+stars: number = -1;
 
   constructor(public dataCloudService: DataCloudService, private data: DataService,private cartService: CartService) {
     
@@ -72,14 +82,6 @@ showMovieCheck: boolean=true;
     this.data.currentHeaderGenreSelected.subscribe(selectedGenre=>this.selectedGenre = selectedGenre);
     this.data.currentListCheck.subscribe(showMovieCheck=>this.showMovieCheck = showMovieCheck);
 
-    this.stars = this.dataCloudService.getMovieStars(this.currentID)
-
-    this.avgRating = this.stars.map(arr => {
-      const ratings = arr.map(v => v.value)
-      return ratings.length ? ratings.reduce((total, val) => total + val) / arr.length : 'not reviewed'
-    })
-
-    
     this.data.currentSearchTarget.subscribe((value) => { 
       this.searchTarget = value; 
       this.filterMovies(this.searchTarget); 
@@ -87,16 +89,17 @@ showMovieCheck: boolean=true;
   }
 
   ngAfterViewInit() {
-    this.showMovieCheck = true; 
     this.dataCloudService.getMovie().subscribe(Moviedata => {
+      this.showMovieCheck = true; 
       this.allMovies = Moviedata;
       this.movies = this.allMovies;
+      this.fuse = new Fuse(this.movies, this.options);
     });
   }
 
   filterMovies(searchTarget: string) {
     if (!(searchTarget === '')) {
-      this.movies = this.allMovies.filter((movie) => movie.title === searchTarget);
+      this.movies = this.fuse.search(searchTarget);
     } else {
       this.movies = this.allMovies;
     }
@@ -118,4 +121,11 @@ addToCart(item) {
  this.cartService.addMovieToCart(item);
 }
 
+reciveStars($event) {
+  this.stars = $event -1;
+}
+
+resetStars($event) {
+  this.stars = $event;
+}
 }

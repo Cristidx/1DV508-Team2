@@ -36,6 +36,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ProfileComponent } from './profile/profile.component';
 import { OrderService } from './services/order.service';
 import { CartService } from './services/cart.service';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { CartService } from './services/cart.service';
     OrderviewComponent,
     AdminOrdersComponent,
     ShoppingCartComponent,
-    ProfileComponent
+    ProfileComponent,
+    ToolbarComponent
     
   ],
   imports: [

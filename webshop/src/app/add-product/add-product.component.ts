@@ -7,6 +7,7 @@ import { DataCloudService } from '../services/data-cloud.service';
 import {movieData} from '../model/data';
 import {categoriesData} from '../model/data';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-add-product',
@@ -30,6 +31,7 @@ export class AddProductComponent implements OnInit {
     stock:0,
     director:'',
     dateAdded:'',
+    rating:0
   }
 
   constructor(public dataService: DataCloudService, public authService: AuthService, public crud: CrudService, private dialog: MatDialog) { }
