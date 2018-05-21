@@ -12,14 +12,14 @@ export class CartService {
 
   addMovieToCart(movie: movieData) {
     if(this.auth.user != null && !this.cartProducts.has(movie) ) {
-      this.cartProducts.set(movie,this.counter); 
+      this.cartProducts.set(movie.id,this.counter); 
     } else {
       let numOfmovies = this.cartProducts.get(movie);
       if(movie.stock >= ++numOfmovies) {
-      this.cartProducts.set(movie, numOfmovies);
+      this.cartProducts.set(movie.id, numOfmovies);
       }
     }
-    console.log(this.cartProducts);
+   // console.log(this.cartProducts);
   }
 
 }

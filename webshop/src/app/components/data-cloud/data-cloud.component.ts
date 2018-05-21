@@ -86,10 +86,6 @@ showMovieCheck: boolean=true;
     });
   }
 
-  addToCart(item) {
-    console.log(item);
-  }
-
   ngAfterViewInit() {
     this.showMovieCheck = true; 
     this.dataCloudService.getMovie().subscribe(Moviedata => {
@@ -118,8 +114,8 @@ theclick(){
   x.style.color = "red";
 }
 
-addToCart() {
- this.cartService.addMovieToCart(this.movie);
+addToCart(item) {
+ this.cartService.addMovieToCart(item);
 }
 
 }
