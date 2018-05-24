@@ -9,7 +9,7 @@ import { trigger,state,style,transition,animate,keyframes } from '@angular/anima
 import { templateJitUrl } from '@angular/compiler';
 import { Observable } from 'rxjs/Observable';
 import { CartService } from '../../services/cart.service';
-//commented this out because it was complaining import * as Fuse from 'fuse-js-latest';
+import * as Fuse from 'fuse-js-latest';
 
 @Component({
   selector: 'app-data-cloud',
