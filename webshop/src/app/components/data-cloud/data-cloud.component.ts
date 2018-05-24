@@ -74,7 +74,6 @@ stars: number = -1;
    }
 
   ngOnInit() {
-    
     this.dataCloudService.getCategories().subscribe(Catdata => {
       this.categories = Catdata;
     });

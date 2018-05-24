@@ -30,6 +30,7 @@ export class OrderService {
         }
       });
     });
+    console.log(ordersByCustomer + '  ' + uid);
     return ordersByCustomer;
   }
 
