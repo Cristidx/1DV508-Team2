@@ -31,33 +31,13 @@
     </style>
 </head>
 <ul>
-	<li>Email: </li>
-	<li *ngFor="let order of orders">{{order.id}}</li>
 	<li>
 		<button mat-button class="orderbutton" *ngIf="showsOrders == false;" (click)="viewOrders()">View my orders</button>
 		<button mat-button class="orderbutton" *ngIf="showsOrders == true;" (click)="hideOrders()">Hide my orders</button>
 	</li>
 	<li *ngIf="showsOrders == true;">
-		<div class="box">
-			<table class="main" id="customers">
-				<tr>  
-				  <th>Product </th>
-				  <th><span style="color:black">
-					  <i class="fa fa-shopping-cart"></i>   
-				  </span> </th>
-				  <th>Status </th>
-				</tr>		  
-				<tr>
-			      <td>Product 1</td>
-				  <td>200</td>
-				  <td>new</td>
-				</tr>
-				<tr>
-				  <td>Total</td>
-				  <td>350</td>
-				  <td></td>
-				</tr>
-			</table>
-		</div>
+		<ul *ngFor="let order of orders">
+			<li>{{order.id}} {{order.orderDate}}</li>
+		</ul>
 	</li>
 </ul>

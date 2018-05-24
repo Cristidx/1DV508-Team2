@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { OrderService } from '../services/order.service';
 import { DataService } from '../services/data.service';
 import { Order } from '../model/order';
-
+import { User } from '../model/user';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-profile',
@@ -19,12 +20,17 @@ export class ProfileComponent implements OnInit {
   uid: string;
   orders: Order[];
   currentlistCheck: boolean = false;
+  user: User;
   
   constructor(private authService: AuthService, private router: Router, private data: DataService, private orderService: OrderService) { }
 
   ngOnInit() {
-	this.data.getavgRating(this.currentlistCheck,);
-
+    this.authService.user.subscribe((user) => { 
+      this.user = user;
+      this.uid = this.authService.getUid();
+      this.orders = this.orderService.getOrdersByUid(this.uid);
+      this.data.getavgRating(this.currentlistCheck);
+    });
   }
 
   viewOrders(): void {
@@ -37,8 +43,6 @@ export class ProfileComponent implements OnInit {
   }
   
   getOrders(): void {
-	this.uid = this.authService.getUid();
-	this.orders = this.orderService.getOrdersByUid(this.uid);
   }
 
 }

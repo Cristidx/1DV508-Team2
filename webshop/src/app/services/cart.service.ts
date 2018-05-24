@@ -19,7 +19,6 @@ export class CartService {
       this.cartProducts.set(movie.id, numOfmovies);
       }
     }
-   // console.log(this.cartProducts);
   }
 
 }

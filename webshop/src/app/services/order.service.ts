@@ -33,6 +33,7 @@ export class OrderService {
       });
     });
     sub.unsubscribe();
+    console.log(ordersByCustomer + '  ' + uid);
     return ordersByCustomer;
   }
 
