@@ -7,5 +7,19 @@
     align-content: center; 
     margin: 5% 0% 5% 30%;
   }
+  .box {
+    /* text-align: center; */
+    float: center;
+    width: 50%;
+    margin: 5% auto;
+    padding: 10px;
+    background-color: #d8d8d8;
+    /* margin-left: 50%; */
+}
+
+.form {
+    display: inline-block;
+    margin: 0% 3%;
+}
   
   
