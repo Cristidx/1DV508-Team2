@@ -138,6 +138,9 @@ hr {
   margin-left: auto;
 }
 
+.noStock {
+  background-color: red;
+}
 /*
 .buy {
   background-color: #3CB25D;

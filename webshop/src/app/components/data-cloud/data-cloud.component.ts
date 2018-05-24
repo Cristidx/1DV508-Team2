@@ -8,7 +8,8 @@ import { DataService } from '../../services/data.service';
 import { trigger,state,style,transition,animate,keyframes } from '@angular/animations';
 import { templateJitUrl } from '@angular/compiler';
 import { Observable } from 'rxjs/Observable';
-import * as Fuse from 'fuse-js-latest'
+import { CartService } from '../../services/cart.service';
+//commented this out because it was complaining import * as Fuse from 'fuse-js-latest';
 
 @Component({
   selector: 'app-data-cloud',
@@ -67,7 +68,8 @@ searchTarget: string;
 
 showMovieCheck: boolean=true;
 stars: number = -1;
-  constructor(public dataCloudService: DataCloudService, private data: DataService) {
+
+  constructor(public dataCloudService: DataCloudService, private data: DataService,private cartService: CartService) {
     
    }
 
@@ -84,10 +86,6 @@ stars: number = -1;
       this.searchTarget = value; 
       this.filterMovies(this.searchTarget); 
     });
-  }
-
-  addToCart(item) {
-    console.log(item);
   }
 
   ngAfterViewInit() {
@@ -117,6 +115,10 @@ stars: number = -1;
 theclick(){
   var x = document.getElementById("demo");
   x.style.color = "red";
+}
+
+addToCart(item) {
+ this.cartService.addMovieToCart(item);
 }
 
 reciveStars($event) {

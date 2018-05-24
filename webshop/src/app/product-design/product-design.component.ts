@@ -10,6 +10,8 @@ import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
 import { DataService } from '../services/data.service';
 import { OrderService } from '../services/order.service';
 import { Observable } from '@firebase/util';
+import { CartService } from '../services/cart.service';
+
 @Component({
   selector: 'app-product-design',
   templateUrl: './product-design.component.html',
@@ -21,7 +23,7 @@ export class ProductDesignComponent implements OnInit {
 
   constructor(public dataService: DataCloudService, private dialog: MatDialog, 
               private route: ActivatedRoute, private authService: AuthService,
-              private data: DataService, private orderService: OrderService) { }
+              private data: DataService, private orderService: OrderService, private cartService: CartService) { }
 
   message: string;
   user: User;              
@@ -80,4 +82,10 @@ export class ProductDesignComponent implements OnInit {
       width: '35%'
     });
   }
+
+  addToCart() {
+    this.cartService.addMovieToCart(this.movie);
+  }
+  
+
 }
