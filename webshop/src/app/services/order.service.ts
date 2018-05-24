@@ -22,14 +22,17 @@ export class OrderService {
   }
 
   getOrdersByUid(uid: string) {
+    console.log(uid);
     let ordersByCustomer = [];
-    this.cloudService.getOrders().subscribe(orders => {
+    const sub = this.cloudService.getOrders().subscribe(orders => {
       orders.forEach((order, i) => {
+        console.log('in dataservice ' + ordersByCustomer);
         if (order.uid === uid) {
           ordersByCustomer.push(order);
         }
       });
     });
+    sub.unsubscribe();
     return ordersByCustomer;
   }
 

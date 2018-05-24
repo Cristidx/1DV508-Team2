@@ -9,9 +9,9 @@
     <th>Date</th>
   </tr>
 
-<tr *ngFor ="let item of orders">
+<tr *ngFor ="let item of orders" >
+  <td><a (click)="uid(item)" > {{item.uid}}</a></td>
   <td>{{item.id}}</td>
-  <td>{{item.uid}}</td>
   <td>{{item.orderDate}}</td>
 </tr>
   

@@ -7,12 +7,18 @@
     
     <th>Order Number #</th>
     <th>Products </th>
+    <th>Status </th>
    
   </tr>
   <tr>
     <td> 1</td>
-    <td> ----</td>
-    
+    <td> ..</td>
+    <td *ngFor ="let item of orders" >{{item}}</td>
+    <td><mat-select placeholder="Status">
+      <mat-option value="new">New</mat-option>
+      <mat-option value="delayed">Delayed</mat-option>
+      <mat-option value="shipped">Shipped</mat-option>
+  </mat-select> </td>
     
   <tr>
 </table>

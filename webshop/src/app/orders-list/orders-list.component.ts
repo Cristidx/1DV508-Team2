@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Order} from '../model/order';
 import { DataCloudService } from '../services/data-cloud.service';
 import { DataService } from '../services/data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-orders-list',
@@ -13,7 +14,7 @@ export class OrdersListComponent implements OnInit {
   orders: Order[];
 
   currentlistCheck: boolean = false;
-  constructor(private dataService: DataCloudService, private data: DataService) { }
+  constructor(private dataService: DataCloudService, private data: DataService, private router: Router) { }
 
   ngOnInit() {
     this.dataService.getOrders().subscribe(orders => {
@@ -21,5 +22,10 @@ export class OrdersListComponent implements OnInit {
     });
 
     this.data.getavgRating(this.currentlistCheck);
+  }
+
+  uid(item){
+    this.data.updateOrderUid(item.uid);
+    this.router.navigateByUrl("order-details");
   }
 }

@@ -16,6 +16,8 @@ export class DataService {
   private searchTarget = new BehaviorSubject<string>('');
   currentSearchTarget = this.searchTarget.asObservable();
 
+  private orderUid = new BehaviorSubject<string>('');
+  currentOrderUid = this.orderUid.asObservable();
   constructor() { }
 
   changeHeaderGenre(selectedGenre: string) {
@@ -32,6 +34,11 @@ export class DataService {
 
   updateSearchTarget(newSearchTarget: string) {
     this.searchTarget.next(newSearchTarget);
+  }
+  
+  updateOrderUid(newUid: string) {
+    console.log('newuid' + newUid);
+    this.orderUid.next(newUid);
   }
 }
 
