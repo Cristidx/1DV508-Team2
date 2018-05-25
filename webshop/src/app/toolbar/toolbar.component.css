@@ -55,7 +55,7 @@ h1 { font-size: 1.5em; margin: 10px; }
 }
 
 .rating > label { 
-  color: rgb(255, 255, 255); 
+  color: rgb(88, 88, 88); 
  float: right; 
 }
 
@@ -67,4 +67,12 @@ h1 { font-size: 1.5em; margin: 10px; }
 .rating > input:checked ~ label:hover,
 .rating > label:hover ~ input:checked ~ label,  selection 
 .rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
+
+div {
+float: right;
+width: 25%;
+margin-top: -3.35%;
+background: rgba(255, 255, 255, 0.7);;
+
+}
 
