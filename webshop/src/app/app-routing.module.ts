@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'add-category', component: AddCategoryComponent},
   { path: 'app-edit-product', component: EditProductComponent},
   { path: 'app-product-design/:id', component: ProductDesignComponent},
-  { path: 'app-order-details', component: OrderDetailsComponent},
+  { path: 'order-details', component: OrderDetailsComponent},
   { path: 'app-orders-list', component: OrdersListComponent},
   { path: 'orderview', component: OrderviewComponent},
   { path: 'admin-orders', component:AdminOrdersComponent},
