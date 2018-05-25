@@ -16,6 +16,10 @@ export class OrderService {
     
   }
 
+  updateOrder(order) {
+    this.cloudService.editOrder(order);
+  }
+
   sendOrder(order: Order, saveAddress: boolean) {
     if (saveAddress) {
       this.authService.saveUserAddress(order.address);
@@ -38,7 +42,7 @@ export class OrderService {
 
   getDate(): string {
     let date = new Date();
-    return date.getFullYear() + '-' + date.getMonth() + '-' + date.getDay() + ' ' 
+    return date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate() + ' ' 
       + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
   }
 

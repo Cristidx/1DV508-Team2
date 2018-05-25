@@ -109,6 +109,10 @@ export class DataCloudService {
     this.movieDoc.update(data).then(()=>this.snackBar.open('A movie was successfully updated', 'Dismiss', { duration: 3000 }), console.error);
   }
 
+  editOrder(data: Order) {
+    const orderDoc = this.afs.doc(`Orders/${data.id}`);
+    orderDoc.update(data).then(()=>this.snackBar.open('An order was successfully updated', 'Dismiss', { duration: 3000 }), console.error);
+  }
  
   setStar(userId, movieId, value) {
     const star: starData = { userId, movieId, value };
