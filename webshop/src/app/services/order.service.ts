@@ -16,6 +16,10 @@ export class OrderService {
     
   }
 
+  updateOrder(order) {
+    this.cloudService.editOrder(order);
+  }
+
   sendOrder(order: Order, saveAddress: boolean) {
     if (saveAddress) {
       this.authService.saveUserAddress(order.address);

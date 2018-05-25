@@ -1,27 +1,28 @@
 
 <html>
 <body>
-<h2>Order Made by ----</h2>
+<h2>Order Made by </h2>
 <table>
   <tr>
     
     <th>Order Number #</th>
-    <th>Products </th>
+    <th> Date </th>
     <th>Status </th>
    
   </tr>
-  <tr>
-    <td> 1</td>
-    <td> ..</td>
-    <td *ngFor ="let item of orders" >{{item}}</td>
-    <td><mat-select placeholder="Status">
-      <mat-option value="new">New</mat-option>
-      <mat-option value="delayed">Delayed</mat-option>
-      <mat-option value="shipped">Shipped</mat-option>
-  </mat-select> </td>
+  <tr *ngFor ="let item of orders">
+      <td > {{item.id}}</td>
+      
+      <td>{{item.orderDate}}</td>
     
-  <tr>
+      <td><mat-select placeholder="Status">
+          <mat-option value="new">New</mat-option>
+          <mat-option value="delayed">Delayed</mat-option>
+          <mat-option value="shipped">Shipped</mat-option>
+      </mat-select></td>
+    
+<tr>
 </table>
-
+<button (click)="onSubmit()" class="button" >Save</button>
 </body>
 </html>
