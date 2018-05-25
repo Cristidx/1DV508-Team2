@@ -37,6 +37,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { OrderService } from './services/order.service';
 import { CartService } from './services/cart.service';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { DealOfTheDayComponent } from './deal-of-the-day/deal-of-the-day.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     AdminOrdersComponent,
     ShoppingCartComponent,
     ProfileComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    DealOfTheDayComponent
     
   ],
   imports: [
