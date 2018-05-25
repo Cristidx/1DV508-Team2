@@ -18,6 +18,7 @@ export class ShoppingCartComponent implements OnInit {
   localCart = new Map();
   allMovies: movieData[];
   movies: movieData[];
+  
   movie = {
     title:'',
     genre:'',
@@ -33,7 +34,9 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   allID;
-
+  totalPrice: string;
+  
+  tempQuantity:number = 3;
   constructor(public dataCloudService: DataCloudService, private router: Router,  private data: DataService, private cartService: CartService) { }
 
   ngOnInit() {
@@ -47,6 +50,8 @@ export class ShoppingCartComponent implements OnInit {
 
     this.allID = this.cartService.getCartProducts();
      console.log(this.allID);
+
+     this.tempQuantity = this.allID.values;
   }
 
 

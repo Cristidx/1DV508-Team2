@@ -32,6 +32,11 @@ export class CartService {
       }
     }
   
+  setValueCartItem(movie: movieData, numOfmovies){
+    if(this.auth.user != null && !this.cartProducts.has(movie.id) ) {
+      this.cartProducts.set(movie.id, numOfmovies);
+    }
+  }
 
   getCartProducts() {
     let cart = [];
@@ -59,4 +64,6 @@ export class CartService {
        this.cartProducts.clear();
     }
   }
+
+
 }
