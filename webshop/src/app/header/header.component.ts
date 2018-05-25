@@ -11,6 +11,7 @@ import { LoginComponent } from '../login/login.component';
 import { ProfileComponent } from '../profile/profile.component';
 import { Router } from '@angular/router';
 import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
+import { CartService } from '../services/cart.service';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class HeaderComponent implements OnInit {
   selectedGenre:string;
   showMovieCheck: boolean;
   constructor(private dataService: DataCloudService,private authService: AuthService, 
-              private data: DataService, private dialog: MatDialog, private router: Router) { }
+              private data: DataService, private dialog: MatDialog, private router: Router, private cartService: CartService) { }
 
   ngOnInit() {
     this.dataService.getCategories().subscribe(Catdata => {
@@ -37,6 +38,8 @@ export class HeaderComponent implements OnInit {
 
     this.data.currentListCheck.subscribe(showMovieCheck=>this.showMovieCheck = showMovieCheck);
     this.data.currentHeaderGenreSelected.subscribe(selectedGenre=>this.selectedGenre = selectedGenre);
+
+    this.cartService.
   }
   private signOut() {
     this.authService.signOut();
@@ -73,5 +76,6 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/app-shopping-cart']);
   }
 
+  
 
 }
