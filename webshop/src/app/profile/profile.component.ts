@@ -46,7 +46,22 @@ export class ProfileComponent implements OnInit {
   }
   
   hideOrders(): void {
-	this.showsOrders = false;
+    this.showsOrders = false;
+    this.getOrders();
   }
+
+  getOrders(): void {
+    this.dataService.getOrders().subscribe((orders) => {
+    this.orders = orders;
+    this.data.updateOrders(this.orders);
+    this.authService.user.subscribe((user) => { 
+      this.user = user;
+      this.uid = this.authService.getUid();
+      this.orders = this.orderService.getOrdersByUid(this.uid);
+      this.data.getavgRating(this.currentlistCheck);
+    });
+  });
+  }
+
 
 }

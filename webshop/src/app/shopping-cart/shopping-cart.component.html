@@ -1,6 +1,8 @@
 <head>
 
     </head>
+   
+
     <div class="box">
 <table class="main" id="customers">
     <tr>  
@@ -11,8 +13,15 @@
         </span> </th>
   </tr>
   
-  <tr>
-    <td><a href="#">Product 1</a></td>
+  <tr *ngFor ="let itemID of allID">
+    <td ><a href="#">  
+        <a  *ngFor ="let item of movies"  >
+            <a *ngIf="itemID.key == item.id">
+                {{item.title}}
+            </a>
+          </a> 
+        </a>
+      </td>
     <td>1 <form class="form">
         <input type="number" name="quantity" min="1" max="100">
     </form></td>

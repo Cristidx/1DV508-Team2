@@ -77,6 +77,7 @@ export class DataCloudService {
     return this.orders;
   }
 
+
   getMovieStars(movieId) {
     const starsRef = this.afs.collection('Stars', ref => ref.where('movieId', '==', movieId) );
     return starsRef.valueChanges();

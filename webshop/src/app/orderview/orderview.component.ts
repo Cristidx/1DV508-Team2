@@ -5,6 +5,7 @@ import { movieData } from '../model/data';
 import { Address } from '../model/address';
 import { OrderService } from '../services/order.service';
 import { Router } from '@angular/router';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-orderview',
@@ -14,7 +15,7 @@ import { Router } from '@angular/router';
 export class OrderviewComponent implements OnInit {
 
   checked = true;
-  constructor(private authService: AuthService, private orderService: OrderService, private router: Router) { }
+  constructor(private authService: AuthService, private orderService: OrderService, private router: Router, private cart:CartService) { }
 
   ngOnInit() {
     this.authService.getCurrentlySignedInUser().subscribe(user => {
@@ -45,6 +46,8 @@ export class OrderviewComponent implements OnInit {
       address: this.address
     } 
     this.orderService.sendOrder(this.order, this.checked);
+    /* the cart need to be clear and redirect to the main or other page*/
+    this.cart.clearCart();
   }
 
   getMovieIDs(movies: movieData[]) {
