@@ -5,6 +5,7 @@ import { movieData, starData } from '../model/data';
 import { categoriesData } from '../model/data';
 import { Order } from '../model/order';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DataService } from './data.service';
 
 @Injectable()
 export class DataCloudService {

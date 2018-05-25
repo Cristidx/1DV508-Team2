@@ -1,14 +1,18 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { DataCloudService } from './data-cloud.service';
 import { movieData } from '../model/data';
 import { Order, Status } from '../model/order';
 import { AuthService } from './auth.service';
 import { User } from '../model/user';
 import { Address } from '../model/address';
+import { DataService } from './data.service';
 
 @Injectable()
 export class OrderService {
-  constructor(private cloudService: DataCloudService, private authService: AuthService) {
+
+  orders: Order[];
+
+  constructor(private dataService: DataService, private cloudService: DataCloudService, private authService: AuthService) {
     
   }
 
@@ -22,19 +26,14 @@ export class OrderService {
   }
 
   getOrdersByUid(uid: string) {
-    console.log(uid);
-    let ordersByCustomer = [];
-    const sub = this.cloudService.getOrders().subscribe(orders => {
-      orders.forEach((order, i) => {
-        console.log('in dataservice ' + ordersByCustomer);
-        if (order.uid === uid) {
-          ordersByCustomer.push(order);
-        }
-      });
-    });
-    sub.unsubscribe();
-    console.log(ordersByCustomer + '  ' + uid);
-    return ordersByCustomer;
+    this.orders = this.dataService.getOrders();
+    let customerOrders: Order[] = [];
+    for (let i = 0; i < this.orders.length; i++) {
+      if (this.orders[i].uid === uid) {
+        customerOrders.push(this.orders[i]);
+      }
+    }
+    return customerOrders;
   }
 
   getDate(): string {
