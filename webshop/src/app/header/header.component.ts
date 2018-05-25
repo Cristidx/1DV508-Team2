@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
   categories: categoriesData[];
   selectedGenre:string;
   showMovieCheck: boolean;
+  numberOfItems: number;
   constructor(private dataService: DataCloudService,private authService: AuthService, 
               private data: DataService, private dialog: MatDialog, private router: Router, private cartService: CartService) { }
 
@@ -39,7 +40,7 @@ export class HeaderComponent implements OnInit {
     this.data.currentListCheck.subscribe(showMovieCheck=>this.showMovieCheck = showMovieCheck);
     this.data.currentHeaderGenreSelected.subscribe(selectedGenre=>this.selectedGenre = selectedGenre);
 
-    this.cartService.
+    this.data.currentTotalNumOfItems.subscribe(numberOfItems=>this.numberOfItems = numberOfItems);
   }
   private signOut() {
     this.authService.signOut();
