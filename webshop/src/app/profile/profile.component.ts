@@ -4,7 +4,9 @@ import { Router } from '@angular/router';
 import { OrderService } from '../services/order.service';
 import { DataService } from '../services/data.service';
 import { Order } from '../model/order';
+import { Status } from '../model/order';
 import { User } from '../model/user';
+
 import { Observable } from 'rxjs/Observable';
 import { DataCloudService } from '../services/data-cloud.service';
 
@@ -45,9 +47,6 @@ export class ProfileComponent implements OnInit {
   
   hideOrders(): void {
 	this.showsOrders = false;
-  }
-  
-  getOrders(): void {
   }
 
 }
