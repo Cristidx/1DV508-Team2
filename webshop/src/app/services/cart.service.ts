@@ -20,5 +20,9 @@ export class CartService {
       }
     }
   }
-
+  clearCart(){
+    if(this.auth.user != null && this.cartProducts.size > 0 ) {
+      this.cartProducts=new Map();
+    }
+  }
 }
