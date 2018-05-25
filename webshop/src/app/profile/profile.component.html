@@ -38,8 +38,8 @@
 	</li>
 	<li *ngIf="showsOrders == true;">
 		<ul *ngFor="let order of orders">
-			<li> <b>Order ID:</b> {{order.id}} &nbsp; &nbsp; <b>Date:</b> {{order.orderDate}} &nbsp; &nbsp; <b>Items:</b> {{order.items}} &nbsp; &nbsp;
-			<b>Status:</b> {{order.status}}</li>
+			<li> <b>Order ID:</b> {{order.id}} &nbsp; &nbsp; <b>Date:</b> {{order.orderDate}}  &nbsp; &nbsp;
+			<b>Status:</b> {{order.status}} &nbsp; &nbsp; <b>Address: </b>{{order.address.city}}, {{order.address.street}} </li> <b>Items:</b> {{order.items}}
 			
 		</ul>
 	</li>
