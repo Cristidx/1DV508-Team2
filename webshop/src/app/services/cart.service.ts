@@ -18,12 +18,10 @@ export class CartService {
       }
     } else {
       let numOfmovies = this.cartProducts.get(movie.id);
-      console.log(this.cartProducts.get(movie.id));
       if(movie.stock >= ++numOfmovies) {
         this.cartProducts.set(movie.id, numOfmovies);
       }
-      console.log(this.cartProducts.get(movie.id));
-      console.log(this.cartProducts);
+      this.getTotalNumberOfItems();
       }
     }
   
@@ -39,6 +37,15 @@ export class CartService {
     })
 
     return cart;
+  }
+
+  getTotalNumberOfItems() {
+    let tots = 0;
+    this.cartProducts.forEach((value, key) => {
+      tots += value;
+    });
+    console.log('tots ' + tots);
+    return tots;
   }
 
 }
