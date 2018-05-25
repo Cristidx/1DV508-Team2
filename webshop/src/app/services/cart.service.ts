@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { movieData } from '../model/data';
 import { AuthService } from './auth.service';
+import { Observable } from '@firebase/util';
+import { DataService } from './data.service';
 
 @Injectable()
 export class CartService {
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private dataService: DataService) { }
   
   cartProducts = new Map();
-  counter: number = 1;
+  counter: 0;
 
   addMovieToCart(movie: movieData) {
     if(this.auth.user != null && !this.cartProducts.has(movie.id) ) {
@@ -19,6 +21,8 @@ export class CartService {
     } else {
       let numOfmovies = this.cartProducts.get(movie.id);
       if(movie.stock >= ++numOfmovies) {
+        this.counter++;
+        this.dataService.updateItems(this.counter);
         this.cartProducts.set(movie.id, numOfmovies);
       }
       this.getTotalNumberOfItems();
@@ -45,7 +49,7 @@ export class CartService {
       tots += value;
     });
     console.log('tots ' + tots);
-    return tots;
+    return ;
   }
 
 }

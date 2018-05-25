@@ -24,6 +24,9 @@ export class DataService {
 
   private orders = new BehaviorSubject<Order[]>(this.orderDummy);
   currentOrders = this.orders.value;
+
+  private totalNumberOfItems = new BehaviorSubject<number>(0);
+  currentTotalNumOfItems = this.totalNumberOfItems.asObservable();
   constructor() { }
 
   changeHeaderGenre(selectedGenre: string) {
@@ -48,6 +51,10 @@ export class DataService {
 
   updateOrders(orders: Order[]) {
     this.orders.next(orders);
+  }
+
+  updateItems(number) {
+    this.totalNumberOfItems.next(number);
   }
 
   getOrders() {
