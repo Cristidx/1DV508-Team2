@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { OrderService } from '../services/order.service';
 import { DataService } from '../services/data.service';
 import { unescapeIdentifier } from '@angular/compiler';
+import { DataCloudService } from '../services/data-cloud.service';
 
 @Component({
   selector: 'app-order-details',
@@ -11,16 +12,12 @@ import { unescapeIdentifier } from '@angular/compiler';
 export class OrderDetailsComponent implements OnInit {
   orders: any[];
   uid: string;
-  constructor(private orderService: OrderService, private dataService: DataService) { }
+  constructor(private orderService: OrderService, private dataService: DataService, private cloudService: DataCloudService) { }
 
   ngOnInit() {
     this.dataService.currentOrderUid.subscribe(uid => {
-      this.uid = uid;
-      this.orders = this.orderService.getOrdersByUid(this.uid);
+      this.orders = this.orderService.getOrdersByUid(uid);
       console.log(this.orders);
     });
-    
   }
-
 }
-

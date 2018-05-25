@@ -5,6 +5,7 @@ import { movieData, starData } from '../model/data';
 import { categoriesData } from '../model/data';
 import { Order } from '../model/order';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DataService } from './data.service';
 
 @Injectable()
 export class DataCloudService {
@@ -75,6 +76,7 @@ export class DataCloudService {
   getOrders() {
     return this.orders;
   }
+
 
   getMovieStars(movieId) {
     const starsRef = this.afs.collection('Stars', ref => ref.where('movieId', '==', movieId) );

@@ -24,7 +24,7 @@
             <div class="admin-message"><p *ngIf="user != null && user.admin == true;">Signed in as admin</p></div>
              <div class="right-container">
               <div class="menu">
-                <button class="btn addTOCart" (click)="goToCart()">Cart <span class="glyphicon glyphicon-shopping-cart"></span></button>
+                <button class="btn addTOCart" (click)="goToCart()">Cart <span class="glyphicon glyphicon-shopping-cart" ></span>{{numberOfItems}}</button>
                 <div class="drop-down">
               <app-shopping-cart></app-shopping-cart>
                 </div>
