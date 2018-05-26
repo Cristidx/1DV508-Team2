@@ -23,12 +23,12 @@ export class ProfileComponent implements OnInit {
   orders: Order[];
   currentlistCheck: boolean = false;
   user: User;
-  
+
   constructor(private authService: AuthService, private router: Router, private data: DataService,
     private orderService: OrderService, private dataService: DataCloudService) { }
 
   ngOnInit() {
-    this.authService.getCurrentlySignedInUser().subscribe((user) => { 
+    this.authService.getCurrentlySignedInUser().subscribe((user) => {
       this.user = user;
       this.orderService.getOrdersByUid(user.uid)
         .then((orders) => {
@@ -40,7 +40,7 @@ export class ProfileComponent implements OnInit {
   viewOrders(): void {
     this.showsOrders = true;
   }
-  
+
   hideOrders(): void {
     this.showsOrders = false;
   }

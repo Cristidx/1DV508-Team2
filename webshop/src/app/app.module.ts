@@ -18,9 +18,9 @@ import { AdminLogInComponent } from './admin-log-in/admin-log-in.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { ProductDesignComponent } from './product-design/product-design.component';
 import { CrudService } from './services/crud.service';
-import { AddCategoryComponent} from './add-category/add-category.component';
+import { AddCategoryComponent } from './add-category/add-category.component';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { HttpClientModule, HttpClient} from '@angular/common/http'; 
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { DataCloudComponent } from './components/data-cloud/data-cloud.component';
 import { DataCloudService } from './services/data-cloud.service';
 import { EditProductComponent } from './edit-product/edit-product.component';
@@ -38,6 +38,7 @@ import { OrderService } from './services/order.service';
 import { CartService } from './services/cart.service';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { DealOfTheDayComponent } from './deal-of-the-day/deal-of-the-day.component';
+import { FromIDToMoviePipe } from "./pipes/movie.pipe";
 
 
 @NgModule({
@@ -60,8 +61,8 @@ import { DealOfTheDayComponent } from './deal-of-the-day/deal-of-the-day.compone
     ShoppingCartComponent,
     ProfileComponent,
     ToolbarComponent,
-    DealOfTheDayComponent
-    
+    DealOfTheDayComponent,
+    FromIDToMoviePipe
   ],
   imports: [
     BrowserModule,
