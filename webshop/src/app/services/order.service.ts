@@ -6,18 +6,37 @@ import { AuthService } from './auth.service';
 import { User } from '../model/user';
 import { Address } from '../model/address';
 import { DataService } from './data.service';
+import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/toPromise';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable()
 export class OrderService {
 
-  orders: Order[];
 
-  constructor(private dataService: DataService, private cloudService: DataCloudService, private authService: AuthService) {
-    
+  orderCollection: AngularFirestoreCollection<Order>;
+  orders: Observable<Order[]>;  
+  constructor(private dataService: DataService, private cloudService: DataCloudService, public afs: AngularFirestore, 
+    private authService: AuthService, private snackBar: MatSnackBar) {
+      
+    this.orderCollection = this.afs.collection('Orders', ref => ref.orderBy('orderDate', 'desc'));
+    this.orders = this.orderCollection.snapshotChanges().map(changes => {
+      return changes.map(a => { 
+        const data = a.payload.doc.data() as Order;
+        data.id = a.payload.doc.id;
+        return data;
+      });
+    });
   }
 
-  updateOrder(order) {
-    this.cloudService.editOrder(order);
+  getOrders() {
+    return this.orders;
+  }
+
+  editOrder(data: Order) {
+    const orderDoc = this.afs.doc(`Orders/${data.id}`);
+    orderDoc.update(data).then(()=>this.snackBar.open('An order was successfully updated', 'Dismiss', { duration: 3000 }), console.error);
   }
 
   sendOrder(order: Order, saveAddress: boolean) {
@@ -26,24 +45,29 @@ export class OrderService {
     } else {
       this.authService.setUserAddressEmpty();
     }
-    return this.cloudService.addOrder(order);
+    /* return this.cloudService.addOrder(order); */
   }
 
-  getOrdersByUid(uid: string) {
-    this.orders = this.dataService.getOrders();
-    let customerOrders: Order[] = [];
-    for (let i = 0; i < this.orders.length; i++) {
-      if (this.orders[i].uid === uid) {
-        customerOrders.push(this.orders[i]);
-      }
-    }
-    return customerOrders;
+  async getOrdersByUid(uid: string) {
+    let customerArray: Order[] = [];
+    this.toOrderArray()
+      .then((orders: Order[]) => {
+        orders.forEach(element => {
+          if (element.uid === uid) {
+            customerArray.push(element);
+          }
+        });
+      });
+    return customerArray;
   }
 
-  getDate(): string {
-    let date = new Date();
-    return date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate() + ' ' 
-      + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+  private toOrderArray() {
+    return new Promise((resolve, reject) => {
+      const sub = this.orders.subscribe((orders) => {
+        resolve(orders);
+        sub.unsubscribe();
+      });
+    });
   }
 
   getTotalPrice(movies: movieData[]): number {

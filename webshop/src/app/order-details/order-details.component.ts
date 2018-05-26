@@ -11,23 +11,24 @@ import { Order, Status } from '../model/order';
   styleUrls: ['./order-details.component.css']
 })
 export class OrderDetailsComponent implements OnInit {
-  orders: any[];
-  order: Order = {
-    status: Status.New,
-    id:''
-  }
+  orders: Order[];
   uid: string;
-  constructor(private orderService: OrderService, private dataService: DataService, private cloudService: DataCloudService) { }
+  constructor(private orderService: OrderService, private dataService: DataService, private cloudService: DataCloudService) {
+
+  }
 
   ngOnInit() {
     this.dataService.currentOrderUid.subscribe(uid => {
-      this.orders = this.orderService.getOrdersByUid(uid);
-      console.log(this.orders);
+      this.uid = uid;
     });
+    this.orderService.getOrdersByUid(this.uid)
+      .then((orders) => {
+        this.orders = orders;
+      })
+      .catch((error) => console.log(error));
   }
 
   onSubmit() {
-    console.log(this.order);
-    this.orderService.updateOrder(this.order);
+
   }
 }

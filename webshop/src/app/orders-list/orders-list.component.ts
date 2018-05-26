@@ -8,7 +8,8 @@ import { OrderService } from '../services/order.service';
 @Component({
   selector: 'app-orders-list',
   templateUrl: './orders-list.component.html',
-  styleUrls: ['./orders-list.component.css']
+  styleUrls: ['./orders-list.component.css'],
+  providers: [OrderService]
 })
 export class OrdersListComponent implements OnInit {
 
@@ -16,18 +17,17 @@ export class OrdersListComponent implements OnInit {
 
   currentlistCheck: boolean = false;
   constructor(private dataService: DataCloudService, private data: DataService, private router: Router, private orderService: OrderService) {
-    this.dataService.getOrders().subscribe((orders) => {
-      this.orders = orders;
-      this.data.updateOrders(this.orders);
-    });
+    
    }
 
   ngOnInit() {
+    this.orderService.getOrders().subscribe((orders) => {
+      this.orders = orders;
+    });
     this.data.getavgRating(this.currentlistCheck);
   }
 
   uid(item){
-    this.data.updateOrders(this.orders);
     this.data.updateOrderUid(item.uid);
     this.router.navigateByUrl("order-details");
   }

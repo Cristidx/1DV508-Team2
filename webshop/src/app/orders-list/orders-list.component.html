@@ -10,7 +10,7 @@
   </tr>
 
 <tr *ngFor ="let item of orders" >
-  <td><a (click)="uid(item)" > {{item.uid}}</a></td>
+  <td><button (click)="uid(item)" class="link">{{item.uid}}</button></td>
   <td>{{item.id}}</td>
   <td>{{item.orderDate}}</td>
 </tr>

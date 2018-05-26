@@ -20,48 +20,28 @@ export class ProfileComponent implements OnInit {
 
   showsOrders = false;
 
-  uid: string;
   orders: Order[];
   currentlistCheck: boolean = false;
   user: User;
   
-  constructor(private authService: AuthService, private router: Router, private data: DataService, private orderService: OrderService, private dataService: DataCloudService) { }
+  constructor(private authService: AuthService, private router: Router, private data: DataService,
+    private orderService: OrderService, private dataService: DataCloudService) { }
 
   ngOnInit() {
-    this.dataService.getOrders().subscribe((orders) => {
-      this.orders = orders;
-      this.data.updateOrders(this.orders);
-      this.authService.user.subscribe((user) => { 
-        this.user = user;
-        this.uid = this.authService.getUid();
-        this.orders = this.orderService.getOrdersByUid(this.uid);
-        this.data.getavgRating(this.currentlistCheck);
-      });
+    this.authService.getCurrentlySignedInUser().subscribe((user) => { 
+      this.user = user;
+      this.orderService.getOrdersByUid(user.uid)
+        .then((orders) => {
+          this.orders = orders;
+        });
     });
   }
 
   viewOrders(): void {
-	this.showsOrders = true;
-	this.getOrders();
+    this.showsOrders = true;
   }
   
   hideOrders(): void {
     this.showsOrders = false;
-    this.getOrders();
   }
-
-  getOrders(): void {
-    this.dataService.getOrders().subscribe((orders) => {
-    this.orders = orders;
-    this.data.updateOrders(this.orders);
-    this.authService.user.subscribe((user) => { 
-      this.user = user;
-      this.uid = this.authService.getUid();
-      this.orders = this.orderService.getOrdersByUid(this.uid);
-      this.data.getavgRating(this.currentlistCheck);
-    });
-  });
-  }
-
-
 }

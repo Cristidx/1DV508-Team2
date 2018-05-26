@@ -6,6 +6,7 @@ import { Address } from '../model/address';
 import { OrderService } from '../services/order.service';
 import { Router } from '@angular/router';
 import { CartService } from '../services/cart.service';
+import { DataCloudService } from '../services/data-cloud.service';
 
 @Component({
   selector: 'app-orderview',
@@ -15,7 +16,8 @@ import { CartService } from '../services/cart.service';
 export class OrderviewComponent implements OnInit {
 
   checked = true;
-  constructor(private authService: AuthService, private orderService: OrderService, private router: Router, private cart:CartService) { }
+  constructor(private authService: AuthService, private orderService: OrderService, 
+    private router: Router, private cart: CartService, private cloudSerivce: DataCloudService) { }
 
   ngOnInit() {
     this.authService.getCurrentlySignedInUser().subscribe(user => {
@@ -37,8 +39,9 @@ export class OrderviewComponent implements OnInit {
     if (this.address.phoneNumber === '' || this.address.city === '' ||
       this.address.street === '' || this.address.zipCode === '') { return; }
 
+    const date: Date = new Date();
     this.order = {
-      orderDate: this.orderService.getDate(),
+      orderDate: this.cloudSerivce.getDate(date),
       uid: this.authService.getUid(),
       items: [],
       status: Status.New,

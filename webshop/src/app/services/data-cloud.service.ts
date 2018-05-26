@@ -21,13 +21,8 @@ export class DataCloudService {
   starCollection: AngularFirestoreCollection<starData>
   starData: Observable<starData[]>
   starDoc: AngularFirestoreDocument<starData>;
-
-  orderCollection: AngularFirestoreCollection<Order>;
-  orders: Observable<Order[]>;
-
   constructor(public afs: AngularFirestore, private snackBar: MatSnackBar) {
 
-    //this.movieData = this.afs.collection('Movies').valueChanges();
     this.movieCollection = this.afs.collection('Movies', ref => ref.orderBy('dateAdded', 'desc'));
     this.movieData =this.movieCollection.snapshotChanges().map(changes => {
       return changes.map(a => {
@@ -37,20 +32,10 @@ export class DataCloudService {
       });
     });
 
-    //this.categoriesData = this.afs.collection('Categories').valueChanges();
     this.categoriesCollection = this.afs.collection('Categories');
     this.categoriesData = this.afs.collection('Categories').snapshotChanges().map(changes => {
       return changes.map(a => {
         const data = a.payload.doc.data() as categoriesData;
-        data.id = a.payload.doc.id;
-        return data;
-      });
-    });
-
-    this.orderCollection = this.afs.collection('Orders', ref => ref.orderBy('orderDate', 'desc'));
-    this.orders = this.orderCollection.snapshotChanges().map(changes => {
-      return changes.map(a => { 
-        const data = a.payload.doc.data() as Order;
         data.id = a.payload.doc.id;
         return data;
       });
@@ -64,7 +49,6 @@ export class DataCloudService {
         return data;
       });
     });
-    
   }
 
   getCategories() {
@@ -72,9 +56,6 @@ export class DataCloudService {
   }
   getMovie() {
     return this.movieData;
-  }
-  getOrders() {
-    return this.orders;
   }
 
 
@@ -86,18 +67,16 @@ export class DataCloudService {
   addProduct(movieData: movieData) {
     this.movieCollection.add(movieData).then(()=>this.snackBar.open('A movie was succesfully added', 'Dismiss', { duration: 3000 }),console.error);
   }
+
   addCategory(categoriesData: categoriesData) {
     this.categoriesCollection.add(categoriesData).then(()=>this.snackBar.open('A category was succesfully created', 'Dismiss', { duration: 3000 }), console.error);
   }
-  addOrder(order: Order) {
-    return this.orderCollection.add(order).then(() => this.snackBar.open('Order created', 'Dismiss', { duration: 3000 }));
-  }
-   /* To delete categories */
+
   deleteCategory(categoriesData: categoriesData) {
     this.categoryDoc=this.afs.doc(`Categories/${categoriesData.id}`);
     this.categoryDoc.delete().then(()=>this.snackBar.open('A category was successfully deleted', 'Dismiss', { duration: 3000 }), console.error);
   }
-  /* To delete movies item by id */
+
   deleteMovie(movieData: movieData) {
     this.movieDoc = this.afs.doc(`Movies/${movieData.id}`);
     this.movieDoc.delete().then(()=>this.snackBar.open('A movie was successfully deleted', 'Dismiss', { duration: 3000 }), console.error); 
@@ -107,11 +86,6 @@ export class DataCloudService {
     console.log('Data ID ' + data.id);
     this.movieDoc = this.afs.doc(`Movies/${data.id}`);
     this.movieDoc.update(data).then(()=>this.snackBar.open('A movie was successfully updated', 'Dismiss', { duration: 3000 }), console.error);
-  }
-
-  editOrder(data: Order) {
-    const orderDoc = this.afs.doc(`Orders/${data.id}`);
-    orderDoc.update(data).then(()=>this.snackBar.open('An order was successfully updated', 'Dismiss', { duration: 3000 }), console.error);
   }
  
   setStar(userId, movieId, value) {
