@@ -10,19 +10,20 @@ import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/fires
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class OrderService {
 
-
+  itemsFromOrder: any[];
   orderCollection: AngularFirestoreCollection<Order>;
-  orders: Observable<Order[]>;  
-  constructor(private dataService: DataService, private cloudService: DataCloudService, public afs: AngularFirestore, 
-    private authService: AuthService, private snackBar: MatSnackBar) {
-      
+  orders: Observable<Order[]>;
+  constructor(private dataService: DataService, private cloudService: DataCloudService, public afs: AngularFirestore,
+    private authService: AuthService, private snackBar: MatSnackBar, private router: Router) {
+
     this.orderCollection = this.afs.collection('Orders', ref => ref.orderBy('orderDate', 'desc'));
     this.orders = this.orderCollection.snapshotChanges().map(changes => {
-      return changes.map(a => { 
+      return changes.map(a => {
         const data = a.payload.doc.data() as Order;
         data.id = a.payload.doc.id;
         return data;
@@ -36,7 +37,7 @@ export class OrderService {
 
   editOrder(data: Order) {
     const orderDoc = this.afs.doc(`Orders/${data.id}`);
-    orderDoc.update(data).then(()=>this.snackBar.open('An order was successfully updated', 'Dismiss', { duration: 3000 }), console.error);
+    orderDoc.update(data).then(() => this.snackBar.open('An order was successfully updated', 'Dismiss', { duration: 3000 }), console.error);
   }
 
   sendOrder(order: Order, saveAddress: boolean) {
@@ -45,7 +46,8 @@ export class OrderService {
     } else {
       this.authService.setUserAddressEmpty();
     }
-    /* return this.cloudService.addOrder(order); */
+    console.log(order);
+    return this.orderCollection.add(order).then(() => this.router.navigateByUrl('/'));
   }
 
   async getOrdersByUid(uid: string) {
@@ -68,13 +70,5 @@ export class OrderService {
         sub.unsubscribe();
       });
     });
-  }
-
-  getTotalPrice(movies: movieData[]): number {
-    let totalprice: number;
-    movies.forEach(movie => {
-      totalprice += movie.price;
-    });
-    return totalprice;
   }
 }

@@ -6,6 +6,7 @@ import { categoriesData } from '../model/data';
 import { Order } from '../model/order';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DataService } from './data.service';
+import { resolve } from 'q';
 
 @Injectable()
 export class DataCloudService {
@@ -17,14 +18,14 @@ export class DataCloudService {
   movieCollection: AngularFirestoreCollection<movieData>
   movieData: Observable<movieData[]>
   movieDoc: AngularFirestoreDocument<movieData>;
-  
+
   starCollection: AngularFirestoreCollection<starData>
   starData: Observable<starData[]>
   starDoc: AngularFirestoreDocument<starData>;
   constructor(public afs: AngularFirestore, private snackBar: MatSnackBar) {
 
     this.movieCollection = this.afs.collection('Movies', ref => ref.orderBy('dateAdded', 'desc'));
-    this.movieData =this.movieCollection.snapshotChanges().map(changes => {
+    this.movieData = this.movieCollection.snapshotChanges().map(changes => {
       return changes.map(a => {
         const data = a.payload.doc.data() as movieData;
         data.id = a.payload.doc.id;
@@ -58,51 +59,67 @@ export class DataCloudService {
     return this.movieData;
   }
 
+  async getMovieFromIDs(ids: string[]) {
+    return new Promise((resolve) => {
+      const movieArray: movieData[] = [];
+      const sub = this.movieData.subscribe((movies) => {
+        ids.forEach((id) => {
+          movies.forEach((movie) => {
+            if (id === movie.id) {
+              movieArray.push(movie);
+            }
+          });
+        });
+        sub.unsubscribe();
+        resolve(movieArray);
+      });
+    })
+  }
 
   getMovieStars(movieId) {
-    const starsRef = this.afs.collection('Stars', ref => ref.where('movieId', '==', movieId) );
+    const starsRef = this.afs.collection('Stars', ref => ref.where('movieId', '==', movieId));
     return starsRef.valueChanges();
   }
 
   addProduct(movieData: movieData) {
-    this.movieCollection.add(movieData).then(()=>this.snackBar.open('A movie was succesfully added', 'Dismiss', { duration: 3000 }),console.error);
+    this.movieCollection.add(movieData).then(() => this.snackBar.open('A movie was succesfully added', 'Dismiss', { duration: 3000 }), console.error);
   }
 
   addCategory(categoriesData: categoriesData) {
-    this.categoriesCollection.add(categoriesData).then(()=>this.snackBar.open('A category was succesfully created', 'Dismiss', { duration: 3000 }), console.error);
+    this.categoriesCollection.add(categoriesData).then(() => this.snackBar.open('A category was succesfully created', 'Dismiss', { duration: 3000 }), console.error);
   }
 
   deleteCategory(categoriesData: categoriesData) {
-    this.categoryDoc=this.afs.doc(`Categories/${categoriesData.id}`);
-    this.categoryDoc.delete().then(()=>this.snackBar.open('A category was successfully deleted', 'Dismiss', { duration: 3000 }), console.error);
+    this.categoryDoc = this.afs.doc(`Categories/${categoriesData.id}`);
+    this.categoryDoc.delete().then(() => this.snackBar.open('A category was successfully deleted', 'Dismiss', { duration: 3000 }), console.error);
   }
 
   deleteMovie(movieData: movieData) {
     this.movieDoc = this.afs.doc(`Movies/${movieData.id}`);
-    this.movieDoc.delete().then(()=>this.snackBar.open('A movie was successfully deleted', 'Dismiss', { duration: 3000 }), console.error); 
+    this.movieDoc.delete().then(() => this.snackBar.open('A movie was successfully deleted', 'Dismiss', { duration: 3000 }), console.error);
   }
 
   editMovie(data: movieData) {
     console.log('Data ID ' + data.id);
     this.movieDoc = this.afs.doc(`Movies/${data.id}`);
-    this.movieDoc.update(data).then(()=>this.snackBar.open('A movie was successfully updated', 'Dismiss', { duration: 3000 }), console.error);
+    this.movieDoc.update(data).then(() => this.snackBar.open('A movie was successfully updated', 'Dismiss', { duration: 3000 }), console.error);
   }
- 
+
   setStar(userId, movieId, value) {
     const star: starData = { userId, movieId, value };
     const starPath = `Stars/${star.userId}_${star.movieId}`;
     return this.afs.doc(starPath).set(star)
   }
 
-  getDate(date:Date):string{
+  getDate(date: Date): string {
     const sec = date.getSeconds();
     const min = date.getMinutes();
     const hours = date.getHours();
     const day = date.getDate();
-    const mounth = date.getMonth() + 1;
+    const month = date.getMonth() + 1;
     const year = date.getFullYear();
 
-    return `${year}-${mounth}-${day}-${hours}-${min}-${sec}`;
+    return `${year}-${month}-${day}-${hours}-${min}-${sec}`;
   }
 }
 

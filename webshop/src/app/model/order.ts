@@ -6,7 +6,7 @@ export interface Order {
     uid?: string;
     orderDate?: string;
     address?: Address;        
-    items?: string[];
+    items?: any[];
     status?: Status;
     price?: number;
     id?: string;

@@ -16,14 +16,14 @@ import { DataCloudService } from '../services/data-cloud.service';
 export class OrderviewComponent implements OnInit {
 
   checked = true;
-  constructor(private authService: AuthService, private orderService: OrderService, 
+  constructor(private authService: AuthService, private orderService: OrderService,
     private router: Router, private cart: CartService, private cloudSerivce: DataCloudService) { }
 
   ngOnInit() {
     this.authService.getCurrentlySignedInUser().subscribe(user => {
       if (user.address != null) {
         this.address = user.address;
-      } 
+      }
     });
   }
 
@@ -35,22 +35,27 @@ export class OrderviewComponent implements OnInit {
     phoneNumber: ''
   }
   order: Order;
+
   createOrder() {
     if (this.address.phoneNumber === '' || this.address.city === '' ||
       this.address.street === '' || this.address.zipCode === '') { return; }
 
+    const cart = this.cart.getCartProducts();
     const date: Date = new Date();
-    this.order = {
-      orderDate: this.cloudSerivce.getDate(date),
-      uid: this.authService.getUid(),
-      items: [],
-      status: Status.New,
-      price: 10,
-      address: this.address
-    } 
-    this.orderService.sendOrder(this.order, this.checked);
-    /* the cart need to be clear and redirect to the main or other page*/
-    this.cart.clearCart();
+    const price = this.getTotalPrice(cart)
+      .then((price: number) => { 
+        this.order = {
+          orderDate: this.cloudSerivce.getDate(date),
+          uid: this.authService.getUid(),
+          items: cart,
+          status: Status.New,
+          price: price,
+          address: this.address
+        }
+        this.orderService.sendOrder(this.order, this.checked);
+        /* the cart need to be clear and redirect to the main or other page*/
+        this.cart.clearCart();
+      });
   }
 
   getMovieIDs(movies: movieData[]) {
@@ -59,5 +64,22 @@ export class OrderviewComponent implements OnInit {
       movieIDs.push(value.id);
     });
     return movieIDs;
+  }
+
+  getTotalPrice(items: any[]) {
+    let index = 0;
+    let totalPrice = 0;
+    const ids: string[] = [];
+    items.forEach((element) => { ids.push(element.key) });
+    
+    return new Promise((resolve) => { this.cloudSerivce.getMovieFromIDs(ids)
+      .then((movies: movieData[]) => { 
+        movies.forEach(movie => {
+            totalPrice += (movie.price * items[index].value);
+            index++;
+        });
+        resolve(totalPrice);
+      });
+    })
   }
 }
