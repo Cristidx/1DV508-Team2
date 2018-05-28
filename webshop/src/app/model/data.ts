@@ -15,6 +15,8 @@ export interface movieData {
   director?: string;
   dateAdded?: string;
   rating?: number;
+  DOTDstatus?: boolean;
+  DOTDprice?: number;
 }
 
 export interface starData {

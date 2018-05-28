@@ -31,7 +31,9 @@ export class AddProductComponent implements OnInit {
     stock:0,
     director:'',
     dateAdded:'',
-    rating:0
+    rating:0,
+    DOTDstatus: false,
+    DOTDprice: 0
   }
 
   constructor(public dataService: DataCloudService, public authService: AuthService, public crud: CrudService, private dialog: MatDialog) { }
@@ -58,6 +60,8 @@ export class AddProductComponent implements OnInit {
       this.movies.director = '';
       this.movies.dateAdded ='';
       this.dialog.closeAll();
+      this.movies.DOTDstatus = false;
+      this.movies.DOTDprice = 0;
     }
   }
 
