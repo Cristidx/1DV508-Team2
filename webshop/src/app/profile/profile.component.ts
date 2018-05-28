@@ -36,6 +36,9 @@ export class ProfileComponent implements OnInit {
         });
     });
   }
+  
+  sortOrdersByDate(): void {
+  }
 
   viewOrders(): void {
     this.showsOrders = true;
