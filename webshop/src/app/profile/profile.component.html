@@ -1,75 +1,39 @@
-<!doctype html>
-
-<head>
-    <style>
-        div {
-            background-color: rgb(211, 211, 211);
-            width: 700px;
-            padding: 10px;
-            margin: 0%;
-        }
-    </style>
-    <style>
-        #customers {
-            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-            border-collapse: collapse;
-        }
-
-        #customers td,
-        #customers th {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-
-        #customers tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        #customers tr:hover {
-            background-color: #ddd;
-        }
-
-        #customers th {
-            padding-top: 12px;
-            padding-bottom: 12px;
-            text-align: left;
-            background-color: rgb(76, 144, 175);
-            color: white;
-        }
-    </style>
-</head>
-
 <ul>
-    <li *ngIf="user">
-        <b>Email:</b> {{user.email}}
-	</li>
-	<li *ngIf="user.name">
-        <b>Name:</b> {{user.name}}
-	</li>
-	<li *ngIf="user.phoneNumber">
-		<b>Phone number:</b> {{user.phoneNumber}}
-	</li>
-	<li *ngIf="user.city">
-		<b>City:</b> {{user.city}}
-	</li>
-	<li *ngIf="user.street">
-		<b>Street:</b> {{user.street}}
-	</li>
-		
-    <li>
-        <button mat-button class="orderbutton" *ngIf="showsOrders == false;" (click)="viewOrders()">View my orders</button>
-        <button mat-button class="orderbutton" *ngIf="showsOrders == true;" (click)="hideOrders()">Hide my orders</button>
-    </li>
-    <li *ngIf="showsOrders == true && orders;">
-        <ul *ngFor="let order of orders">
-            <li>
-                <b>Order ID:</b> {{order.id}} &nbsp; &nbsp;
-                <b>Date:</b> {{order.orderDate}} &nbsp; &nbsp;
-                <b>Status:</b> {{order.status}} &nbsp; &nbsp;
-                <b>Address: </b>{{order.address.city}}, {{order.address.street}} 
-			</li>
-            <b>Movies:</b>
-            <div *ngFor="let item of order.items"><b>Title:</b> {{item.movie.title}} &nbsp; &nbsp; <b>Quantity:</b> {{item.numOfmovies}} &nbsp; &nbsp; <b>ID:</b> {{item.movie.id}}</div>
-        </ul>
-    </li>
+  <li *ngIf="user != null && user.email != null">
+    <b>Email:</b> {{user.email}}
+  </li>
+  <li *ngIf="user != null && user.name != null">
+    <b>Name:</b> {{user.name}}
+  </li>
+  <li *ngIf="user != null && user.phoneNumber != null">
+    <b>Phone number:</b> {{user.phoneNumber}}
+  </li>
+  <li *ngIf="user != null && user.city != null">
+    <b>City:</b> {{user.city}}
+  </li>
+  <li *ngIf="user != null && user.street != null">
+    <b>Street:</b> {{user.street}}
+  </li>
+
+  <li>
+    <button mat-button class="orderbutton" *ngIf="showsOrders == false;" (click)="viewOrders()">View my orders</button>
+    <button mat-button class="orderbutton" *ngIf="showsOrders == true;" (click)="hideOrders()">Hide my orders</button>
+  </li>
+  <li *ngIf="showsOrders == true && orders != null">
+    <ul *ngFor="let order of orders">
+      <li *ngIf="order.id != null && order.orderDate != null
+          && order.status != null && order.address.city != null
+          && order.address.street != null">
+        <b>Order ID:</b> {{order.id}} &nbsp; &nbsp;
+        <b>Date:</b> {{order.orderDate}} &nbsp; &nbsp;
+        <b>Status:</b> {{order.status}} &nbsp; &nbsp;
+        <b>Address: </b>{{order.address.city}}, {{order.address.street}}
+      </li>
+      <b>Movies:</b>
+      <div *ngFor="let item of order.items">
+        <b>Title:</b> {{item.movie.title}} &nbsp; &nbsp;
+        <b>Quantity:</b> {{item.numOfmovies}} &nbsp; &nbsp;
+        <b>ID:</b> {{item.movie.id}}</div>
+    </ul>
+  </li>
 </ul>

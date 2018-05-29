@@ -11,7 +11,7 @@ import { DataService } from "../services/data.service";
 
 @Component({
   selector: "app-orderview",
-  templateUrl: "./orderview.ceomponent.html",
+  templateUrl: "./orderview.component.html",
   styleUrls: ["./orderview.component.css"]
 })
 export class OrderviewComponent implements OnInit {
@@ -64,7 +64,6 @@ export class OrderviewComponent implements OnInit {
 
     this.authService.getCurrentlySignedInUser().subscribe(user => {
       let tempUser = <any>user;
-      console.log(tempUser);
       if (tempUser.city != null) {
         this.address.city = tempUser.city;
       }
