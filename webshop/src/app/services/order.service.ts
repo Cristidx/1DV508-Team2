@@ -46,8 +46,16 @@ export class OrderService {
     } else {
       this.authService.setUserAddressEmpty();
     }
-    console.log(order);
+    this.updateStock(order.items);
     return this.orderCollection.add(order).then(() => this.router.navigateByUrl('/'));
+  }
+
+  updateStock(movies: any[]) {
+    movies.forEach((item) => {
+      let newMovie = item.movie;
+      newMovie.stock = (newMovie.stock - item.numOfmovies);
+      this.cloudService.editMovieStock(newMovie);
+    });
   }
 
   async getOrdersByUid(uid: string) {
