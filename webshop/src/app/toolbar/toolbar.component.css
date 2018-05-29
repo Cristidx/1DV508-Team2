@@ -27,7 +27,7 @@ li a:hover:not(.active) {
 }
 
 fieldset, label { 
-	margin-top: -3.6%;
+	margin-top: -4.6%;
 	background: rgba(255, 255, 255, 0.7);
 	vertical-align: middle;	
 }
@@ -69,13 +69,13 @@ h1 { font-size: 1.5em; margin: 10px; }
 
 #showAll {
 	float: right;
-	margin-top: -3.5%;
+	margin-top: -4.5%;
 	vertical-align: middle;
 }
 
 div {
 	float: right;
-	margin-top: -6.2%;
+	margin-top: -7.2%;
 	margin-bottom: 30px;
 	margin-left: 1%;
 	background: rgba(255, 255, 255, 0.7);
