@@ -39,7 +39,7 @@ export class AppComponent {
     this.updateSearchTargetClick();
     this.data.getavgRating(this.showMovieCheck);
     this.data.changeHeaderGenre('');
-    )
+    
   }
 
   
