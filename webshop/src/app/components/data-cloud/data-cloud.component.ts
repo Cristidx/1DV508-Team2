@@ -33,8 +33,10 @@ export class DataCloudComponent implements OnInit, AfterViewInit{
 state: string = 'small';
 movies: movieData[];
 allMovies: movieData[];
+
+movie: movieData[];
 categories: categoriesData[];
-movie = {
+movie2 = {
   title:'',
   genre:'',
   imageURL:'',
@@ -44,7 +46,9 @@ movie = {
   stock:0,
   director:'',
   dateAdded:'',
-  rating:''
+  rating:'',
+  DOTDstatus: false,
+  DOTDprice: 0
 }
 title;
 
@@ -85,6 +89,15 @@ stars: number = -1;
       this.searchTarget = value; 
       this.filterMovies(this.searchTarget); 
     });
+
+    if (this.selectedGenre.length > 0){
+      this.dataCloudService.getMovisByCat(this.selectedGenre)
+      .then((movieData) => {
+        this.movie = movieData;
+      })
+      .catch((error) => console.log(error));
+  }
+
   }
 
   ngAfterViewInit() {
@@ -122,6 +135,13 @@ addToCart(item) {
 
 reciveStars($event) {
   this.stars = $event -1;
+
+  this.dataCloudService.getMovisByCat(this.selectedGenre)
+  .then((movieData) => {
+    this.movie = movieData;
+  })
+  .catch((error) => console.log(error));
+
 }
 
 resetStars($event) {

@@ -19,6 +19,9 @@ export interface movieData {
   DOTDprice?: number;
 }
 
+ 
+
+
 export interface starData {
   id?: string;
   movieId?: string;
