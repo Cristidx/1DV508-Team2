@@ -3,30 +3,35 @@ import { movieData } from '../model/data';
 import { AuthService } from './auth.service';
 import { Observable } from '@firebase/util';
 import { DataService } from './data.service';
+import { DataCloudService } from './data-cloud.service';
 
 @Injectable()
 export class CartService {
 
-  constructor(private auth: AuthService, private dataService: DataService) { }
-
+  constructor(private auth: AuthService, private dataService: DataService, 
+    private cloudService: DataCloudService) { }
+  
   cartProducts = new Map();
   counter = 0;
-
+  
   addMovieToCart(movie: movieData) {
     if (this.auth.user != null && !this.cartProducts.has(movie.id)) {
       if (movie.stock >= 1) {
         this.counter++;
         this.dataService.updateItems(this.counter);
-        this.cartProducts.set(movie.id, 1);
+        let cartMovie = {
+          movie: movie,
+          numOfmovies: 1
+        }
+        this.cartProducts.set(movie.id, cartMovie);
       }
     } else {
-      let numOfmovies = this.cartProducts.get(movie.id);
-      if (movie.stock >= ++numOfmovies) {
+      let cartMovie = this.cartProducts.get(movie.id);
+      if (movie.stock >= ++cartMovie.numOfmovies) {
         this.counter++;
         this.dataService.updateItems(this.counter);
-        this.cartProducts.set(movie.id, numOfmovies);
+        this.cartProducts.set(movie.id, cartMovie);
       }
-      this.getTotalNumberOfItems();
     }
   }
 
@@ -37,21 +42,25 @@ export class CartService {
   }
 
   getCartProducts() {
-    let cart = [];
+    const movies: any[] = [];
     this.cartProducts.forEach((value, key) => {
-      let keyValue = {
-        key: key,
-        value: value
-      }
-      cart.push(keyValue);
-    })
-    return cart;
+      movies.push(value);
+    });
+    return movies;
+  }
+
+  getTotalPrice() {
+    let totalPrice = 0;
+    this.cartProducts.forEach((value, key) => {
+      totalPrice += (value.movie.price * value.numOfmovies);
+    });
+    return totalPrice;
   }
 
   getTotalNumberOfItems() {
     let tots = 0;
     this.cartProducts.forEach((value, key) => {
-      tots += value;
+      tots += value.numOfmovies;
     });
     return tots;
   }
