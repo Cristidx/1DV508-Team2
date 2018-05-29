@@ -99,6 +99,18 @@ export class DataCloudService {
     this.movieDoc.delete().then(() => this.snackBar.open('A movie was successfully deleted', 'Dismiss', { duration: 3000 }), console.error);
   }
 
+  editMovieStarts(data: movieData) {
+    console.log('Data ID ' + data.id);
+    this.movieDoc = this.afs.doc(`Movies/${data.id}`);
+    this.movieDoc.update(data);
+  }
+
+  editMovieStock(data: movieData) {
+    console.log('Data ID ' + data.id);
+    this.movieDoc = this.afs.doc(`Movies/${data.id}`);
+    this.movieDoc.update(data);
+  }
+
   editMovie(data: movieData) {
     console.log('Data ID ' + data.id);
     this.movieDoc = this.afs.doc(`Movies/${data.id}`);

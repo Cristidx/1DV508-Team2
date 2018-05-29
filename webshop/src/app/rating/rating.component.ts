@@ -70,7 +70,7 @@ export class RatingComponent implements OnInit, OnChanges {
     
     this.rating.id=this.movieID;
     this.avgRating.subscribe((value) => this.rating.rating = value);
-    this.dataService.editMovie(this.rating);
+    this.dataService.editMovieStarts(this.rating);
   }
 
 }

@@ -8,12 +8,12 @@ import { DataCloudService } from './data-cloud.service';
 @Injectable()
 export class CartService {
 
-  constructor(private auth: AuthService, private dataService: DataService, 
+  constructor(private auth: AuthService, private dataService: DataService,
     private cloudService: DataCloudService) { }
-  
+
   cartProducts = new Map();
   counter = 0;
-  
+
   addMovieToCart(movie: movieData) {
     if (this.auth.user != null && !this.cartProducts.has(movie.id)) {
       if (movie.stock >= 1) {
@@ -27,7 +27,8 @@ export class CartService {
       }
     } else {
       let cartMovie = this.cartProducts.get(movie.id);
-      if (movie.stock >= ++cartMovie.numOfmovies) {
+      if (movie.stock >= (cartMovie.numOfmovies + 1)) {
+        cartMovie.numOfmovies++;
         this.counter++;
         this.dataService.updateItems(this.counter);
         this.cartProducts.set(movie.id, cartMovie);
