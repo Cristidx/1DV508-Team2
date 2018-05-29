@@ -1,59 +1,47 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from "@angular/core";
 
 @Component({
-  selector: 'app-carrousel',
-  templateUrl: './carrousel.component.html',
-  styleUrls: ['./carrousel.component.css']
+  selector: "app-carrousel",
+  templateUrl: "./carrousel.component.html",
+  styleUrls: ["./carrousel.component.css"]
 })
-export class CarrouselComponent implements OnInit {
+export class CarrouselComponent implements AfterViewInit {
+  constructor() {}
 
-  constructor() { }
+  slideIndex = 1;
 
-  slideIndex =1;
-
-  ngOnInit() {
+  ngAfterViewInit() {
     this.showSlides(1);
-    
   }
 
-  d
-  currentSlide(n) {
-    this.showSlides(this.slideIndex = n);
+  currentSlide(n: number) {
+    this.slideIndex = n;
+    this.showSlides(this.slideIndex);
   }
 
-  plusSlides(n:number) {
-    this.showSlides(this.slideIndex += n);
+  plusSlides(n: number) {
+    this.slideIndex += n;
+    this.showSlides(this.slideIndex);
   }
 
-  showSlides(n) {
-    var i;
-   var slides: HTMLCollection = document.getElementsByClassName("mySlides");
-   var dots: HTMLCollection = document.getElementsByClassName("dot");
-   if(n> slides.length) {
-     this.slideIndex = 1;  //we make it return to the beginning
+  showSlides(n: number) {
+    let i;
+    let slides = document.getElementsByClassName("mySlides");
+    let dots = document.getElementsByClassName("dot");
+    if (n > slides.length) {
+      this.slideIndex = 1;
     }
-   if(n <1) {
-     this.slideIndex = slides.length;
-   }
+    if (n < 1) {
+      this.slideIndex = slides.length;
+    }
     for (i = 0; i < slides.length; i++) {
-      let elementSlides: HTMLElement = slides[i] as HTMLElement;
-      
-      elementSlides.style.display = "none";
-      
+      slides[i].setAttribute("style", "display: none;");
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
     }
 
-   for(i = 0; i < dots.length; i++) {
-     let elementDot: string = dots[i].className;
-     console.log(elementDot);
-      elementDot.replace(" active", "");
-    } 
-    console.log(this.slideIndex);
-    let slideMinusOne: HTMLElement = slides[this.slideIndex-1] as HTMLElement;
-    console.log(slideMinusOne);
-   slideMinusOne.style.display = "block";
-
-   let dotsMinusOne: HTMLElement = dots[this.slideIndex-1] as HTMLElement;
-   dotsMinusOne.className += " active";
-  
+    slides[this.slideIndex - 1].setAttribute("style", "display: block");
+    dots[this.slideIndex - 1].className += " active";
   }
 }
