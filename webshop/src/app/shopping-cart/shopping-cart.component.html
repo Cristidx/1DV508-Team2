@@ -22,7 +22,7 @@
             </td>
             <td>
                 <form class="form">
-                    <input value="{{item.numOfmovies}}" type="number" name="quantity" min="1" max="100">
+                    <input [(ngModel)] = "item.numOfmovies"   type="number" name="quantity" min="1" max="100">
                 </form>
             </td>
             <td>
@@ -37,6 +37,6 @@
             <td>{{totalPrice}}</td>
         </tr>
     </table>
-    <button class="button"> Update</button>
+    <button class="button"(click)="update()"> Update</button>
     <button class="button1" (click)="goToOverview()">Proceed to Checkout</button>
 </div>

@@ -50,4 +50,10 @@ export class ShoppingCartComponent implements OnInit {
   showCart() {
     console.log(this.localCart);
   }
+  update(){
+    console.log(this.totalNumber);
+    this.localCart = this.cartService.getCartProducts();
+    this.totalNumber = this.cartService.getTotalNumberOfItems();
+    this.totalPrice = this.cartService.getTotalPrice();
+  }
 }
