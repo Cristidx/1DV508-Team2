@@ -37,11 +37,11 @@ img {
 
 
  .grid-container {
-    white-space: nowrap; 
-    width: 153px; 
+    white-space: nowrap;
+    width: 153px;
     overflow: hidden;
-    text-overflow: ellipsis; 
-   
+    text-overflow: ellipsis;
+
     }
 
 .outOfStock {
@@ -52,7 +52,7 @@ img {
     width: 101px;
     height: 35px;
     text-align: center;
-    
+
 }
 
 
@@ -65,7 +65,7 @@ img {
       height: 100%;
       color: #ffffff;
   }
-  
+
   .zoom {
     color: #ffffff;
     -webkit-transition: all 0.5s ease-in-out;
@@ -73,7 +73,7 @@ img {
       -o-transition: all 0.5s ease-in-out;
       transition: all 0.5s ease-in-out;
   }
-  
+
   .zoom:hover {
     -webkit-transition: all 0.2s ease-in-out;
       -moz-transition: all 0.2s ease-in-out;
@@ -82,7 +82,7 @@ img {
   }
 
 
-  .boxMovies { 
+  .boxMovies {
     background-color: rgba(0, 0, 0, 0.7);
     border-radius: 0px  0px  10px   10px;
 }
@@ -90,11 +90,11 @@ img {
 .imgContainer {
     position: relative;
   }
-  
+
   .movieImage {
     display: block;
   }
-  
+
   .overlay {
     position: absolute;
     top: 0;
@@ -107,7 +107,7 @@ img {
     transition: .4s ease;
     background-color: rgb(0, 0, 0);
   }
- 
+
   .middle {
     transition: .5s ease;
     opacity: 0;
@@ -135,3 +135,13 @@ img {
     font-size: 16px;
     padding: 16px 32px;
   }
+  .genre1{
+    color: white;
+    padding: 4px;
+    font-size: 20px;
+    font-family: Impact, Charcoal, sans-serif;
+  }
+.bar{
+  border: 2px solid #004b66;
+  background:#004b66;
+}

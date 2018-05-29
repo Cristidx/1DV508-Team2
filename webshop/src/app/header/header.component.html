@@ -1,44 +1,48 @@
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
-  <body>
-         <mat-toolbar>
-          <div class="container toolbar">
-            <button mat-button [matMenuTriggerFor]="menu">Genres</button>
-            <mat-menu #menu="matMenu"> 
-                <button mat-menu-item value=all (click)="genreValue($event, '')">Show All </button>
-                <button mat-menu-item *ngFor ="let item of categories" value={{item.genre}} (click)="genreValue($event, item.genre)">{{item.genre}} </button>
-                <button *ngIf="user != null && user.admin == true;" (click)="openAddCategoryDialog()" mat-menu-item>+Add Category</button>   
-            </mat-menu>
-            <button *ngIf="user != null && user.admin == true;" mat-button type="submit" class="btn1" (click)="openAddProductDialog()">Add Product</button>
-            <button *ngIf="user != null && user.admin == true;" mat-button type="submit" routerLink="app-orders-list/"  class="btn1" >Orders overview</button>           
-            <div class="admin-message"><p *ngIf="user != null && user.admin == true;">Signed in as admin</p></div>
-             <div class="right-container">
-              <div class="menu">
-                <button class="btn addTOCart" (click)="goToCart()">Cart <span class="glyphicon glyphicon-shopping-cart" ></span>&nbsp;&nbsp;{{numberOfItems}}</button>
-                <div class="drop-down">
-              <app-shopping-cart></app-shopping-cart>
-                </div>
-              </div>
-              
-              <button mat-button *ngIf="user != null" (click)="openProfileDialog()">Profile <i class="fas fa-user"></i></button>
+</head>
 
-              <button *ngIf="user == null; else showLogout" mat-button type="submit" (click)="openLoginComponentDialog()" class="signIn">Sign in/Create account</button>
-              <ng-template #showLogout>
-                <button class="signIn" (click)="signOut()" mat-button routerLink="">Sign Out</button>
-              </ng-template>
-            </div>
-          </div>
-        </mat-toolbar>
-    <script src="js/jquery-1.11.3.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-  </body>
+<body>
+  <mat-toolbar>
+    <div class="container toolbar">
+      <button mat-button [matMenuTriggerFor]="menu">Genres</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item value=all (click)="genreValue($event, '')">Show All </button>
+        <button mat-menu-item *ngFor="let item of categories" value={{item.genre}} (click)="genreValue($event, item.genre)">{{item.genre}} </button>
+        <button *ngIf="user != null && user.admin == true;" (click)="openAddCategoryDialog()" mat-menu-item>+Add Category</button>
+      </mat-menu>
+      <button *ngIf="user != null && user.admin == true;" mat-button type="submit" class="btn1" (click)="openAddProductDialog()">Add Product</button>
+      <button *ngIf="user != null && user.admin == true;" mat-button type="submit" routerLink="app-orders-list/" class="btn1">Orders overview</button>
+      <div class="admin-message">
+        <p *ngIf="user != null && user.admin == true;">Signed in as admin</p>
+      </div>
+      <div class="right-container">
+        <div class="menu">
+          <button class="btn addTOCart" (click)="goToCart()">Cart
+            <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;&nbsp;{{numberOfItems}}</button>
+        </div>
+
+        <button mat-button *ngIf="user != null" (click)="openProfileDialog()">Profile
+          <i class="fas fa-user"></i>
+        </button>
+
+        <button *ngIf="user == null; else showLogout" mat-button type="submit" (click)="openLoginComponentDialog()" class="signIn">Sign in/Create account</button>
+        <ng-template #showLogout>
+          <button class="signIn" (click)="signOut()" mat-button routerLink="">Sign Out</button>
+        </ng-template>
+      </div>
+    </div>
+  </mat-toolbar>
+  <script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+</body>

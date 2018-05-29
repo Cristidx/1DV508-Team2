@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
-import { movieData, starData } from '../model/data';
+import { movieData, starData} from '../model/data';
 import { categoriesData } from '../model/data';
 import { Order } from '../model/order';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -133,5 +133,29 @@ export class DataCloudService {
 
     return `${year}-${month}-${day}-${hours}-${min}-${sec}`;
   }
+
+  async getMovisByCat(genre: string) {
+    let customerArray: movieData[] = [];
+    this.toOrderArray()
+      .then((movieData: movieData[]) => {
+        movieData.forEach(element => {
+          if (element.genre === genre) {
+            customerArray.push(element);
+          } 
+        });
+      });
+    return customerArray;
+  }
+
+  private toOrderArray() {
+    return new Promise((resolve, reject) => {
+      const sub = this.movieData.subscribe((movieData) => {
+        resolve(movieData);
+        sub.unsubscribe();
+      }); 
+    });
+  }
+
+
 }
 
