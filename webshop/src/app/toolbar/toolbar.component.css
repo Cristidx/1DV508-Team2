@@ -14,7 +14,6 @@ li a {
     display: block;
     color: white;
     text-align: center;
-
     text-decoration: none;
 }
 
@@ -27,17 +26,17 @@ li a:hover:not(.active) {
     color: white;
 }
 
-
-
-
-
-fieldset, label { margin: 0; padding: 0; }
+fieldset, label { 
+	margin-top: -4.6%;
+	background: rgba(255, 255, 255, 0.7);
+	vertical-align: middle;	
+}
 
 h1 { font-size: 1.5em; margin: 10px; }
 
 .rating { 
   border: none;
-  float: left;
+  float: right;
 }
 
 .rating > input { display: none; } 
@@ -68,11 +67,17 @@ h1 { font-size: 1.5em; margin: 10px; }
 .rating > label:hover ~ input:checked ~ label,  selection 
 .rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
 
-div {
-float: right;
-width: 25%;
-margin-top: -3.35%;
-background: rgba(255, 255, 255, 0.7);;
+#showAll {
+	float: right;
+	margin-top: -4.5%;
+	vertical-align: middle;
+}
 
+div {
+	float: right;
+	margin-top: -7.2%;
+	margin-bottom: 30px;
+	margin-left: 1%;
+	background: rgba(255, 255, 255, 0.7);
 }
 
