@@ -26,12 +26,6 @@ li a:hover:not(.active) {
     color: white;
 }
 
-fieldset, label { 
-	margin-top: -4.6%;
-	background: rgba(255, 255, 255, 0.7);
-	vertical-align: middle;	
-}
-
 h1 { font-size: 1.5em; margin: 10px; }
 
 .rating { 
@@ -55,7 +49,7 @@ h1 { font-size: 1.5em; margin: 10px; }
 
 .rating > label { 
   color: rgb(88, 88, 88); 
- float: right; 
+  float: right; 
 }
 
 .rating > input:checked ~ label,
@@ -69,15 +63,13 @@ h1 { font-size: 1.5em; margin: 10px; }
 
 #showAll {
 	float: right;
-	margin-top: -4.5%;
-	vertical-align: middle;
-}
-
-div {
-	float: right;
-	margin-top: -7.2%;
-	margin-bottom: 30px;
-	margin-left: 1%;
+	margin-top: -35px;
 	background: rgba(255, 255, 255, 0.7);
 }
 
+#stars {
+	float: right;
+	margin-top: -40px;
+	margin-right: 60px;
+	background: rgba(255, 255, 255, 0.7);
+}
