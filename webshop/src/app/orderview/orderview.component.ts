@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Order, Status } from '../model/order';
 import { AuthService } from '../services/auth.service';
 import { movieData } from '../model/data';
@@ -7,26 +7,14 @@ import { OrderService } from '../services/order.service';
 import { Router } from '@angular/router';
 import { CartService } from '../services/cart.service';
 import { DataCloudService } from '../services/data-cloud.service';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-orderview',
-  templateUrl: './orderview.component.html',
+  templateUrl: './orderview.ceomponent.html',
   styleUrls: ['./orderview.component.css']
 })
-export class OrderviewComponent implements OnInit {
-
-  checked = true;
-  constructor(private authService: AuthService, private orderService: OrderService,
-    private router: Router, private cart: CartService, private cloudSerivce: DataCloudService) { }
-
-  ngOnInit() {
-    this.authService.getCurrentlySignedInUser().subscribe(user => {
-      if (user.address != null) {
-        this.address = user.address;
-      }
-    });
-  }
-
+export class OrderviewComponent implements OnInit, AfterViewInit {
   mockMovies: movieData[] = [];
   address: Address = {
     street: '',
@@ -35,6 +23,33 @@ export class OrderviewComponent implements OnInit {
     phoneNumber: ''
   }
   order: Order;
+  checked = true;
+  constructor(private authService: AuthService, private orderService: OrderService,
+    private router: Router, private cart: CartService, private cloudSerivce: DataCloudService) { }
+
+  ngOnInit() {
+    console.log('OrderView ngOnInit called');   
+    this.authService.getCurrentlySignedInUser().subscribe(user => {
+      let tempUser = <any>user;
+      console.log(tempUser);
+      if (tempUser.city != null) {
+        this.address.city = tempUser.city;
+      }
+      if (tempUser.zipCode != null) {
+        this.address.zipCode = tempUser.zipCode;
+      }
+      if (tempUser.street != null) {
+        this.address.street = tempUser.street;
+      }
+      if (tempUser.phoneNumber != null) {
+        this.address.phoneNumber = tempUser.phoneNumber;
+      }
+    });
+  }
+
+  ngAfterViewInit() {
+    
+  }
 
   createOrder() {
     if (this.address.phoneNumber === '' || this.address.city === '' ||
@@ -43,7 +58,7 @@ export class OrderviewComponent implements OnInit {
     const cart = this.cart.getCartProducts();
     const date: Date = new Date();
     const price = this.getTotalPrice(cart)
-      .then((price: number) => { 
+      .then((price: number) => {
         this.order = {
           orderDate: this.cloudSerivce.getDate(date),
           uid: this.authService.getUid(),
@@ -71,15 +86,16 @@ export class OrderviewComponent implements OnInit {
     let totalPrice = 0;
     const ids: string[] = [];
     items.forEach((element) => { ids.push(element.key) });
-    
-    return new Promise((resolve) => { this.cloudSerivce.getMovieFromIDs(ids)
-      .then((movies: movieData[]) => { 
-        movies.forEach(movie => {
+
+    return new Promise((resolve) => {
+      this.cloudSerivce.getMovieFromIDs(ids)
+        .then((movies: movieData[]) => {
+          movies.forEach(movie => {
             totalPrice += (movie.price * items[index].value);
             index++;
+          });
+          resolve(totalPrice);
         });
-        resolve(totalPrice);
-      });
     })
   }
 }
