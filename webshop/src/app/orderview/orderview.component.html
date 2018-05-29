@@ -1,32 +1,50 @@
+<div class="box">
+  <table class="main" id="customers">
+      <tr>
+        <th>
+            Shopping Cart
+        </th>
+
+        <th>
+            Quantity
+        </th>
+
+          <th>
+              <span style="color:black">
+                  <i class="fa fa-shopping-cart"></i>
+              </span>
+          </th>
+      </tr>
+      <tr *ngFor="let item of localCart">
+          <td>
+              <a>
+                  {{item.movie.title}}
+              </a>
+          </td>
+          <td>
+              <form class="form">
+                <p>
+                    {{item.numOfmovies}}
+                </p>
+              </form>
+          </td>
+          <td>
+              <p>
+                  {{item.movie.price}}
+              </p>
+          </td>
+      </tr>
+      <tr>
+          <td>Total</td>
+          <td> {{totalNumber}}</td>
+          <td>{{totalPrice}}</td>
+      </tr>
+  </table>        
+
+
 <div class="example-form">
 
-    <head>
-
-      </head>
-      <div class="box">
-  <table class="main" id="customers">
-      <tr>  
-        <th>Shopping Cart </th>
-        <th>Quantity </th>
-        <th><span style="color:black">
-            <i class="fa fa-shopping-cart"></i>   
-          </span> </th>
-    </tr>
-    
-    <tr>
-      <td><a href="#">Product 1</a></td>
-      <td>1 <form class="form">
- 
-      </form></td>
-      <td>200</td>
-    </tr>
-    <tr>
-    <td>Total</td>
-      <td>2</td>
-      <td>350</td>
-    </tr>
-  </table>
-  </div>
+      
   
     <form>        
         <mat-form-field >
@@ -63,8 +81,9 @@
     <div class="alert alert-danger" *ngIf="city.touched && !city.valid">
       <div *ngIf="city.errors.required">City is required</div>
       <div *ngIf="city.errors.pattern">City doesn't match pattern</div>
-    </div>
-</form>
+        </div>
+    </form>
+
     <form>        
       <mat-form-field >
         <textarea matInput placeholder="Phonenumber"
@@ -78,10 +97,12 @@
         <div *ngIf="phoneNumber.errors.required">phoneNumber is required</div>
         <div *ngIf="phoneNumber.errors.pattern">phoneNumber doesn't match pattern</div>
     </div>
-  </form>
-      
-    <mat-checkbox  [(ngModel)] = "checked">Remember my adress for future purchases</mat-checkbox> 
-    
-    <button mat-button (click)="createOrder()" >Cash me outside!</button>
 
+  </form> 
+    <mat-checkbox  [(ngModel)] = "checked">Remember my adress for future purchases</mat-checkbox> 
   </div>
+
+  <button mat-button class="butt"  (click)="createOrder()" >Place order</button>  
+    </div>
+
+
