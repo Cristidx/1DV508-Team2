@@ -1,7 +1,7 @@
 <div *ngIf="selectedGenre.length > 0; else allItems">
   <div *ngIf="showMovieCheck == true;">
     <app-toolbar (StarEvent)="reciveStars($event)" (resetStarEvent)="resetStars($event)"></app-toolbar>
-    <div class="nav3 boxMovies" *ngIf="movies?.length > 0">
+    <div class="nav3" *ngIf="movies?.length > 0">
       <ul *ngFor="let item of movies">
         <div *ngIf="selectedGenre == item.genre">
           <div *ngIf="item.rating > stars">
@@ -44,7 +44,7 @@
 <ng-template #allItems>
   <div *ngIf="showMovieCheck">
     <app-toolbar (StarEvent)="reciveStars($event)" (resetStarEvent)="resetStars($event)"></app-toolbar>
-    <div class="nav3 boxMovies" *ngIf="movies?.length > 0">
+    <div class="nav3 " *ngIf="movies?.length > 0">
       <ul *ngFor="let item of movies">
         <div *ngIf="item.rating > stars">
           <div class="box zoom">
