@@ -1,4 +1,9 @@
-<div >
+<div>
+
+	<div id="showAll">
+	<a href="#" (click)="resetStars()">Show all</a>
+	</div>
+	
     <fieldset class="rating">
         <ng-container  *ngFor="let num of [5, 4, 3, 2, 1]">
           
@@ -11,8 +16,5 @@
                   type="radio" />
                   <label class="full" [for]="'star2'+num"></label>
         </ng-container>
-      </fieldset>
-
-
-<a href="#" (click)="resetStars()"> Show all</a>
+    </fieldset>
 </div>
