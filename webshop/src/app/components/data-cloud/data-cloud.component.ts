@@ -10,6 +10,7 @@ import { templateJitUrl } from '@angular/compiler';
 import { Observable } from 'rxjs/Observable';
 import { CartService } from '../../services/cart.service';
 import * as Fuse from 'fuse-js-latest';
+import * as Fuse2 from 'fuse-js-latest';
 
 @Component({
   selector: 'app-data-cloud',
@@ -66,6 +67,19 @@ options = {
   ]
 };
 
+fuse2: Fuse2;
+options2 = {
+  shouldSort: true,
+  threshold: 0.2,
+  location: 0,
+  distance: 100,
+  maxPatternLength: 32,
+  minMatchCharLength: 1,
+  keys: [
+    "genre",
+  ]
+};
+
 selectedGenre:string;
 
 searchTarget: string;
@@ -82,13 +96,18 @@ stars: number = -1;
       this.categories = Catdata;
     });
     
-    this.data.currentHeaderGenreSelected.subscribe(selectedGenre=>this.selectedGenre = selectedGenre);
+    this.data.currentHeaderGenreSelected.subscribe(selectedGenre=> {
+      this.selectedGenre = selectedGenre;
+      this.filterMovie(this.selectedGenre); 
+    });
     this.data.currentListCheck.subscribe(showMovieCheck=>this.showMovieCheck = showMovieCheck);
 
     this.data.currentSearchTarget.subscribe((value) => { 
       this.searchTarget = value; 
       this.filterMovies(this.searchTarget); 
     });
+
+    
 
     if (this.selectedGenre.length > 0){
       this.dataCloudService.getMovisByCat(this.selectedGenre)
@@ -106,12 +125,21 @@ stars: number = -1;
       this.allMovies = Moviedata;
       this.movies = this.allMovies;
       this.fuse = new Fuse(this.movies, this.options);
+      this.fuse2 = new Fuse2(this.movies, this.options2);
     });
   }
 
   filterMovies(searchTarget: string) {
     if (!(searchTarget === '')) {
       this.movies = this.fuse.search(searchTarget);
+    } else {
+      this.movies = this.allMovies;
+    }
+  }
+
+  filterMovie(searchTarget: string) {
+    if (!(searchTarget === '')) {
+      this.movies = this.fuse2.search(searchTarget);
     } else {
       this.movies = this.allMovies;
     }
