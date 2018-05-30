@@ -1,9 +1,10 @@
+<h1>User Details</h1>
 <ul>
-  <li *ngIf="user != null && user.email != null">
-    <b>Email:</b> {{user.email}}
-  </li>
   <li *ngIf="user != null && user.name != null">
     <b>Name:</b> {{user.name}}
+  </li>
+  <li *ngIf="user != null && user.email != null">
+    <b>Email:</b> {{user.email}}
   </li>
   <li *ngIf="user != null && user.phoneNumber != null">
     <b>Phone number:</b> {{user.phoneNumber}}
@@ -36,4 +37,5 @@
         <b>ID:</b> {{item.movie.id}}</div>
     </ul>
   </li>
+  <li *ngIf="showsOrders == true && orders.length == 0"><b>You have not made any orders!</b></li>
 </ul>
