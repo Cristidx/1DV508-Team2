@@ -1,32 +1,38 @@
 <!doctype html>
 <html>
-    <body>
-        <div class="grid">
-            <header>
-                <app-header></app-header>
-            </header>
-        
-            <aside class="sidebar-left">
-            </aside>
-        
-            <main>
-                <div class="search-container">
-                    <a (click)='goToHome()' href="#" ><img class="logo" src="https://firebasestorage.googleapis.com/v0/b/dv508webshop.appspot.com/o/logo.png?alt=media&token=163c7146-8a5e-409f-bbc9-4a73e5443228" height="153" width="213" ></a>
-                    <form class="search">
-                        <input (ngModelChange)="updateSearchTarget($event)" [(ngModel)]="searchTarget" type="text" placeholder="" name="search">
-                        <button (click)="updateSearchTargetClick()" type="submit">Search</button>
-                    </form>
-                </div>
-                <router-outlet></router-outlet>
-                <app-deal-of-the-day></app-deal-of-the-day>
-                <app-data-cloud></app-data-cloud>
-            </main>      
-      
-            <aside class="sidebar-right">
-            </aside>
-            
-            <footer>
-            </footer>
-        </div>
-    </body>
+
+<body>
+  <div class="grid">
+    <header>
+      <app-header></app-header>
+    </header>
+
+    <aside class="sidebar-left">
+    </aside>
+
+    <main>
+      <div class="search-container">
+        <a (click)='goToHome()' href="#">
+          <img class="logo" src="https://firebasestorage.googleapis.com/v0/b/dv508webshop.appspot.com/o/logo.png?alt=media&token=163c7146-8a5e-409f-bbc9-4a73e5443228"
+            height="153" width="213">
+        </a>
+        <form class="search">
+          <input (ngModelChange)="updateSearchTarget($event)" [(ngModel)]="searchTarget" type="text" placeholder="" name="search">
+          <button (click)="updateSearchTargetClick()" type="submit">Search</button>
+        </form>
+      </div>
+      <app-carrousel></app-carrousel>
+      <router-outlet></router-outlet>
+      <app-deal-of-the-day></app-deal-of-the-day>
+      <app-data-cloud></app-data-cloud>
+    </main>
+
+    <aside class="sidebar-right">
+    </aside>
+
+    <footer>
+    </footer>
+  </div>
+</body>
+
 </html>
