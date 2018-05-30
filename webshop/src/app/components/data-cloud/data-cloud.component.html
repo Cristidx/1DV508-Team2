@@ -6,7 +6,7 @@
     <div class="nav3" *ngIf="movies?.length > 0">
 
       <ul *ngFor="let item of movies">
-        <div *ngIf="item.rating > stars">
+      
           <div class="box zoom">
             <br>
             <h5 class="grid-container">{{item.title}}</h5>
@@ -35,7 +35,7 @@
               </div>
             </div>
           </div>
-        </div>
+     
       </ul>
     </div>
   </div>

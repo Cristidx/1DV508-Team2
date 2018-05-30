@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/Observable';
 import { CartService } from '../../services/cart.service';
 import * as Fuse from 'fuse-js-latest';
 import * as Fuse2 from 'fuse-js-latest';
-
+import * as Fuse3 from 'fuse-js-latest';
 @Component({
   selector: 'app-data-cloud',
   templateUrl: './data-cloud.component.html',
@@ -80,6 +80,19 @@ options2 = {
   ]
 };
 
+fuse3: Fuse3;
+options3 = {
+  shouldSort: true,
+  threshold: 0.2,
+  location: 0,
+  distance: 100,
+  maxPatternLength: 32,
+  minMatchCharLength: 1,
+  keys: [
+    "rating",
+  ]
+};
+
 selectedGenre:string;
 
 searchTarget: string;
@@ -126,6 +139,7 @@ stars: number = -1;
       this.movies = this.allMovies;
       this.fuse = new Fuse(this.movies, this.options);
       this.fuse2 = new Fuse2(this.movies, this.options2);
+      this.fuse2 = new Fuse3(this.movies, this.options3);
     });
   }
 
@@ -145,6 +159,13 @@ stars: number = -1;
     }
   }
 
+  filterStars(searchTarget: number) {
+    if (!(searchTarget === 0)) {
+      this.movies <= this.fuse2.search(searchTarget);
+    } else {
+      this.movies = this.allMovies;
+    }
+  }
   accesProduct(event, item) {
     this.movie=item;
   }
@@ -167,9 +188,11 @@ reciveStars($event) {
   this.dataCloudService.getMovisByCat(this.selectedGenre)
   .then((movieData) => {
     this.movie = movieData;
+    this.filterStars(this.stars); 
   })
   .catch((error) => console.log(error));
 
+  
 }
 
 resetStars($event) {
