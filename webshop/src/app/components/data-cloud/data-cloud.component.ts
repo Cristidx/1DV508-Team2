@@ -80,7 +80,7 @@ options2 = {
   ]
 };
 
-selectedGenre:string;
+selectedGenre: string;
 
 searchTarget: string;
 
@@ -92,13 +92,17 @@ stars: number = -1;
    }
 
   ngOnInit() {
+   this.selectedGenre = '';
+
     this.dataCloudService.getCategories().subscribe(Catdata => {
       this.categories = Catdata;
     });
     
     this.data.currentHeaderGenreSelected.subscribe(selectedGenre=> {
       this.selectedGenre = selectedGenre;
+        
       this.filterMovie(this.selectedGenre); 
+      
     });
     this.data.currentListCheck.subscribe(showMovieCheck=>this.showMovieCheck = showMovieCheck);
 

@@ -1,7 +1,8 @@
 
   <div *ngIf="showMovieCheck" >
     <div class="bar">
-    <div class="genre1">Movies</div>
+    <div class="genre1" *ngIf="selectedGenre==''; else showGenre">Movies</div>
+    <ng-template #showGenre ><div class="genre1">{{selectedGenre}}</div></ng-template>
     <app-toolbar (StarEvent)="reciveStars($event)" (resetStarEvent)="resetStars($event)"></app-toolbar></div>
     <div class="nav3" *ngIf="movies?.length > 0">
 
