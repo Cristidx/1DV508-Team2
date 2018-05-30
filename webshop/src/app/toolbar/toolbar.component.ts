@@ -22,7 +22,7 @@ export class ToolbarComponent implements OnInit {
 
   @Output() StarEvent = new EventEmitter<number>();
   @Output() resetStarEvent = new EventEmitter<number>();
-
+  
   constructor(private dataService: DataCloudService,private authService: AuthService, 
     private data: DataService, private dialog: MatDialog, private router: Router) { }
 
