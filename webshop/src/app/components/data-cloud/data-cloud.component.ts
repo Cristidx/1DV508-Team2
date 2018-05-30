@@ -94,7 +94,6 @@ options3 = {
 };
 
 selectedGenre:string;
-
 searchTarget: string;
 
 showMovieCheck: boolean=true;
@@ -105,13 +104,17 @@ stars: number = -1;
    }
 
   ngOnInit() {
+   this.selectedGenre = '';
+
     this.dataCloudService.getCategories().subscribe(Catdata => {
       this.categories = Catdata;
     });
     
     this.data.currentHeaderGenreSelected.subscribe(selectedGenre=> {
       this.selectedGenre = selectedGenre;
+        
       this.filterMovie(this.selectedGenre); 
+      
     });
     this.data.currentListCheck.subscribe(showMovieCheck=>this.showMovieCheck = showMovieCheck);
 
@@ -139,7 +142,7 @@ stars: number = -1;
       this.movies = this.allMovies;
       this.fuse = new Fuse(this.movies, this.options);
       this.fuse2 = new Fuse2(this.movies, this.options2);
-      this.fuse2 = new Fuse3(this.movies, this.options3);
+      this.fuse3 = new Fuse3(this.movies, this.options3);
     });
   }
 
@@ -151,9 +154,9 @@ stars: number = -1;
     }
   }
 
-  filterMovie(searchTarget: string) {
-    if (!(searchTarget === '')) {
-      this.movies = this.fuse2.search(searchTarget);
+  filterMovie(genreFilter: string) {
+    if (!(genreFilter === '')) {
+      this.movies = this.fuse2.search(genreFilter);
     } else {
       this.movies = this.allMovies;
     }
@@ -161,7 +164,7 @@ stars: number = -1;
 
   filterStars(searchTarget: number) {
     if (!(searchTarget === 0)) {
-      this.movies <= this.fuse2.search(searchTarget);
+      this.movies <= this.fuse3.search(searchTarget);
     } else {
       this.movies = this.allMovies;
     }

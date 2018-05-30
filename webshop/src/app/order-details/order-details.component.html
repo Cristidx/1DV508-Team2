@@ -1,8 +1,11 @@
 
 <html>
-<body>
-<h2>Order Made by </h2>
-<table>
+<body >
+  <div> <h2 >Order Made by </h2>
+    <p *ngIf="uid">{{uid}} </p></div>
+   
+<table >
+   
   <tr>
     
     <th>Order Number #</th>
@@ -15,10 +18,10 @@
       
       <td>{{item.orderDate}}</td>
     
-      <td><mat-select placeholder="Status">
-          <mat-option value="new">New</mat-option>
-          <mat-option value="delayed">Delayed</mat-option>
-          <mat-option value="shipped">Shipped</mat-option>
+      <td><mat-select placeholder="Status"  [(ngModel)]="item.status" name="item.status">
+        <mat-option value="new">New</mat-option>
+        <mat-option value="delayed">Delayed</mat-option>
+        <mat-option value="shipped">Shipped</mat-option>
       </mat-select></td>
     
 <tr>

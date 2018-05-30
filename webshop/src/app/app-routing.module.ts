@@ -14,6 +14,7 @@ import { OrderviewComponent } from './orderview/orderview.component';
 import {AdminOrdersComponent} from "./admin-orders/admin-orders.component";
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ProfileComponent } from './profile/profile.component';
+import { CarrouselComponent } from './carrousel/carrousel.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },

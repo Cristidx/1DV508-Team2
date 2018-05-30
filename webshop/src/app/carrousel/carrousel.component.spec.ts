@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DealOfTheDayComponent } from './deal-of-the-day.component';
+import { CarrouselComponent } from './carrousel.component';
 
-describe('DealOfTheDayComponent', () => {
-  let component: DealOfTheDayComponent;
-  let fixture: ComponentFixture<DealOfTheDayComponent>;
+describe('CarrouselComponent', () => {
+  let component: CarrouselComponent;
+  let fixture: ComponentFixture<CarrouselComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DealOfTheDayComponent ]
+      declarations: [ CarrouselComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DealOfTheDayComponent);
+    fixture = TestBed.createComponent(CarrouselComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

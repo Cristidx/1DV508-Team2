@@ -1,10 +1,11 @@
-.example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-  align-content: center;
-  margin: 5% 0% 5% 30%;
+.form-margin {
+  margin: 5% 0% 5% 10%;
 }
+
+.inputfields{
+    width: 500px;
+}
+
 .box {
   /* text-align: center; */
   float: center;

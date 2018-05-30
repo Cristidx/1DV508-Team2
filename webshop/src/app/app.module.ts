@@ -37,8 +37,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { OrderService } from './services/order.service';
 import { CartService } from './services/cart.service';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { DealOfTheDayComponent } from './deal-of-the-day/deal-of-the-day.component';
 import { FromIDToMoviePipe } from "./pipes/movie.pipe";
+import { CarrouselComponent } from './carrousel/carrousel.component';
 
 
 @NgModule({
@@ -61,8 +61,8 @@ import { FromIDToMoviePipe } from "./pipes/movie.pipe";
     ShoppingCartComponent,
     ProfileComponent,
     ToolbarComponent,
-    DealOfTheDayComponent,
-    FromIDToMoviePipe
+    FromIDToMoviePipe,
+    CarrouselComponent
   ],
   imports: [
     BrowserModule,
