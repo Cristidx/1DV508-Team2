@@ -103,7 +103,6 @@ export class OrderviewComponent implements OnInit {
     };
 
     this.orderService.sendOrder(this.order, this.checked);
-    /* the cart need to be clear and redirect to the main or other page*/
     this.cart.clearCart();
   }
 

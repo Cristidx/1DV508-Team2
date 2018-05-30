@@ -40,7 +40,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { DealOfTheDayComponent } from './deal-of-the-day/deal-of-the-day.component';
 import { FromIDToMoviePipe } from "./pipes/movie.pipe";
 import { CarrouselComponent } from './carrousel/carrousel.component';
-
+import { HomeComponent } from './home/home.component'
 
 @NgModule({
   declarations: [
@@ -64,7 +64,8 @@ import { CarrouselComponent } from './carrousel/carrousel.component';
     ToolbarComponent,
     DealOfTheDayComponent,
     FromIDToMoviePipe,
-    CarrouselComponent
+    CarrouselComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

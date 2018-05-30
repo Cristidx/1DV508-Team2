@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 <html>
     <body>
       <div class="grid">
         <div class="image-container">
           <img src="{{ movie.imageURL }}" alt="{{ movie.title }}" class="responsive">
-        </div> 
+        </div>
         <div class="info-container">
           <h1>{{ movie.title }}  ({{movie.year}})</h1>
           <h2>{{ movie.genre }}</h2>
@@ -14,10 +14,11 @@
           <hr/>
           <h4 *ngIf="movie.stock > 0; else notInStock">Available</h4>
           <ng-template #notInStock><h4>Not available</h4></ng-template>
-          <h4>{{ movie.price }} sek</h4>
+          <h4 *ngIf="dealOfTheDay == false; else dealTemplate">{{ movie.price }} sek</h4>
+          <ng-template #dealTemplate><h4>{{ salePrice }} <span class="old-price">{{ movie.price }}</span></h4></ng-template>
           <div class="rating">
             <app-rating [movieID]="movie.id"></app-rating>
-          </div> 
+          </div>
         </div>
         <div class="button-container">
           <button mat-raised-button *ngIf="movie.stock > 0; else outOfStock" (click)="addToCart()" class="buy">Add to Cart <i class="fas fa-shopping-cart"></i></button>

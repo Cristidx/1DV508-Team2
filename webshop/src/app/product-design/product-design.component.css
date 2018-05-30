@@ -1,85 +1,3 @@
-/* body {
-  background-color: rgb(5, 0, 51);
-
-}
-.MainBox {
-    background: #e0e0eb;
-    padding: 10px;
-    width: 600px;
-    height: 500px;
-    margin: 5% 25%;
-  }
-  textarea {
-    background: #e0e0eb;
-    border-color: #e0e0eb;
-    color: black;
-  }
-  .price {
-    background:#009900;
-    color: white;
-    padding: 0px;
-    width: 101px;
-    height: 30px;
-    text-align: center;
-    margin: -1% 69%;
-  }
-  .buy {
-    background:#3e423e;
-    color: white;
-    padding: 0px;
-    width: 101px;
-    height: 35px;
-    text-align: center;
-    margin: 1% 69%;
-  }
-  div {
-    margin-bottom: 10px;
-  }
-
-  div h2 {
-    display: block;
-  }
-  h2{
-    margin-top:10px;
-    margin-bottom:10px;
-    font-weight: bold;
-  }
-
-  .genre {
-    font-style: italic;
-  }
-  img {
-       margin: -35% 60% 0%;
-  }
-  .editButton{
-    background-color: #009900;
-    font-size: 18px;
-    color: white;
-  }
-
-.delete{
-  font-style: normal;
-  margin: 0% 20%;
-  font-size: medium;
-  font-weight: bold;
-  background: #EF3B3A;
-}
-
-.rating-star {
-  margin: -16% 82% 0%;
-  padding-left: 0px;
-  padding-right: 0px;
-}
-
-.rating-number {
-  font-weight: bold;
-  font-size: 35px;
-  margin: -13.5% 85.7% 0%;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-*/
-
 body {
   font-family: 'Roboto', sans-serif;
   background-color: #f1f1f1;
@@ -141,19 +59,6 @@ hr {
 .noStock {
   background-color: red;
 }
-/*
-.buy {
-  background-color: #3CB25D;
-}
-
-.delete {
-  background-color: #DE5B49;
-}
-
-.edit {
-  background-color: #F0CA4D;
-} 
-*/
 
 .responsive {
   width: 100%;
@@ -164,4 +69,9 @@ hr {
 
 .rating {
   display: block;
+}
+
+.old-price {
+  color: red;
+  text-decoration: line-through;
 }

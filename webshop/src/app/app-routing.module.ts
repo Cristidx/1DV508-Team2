@@ -15,8 +15,10 @@ import {AdminOrdersComponent} from "./admin-orders/admin-orders.component";
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CarrouselComponent } from './carrousel/carrousel.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: 'login', component: LoginComponent },
   { path: 'create', component: CreateAccountComponent },
   { path: 'adminLogin', component: AdminLogInComponent},
@@ -30,8 +32,8 @@ const routes: Routes = [
   { path: 'orderview', component: OrderviewComponent},
   { path: 'admin-orders', component:AdminOrdersComponent},
   { path: 'app-shopping-cart', component: ShoppingCartComponent},
-  { path: 'profile', component: ProfileComponent}
- 
+  { path: 'profile', component: ProfileComponent},
+  { path: 'home', component: HomeComponent}
 ];
 
 @NgModule({
