@@ -91,19 +91,20 @@ export class OrderviewComponent implements OnInit {
 
     const cart = this.cart.getCartProducts();
     const date: Date = new Date();
-    const price = this.getTotalPrice(cart).then((price: number) => {
-      this.order = {
-        orderDate: this.cloudSerivce.getDate(date),
-        uid: this.authService.getUid(),
-        items: cart,
-        status: Status.New,
-        price: price,
-        address: this.address
-      };
-      this.orderService.sendOrder(this.order, this.checked);
-      /* the cart need to be clear and redirect to the main or other page*/
-      this.cart.clearCart();
-    });
+    const price = this.getTotalPrice();
+
+    this.order = {
+      orderDate: this.cloudSerivce.getDate(date),
+      uid: this.authService.getUid(),
+      items: cart,
+      status: Status.New,
+      price: price,
+      address: this.address
+    };
+
+    this.orderService.sendOrder(this.order, this.checked);
+    /* the cart need to be clear and redirect to the main or other page*/
+    this.cart.clearCart();
   }
 
   getMovieIDs(movies: movieData[]) {
@@ -114,23 +115,12 @@ export class OrderviewComponent implements OnInit {
     return movieIDs;
   }
 
-  getTotalPrice(items: any[]) {
-    let index = 0;
+  getTotalPrice() {
     let totalPrice = 0;
-    const ids: string[] = [];
-    items.forEach(element => {
-      ids.push(element.key);
+    this.localCart.forEach((item) => {
+      totalPrice += (item.movie.price * item.numOfmovies);
     });
-
-    return new Promise(resolve => {
-      this.cloudSerivce.getMovieFromIDs(ids).then((movies: movieData[]) => {
-        movies.forEach(movie => {
-          totalPrice += movie.price * items[index].value;
-          index++;
-        });
-        resolve(totalPrice);
-      });
-    });
+    return totalPrice;
   }
 
   showCart() {
