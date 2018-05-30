@@ -32,6 +32,9 @@ import * as Fuse3 from 'fuse-js-latest';
 })
 export class DataCloudComponent implements OnInit, AfterViewInit{
 state: string = 'small';
+
+moviesDOTD: movieData[];
+
 movies: movieData[];
 allMovies: movieData[];
 
@@ -132,18 +135,31 @@ stars: number = -1;
       })
       .catch((error) => console.log(error));
   }
-
   }
+ 
+  
 
   ngAfterViewInit() {
     this.dataCloudService.getMovie().subscribe(Moviedata => {
       this.showMovieCheck = true; 
-      this.allMovies = Moviedata;
+      this.allMovies = Moviedata; 
+      
+    
+      for (var i=1; i<this.allMovies.length; i++){
+        if (this.allMovies[i].DOTDstatus){
+            this.moviesDOTD.push(this.allMovies[i]);
+        }
+      }
+      
+
       this.movies = this.allMovies;
       this.fuse = new Fuse(this.movies, this.options);
       this.fuse2 = new Fuse2(this.movies, this.options2);
       this.fuse3 = new Fuse3(this.movies, this.options3);
     });
+
+    
+
   }
 
   filterMovies(searchTarget: string) {

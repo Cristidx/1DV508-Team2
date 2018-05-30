@@ -18,6 +18,10 @@ export class EditProductComponent implements OnInit {
   selected: any;
   //movie: movieData;
   movie: movieData;
+ 
+  checked = false;
+  disabled = false;
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: movieData, public dataService: DataCloudService,
                                        public dialog: MatDialog) { }
 
@@ -27,11 +31,19 @@ export class EditProductComponent implements OnInit {
       this.genres = data;
     });
     this.movie = this.data;
+    this.checked = this.movie.DOTDstatus;
+    
   }
 
   onSubmit() {
+    this.movie.DOTDstatus = this.checked;
     this.dataService.editMovie(this.movie);
     this.dialog.closeAll();
+  }
+
+  sendValue() {
+    this.movie.DOTDstatus=this.checked;
+    console.log("qwe" + this.checked);
   }
 
 }
