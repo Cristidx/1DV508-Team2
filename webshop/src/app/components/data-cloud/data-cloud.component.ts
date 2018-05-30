@@ -164,7 +164,7 @@ stars: number = -1;
 
   filterStars(searchTarget: number) {
     if (!(searchTarget === 0)) {
-      this.movies <= this.fuse3.search(searchTarget);
+  //    this.movies <= this.fuse3.search(searchTarget);
     } else {
       this.movies = this.allMovies;
     }
