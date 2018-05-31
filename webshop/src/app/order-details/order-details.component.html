@@ -2,7 +2,7 @@
 
 <body>
   <div>
-    <h2 *ngIf="user != null && user.name != null">Order Made by {{user.name}}</h2>
+    <h2 *ngIf="user != null && user.name != null">Orders Made by {{user.name}}</h2>
   </div>
   <table>
     <tr>
@@ -17,7 +17,7 @@
         <mat-select placeholder="Status" [(ngModel)]="item.status" name="item.status">
           <mat-option value="New">New</mat-option>
           <mat-option value="Delayed">Delayed</mat-option>
-          <mat-option value="Shipped">Shipped</mat-option>
+          <mat-option value="Shippede">Shipped</mat-option>
         </mat-select>
       </td>
       <tr>

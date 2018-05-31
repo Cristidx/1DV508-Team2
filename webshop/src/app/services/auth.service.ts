@@ -15,6 +15,7 @@ import { DocumentReference } from '@firebase/firestore-types';
 
 @Injectable()
 export class AuthService {
+  users: User[];
   user: Observable<User>;
   uid: string;
 
@@ -83,8 +84,8 @@ export class AuthService {
 
   createAccountWithRegularEmail(email: string, password: string) {
     return this.afAuth.auth
-      .createUserWithEmailAndPassword(email, password)
-      .then(user => this.createUserDocument(user))
+      .createUserAndRetrieveDataWithEmailAndPassword(email, password)
+      .then(data => this.createUserDocument(data))
       .catch(error => console.log(error));
   }
 
@@ -103,19 +104,15 @@ export class AuthService {
     });
   }
 
-  createUserDocument(user) {
-    const userRef = this.getUserRef();
-    return userRef.get().then(value => {
-      if (!value.exists) {
-        const data: User = {
-          name: user.displayName,
-          email: user.email,
-          uid: user.uid,
-          admin: false
-        };
-        return userRef.set(data);
-      }
-    });
+  createUserDocument(data) {
+    const user: User = {
+      name: data.user.displayName,
+      email: data.user.email,
+      uid: data.user.uid,
+      admin: false
+    };
+    const userRef = this.db.doc(`Users/${data.user.uid}`);
+    return userRef.set(user);
   }
 
   getCurrentlySignedInUser() {
