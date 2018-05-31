@@ -1,4 +1,7 @@
 import { Component, OnInit, AfterViewInit } from "@angular/core";
+import {movieData} from '../model/data';
+import { DataCloudService } from '../services/data-cloud.service';
+
 
 @Component({
   selector: "app-carrousel",
@@ -6,11 +9,22 @@ import { Component, OnInit, AfterViewInit } from "@angular/core";
   styleUrls: ["./carrousel.component.css"]
 })
 export class CarrouselComponent implements AfterViewInit {
-  constructor() {}
+  constructor(public dataCloudService: DataCloudService) {}
 
   slideIndex = 1;
+  movies: movieData[];
+  moviesDOTD: movieData[];
+
+  ngOnInit() {
+   
+  }
 
   ngAfterViewInit() {
+    this.dataCloudService.getMovie().subscribe(Moviedata => {
+      this.movies = Moviedata; 
+    });
+    console.log(this.movies);
+
     this.showSlides(1);
   }
 

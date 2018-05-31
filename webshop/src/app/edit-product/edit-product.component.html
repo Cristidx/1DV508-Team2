@@ -43,4 +43,16 @@
         <button (click)="onSubmit()" class="button" >Edit Product</button>
     </div>    
   </div>
+
+  <section class="example-section">
+    <mat-checkbox class="example-margin" [(ngModel)]="checked">Deal Of The Day</mat-checkbox>
+  </section>
+
+ 
+
+  <div class="example-container">
+    <mat-form-field>
+      <input matInput placeholder="PriceDOTD" [(ngModel)] = "movie.DOTDprice" name="priceDOTD"> 
+    </mat-form-field>
+  </div>
     

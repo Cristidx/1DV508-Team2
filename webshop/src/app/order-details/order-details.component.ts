@@ -46,30 +46,30 @@ export class OrderDetailsComponent implements OnInit {
   onSubmit() {
    
    this.orders.forEach(element => {
-    this.order={
-      uid:this.uid,
-      orderDate:this.orderDate,
-      address:this.addres,
-      items:this.item,
-      status:this.status,
-      price:this.price,
-      id:this.id
-    };
-      this.uid=element.uid;
+       this.uid=element.uid;
       this.orderDate=element.orderDate;
       this.addres=element.address;
       this.item=element.items;
       this.status=element.status;
       this.price=element.price;
       this.id=element.id;
-
-      
+      this.order={
+        uid:this.uid,
+        orderDate:this.orderDate,
+        address:this.addres,
+        items:this.item,
+        status:this.status,
+        price:this.price,
+        id:this.id
+      };
+      this.orderService.editOrder(this.order);
       });
       
+  
    console.log(this.order.id);
    console.log(this.id);
    console.log(this.orders);
    console.log(this.order);
-   this.orderService.editOrder(this.order);
+  
   }
 }
