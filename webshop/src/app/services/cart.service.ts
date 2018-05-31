@@ -73,4 +73,18 @@ export class CartService {
       this.dataService.updateItems(this.counter);
     }
   }
+  deleteMovieFromCart(item){
+    if (this.auth.user != null && this.cartProducts.size > 0) {
+      /* Just delete  cart*/
+      let cartMovie = this.cartProducts.get(item.id);
+      cartMovie.numOfmovies--;
+      cartMovie.movie.price=0;
+      this.counter--;
+      this.cartProducts.delete(cartMovie);
+      console.log(cartMovie);
+   }
+  }
+
+ 
+
 }

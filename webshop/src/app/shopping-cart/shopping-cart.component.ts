@@ -56,4 +56,25 @@ export class ShoppingCartComponent implements OnInit {
     this.totalNumber = this.cartService.getTotalNumberOfItems();
     this.totalPrice = this.cartService.getTotalPrice();
   }
+ 
+  deleteCart(event, item) {
+    console.log(item);
+    if (confirm("Do you want to remove product from the cart?")) {
+     
+      this.cartService.deleteMovieFromCart(item);
+      this.localCart = this.cartService.getCartProducts();
+      this.totalNumber = this.cartService.getTotalNumberOfItems();
+      this.totalPrice = this.cartService.getTotalPrice();
+     
+    } else return false;
+   
+  }
+
+  clearCart(){
+    this.cartService.clearCart();
+    this.totalNumber=0;
+    this.totalPrice=0;
+    this.localCart=[];
+    this.router.navigate(['/']);
+  }
 }
