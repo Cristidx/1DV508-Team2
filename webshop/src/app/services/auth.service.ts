@@ -5,7 +5,10 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 import { User } from '../model/user';
-import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreDocument
+} from 'angularfire2/firestore';
 import { query } from '@angular/animations';
 import { Address } from '../model/address';
 import { DocumentReference } from '@firebase/firestore-types';
@@ -15,7 +18,11 @@ export class AuthService {
   user: Observable<User>;
   uid: string;
 
-  constructor(private afAuth: AngularFireAuth, private db: AngularFirestore, private router: Router) {
+  constructor(
+    private afAuth: AngularFireAuth,
+    private db: AngularFirestore,
+    private router: Router
+  ) {
     this.user = this.afAuth.authState.switchMap(user => {
       if (user != null) {
         this.uid = user.uid;
@@ -37,14 +44,13 @@ export class AuthService {
   }
 
   private oAuthLogin(provider) {
-    return this.afAuth.auth.signInWithPopup(provider)
-      .then((credential) => {
-        this.createUserDocument(credential.user);
-      });
+    return this.afAuth.auth.signInWithPopup(provider).then(credential => {
+      this.createUserDocument(credential.user);
+    });
   }
 
   saveUserAddress(address: Address) {
-    const userRef =  this.getUserRef();
+    const userRef = this.getUserRef();
     return userRef.update(address);
   }
 
@@ -53,9 +59,9 @@ export class AuthService {
     city: '',
     zipCode: '',
     phoneNumber: ''
-  }
+  };
   setUserAddressEmpty() {
-    const userRef =  this.getUserRef();
+    const userRef = this.getUserRef();
     return userRef.update(this.emptyAddress);
   }
 
@@ -64,9 +70,8 @@ export class AuthService {
   }
 
   signInAsAdmin(email: string, password: string) {
-    this.signInWithRegularEmail(email, password)
-    .then(() => {
-      this.user.subscribe((val) => {
+    this.signInWithRegularEmail(email, password).then(() => {
+      this.user.subscribe(val => {
         if (val.admin) {
           this.router.navigateByUrl('');
         } else {
@@ -77,27 +82,39 @@ export class AuthService {
   }
 
   createAccountWithRegularEmail(email: string, password: string) {
-    return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
-        .then((user) => this.createUserDocument(user))
-        .catch((error) => console.log(error));
+    return this.afAuth.auth
+      .createUserWithEmailAndPassword(email, password)
+      .then(user => this.createUserDocument(user))
+      .catch(error => console.log(error));
   }
 
   getUserRef() {
     return this.db.firestore.doc(`Users/${this.uid}`);
   }
 
+  async getUserByUid(uid: string) {
+    let user;
+    let docRef = this.db.firestore.doc(`Users/${uid}`);
+    return new Promise(resolve => {
+      docRef.get().then(object => {
+        user = object.data();
+        resolve(user);
+      });
+    });
+  }
+
   createUserDocument(user) {
     const userRef = this.getUserRef();
-      return userRef.get().then((value) => {
-        if (!value.exists) {
-          const data: User = {
-            name: user.displayName,
-            email: user.email,
-            uid: user.uid,
-            admin: false
-          };
-          return userRef.set(data);
-        }
+    return userRef.get().then(value => {
+      if (!value.exists) {
+        const data: User = {
+          name: user.displayName,
+          email: user.email,
+          uid: user.uid,
+          admin: false
+        };
+        return userRef.set(data);
+      }
     });
   }
 

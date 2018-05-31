@@ -1,31 +1,28 @@
-
 <html>
-<body >
-  <div> <h2 >Order Made by </h2>
-    <p *ngIf="uid">{{uid}} </p></div>
-   
-<table >
-   
-  <tr>
-    
-    <th>Order Number #</th>
-    <th> Date </th>
-    <th>Status </th>
-   
-  </tr>
-  <tr *ngFor ="let item of orders">
-      <td > {{item.id}}</td>
-      
+
+<body>
+  <div>
+    <h2 *ngIf="user != null && user.name != null">Order Made by {{user.name}}</h2>
+  </div>
+  <table>
+    <tr>
+      <th>Order Number #</th>
+      <th> Date </th>
+      <th>Status </th>
+    </tr>
+    <tr *ngFor="let item of orders">
+      <td> {{item.id}}</td>
       <td>{{item.orderDate}}</td>
-    
-      <td><mat-select placeholder="Status"  [(ngModel)]="item.status" name="item.status">
-        <mat-option value="new">New</mat-option>
-        <mat-option value="delayed">Delayed</mat-option>
-        <mat-option value="shipped">Shipped</mat-option>
-      </mat-select></td>
-    
-<tr>
-</table>
-<button (click)="onSubmit()" class="button" >Save</button>
+      <td>
+        <mat-select placeholder="Status" [(ngModel)]="item.status" name="item.status">
+          <mat-option value="New">New</mat-option>
+          <mat-option value="Delayed">Delayed</mat-option>
+          <mat-option value="Shipped">Shipped</mat-option>
+        </mat-select>
+      </td>
+      <tr>
+  </table>
+  <button (click)="onSubmit()" class="button">Save</button>
 </body>
+
 </html>
