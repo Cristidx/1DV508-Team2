@@ -74,10 +74,10 @@ export class ProductDesignComponent implements OnInit {
       if (this.movieArray[i].id === id) {
         this.movie = this.movieArray[i];
         this.movie.id = this.movieArray[i].id;
-        let newPrice = this.movie.price / 2;
-        if ('dealOfTheDay' in this.movie) {
+
+        if ('DOTDstatus' in this.movie) {
           this.dealOfTheDay = true;
-          this.salePrice = newPrice;
+          this.salePrice = this.movie.DOTDprice;
         }
 
         window.scrollTo(0, 0);

@@ -54,6 +54,7 @@ export class DataCloudComponent implements OnInit, AfterViewInit {
 
   moviesDOTD: movieData[] = [];
 
+  filteredMovies: movieData[] = [];
   movies: movieData[];
   allMovies: movieData[];
 
@@ -171,6 +172,8 @@ export class DataCloudComponent implements OnInit, AfterViewInit {
         }
       }
 
+      console.log(this.moviesDOTD);
+
       this.movies = this.allMovies;
       this.fuse = new Fuse(this.movies, this.options);
       this.fuse2 = new Fuse2(this.movies, this.options2);
@@ -196,7 +199,15 @@ export class DataCloudComponent implements OnInit, AfterViewInit {
 
   filterStars(searchTarget: number) {
     if (!(searchTarget === 0)) {
-      //    this.movies <= this.fuse3.search(searchTarget);
+      searchTarget++;
+      console.log(searchTarget);
+      this.allMovies.forEach((item) => {
+        if (item.rating >= searchTarget) {
+          this.filteredMovies.push(item);
+        }
+      });
+      this.movies = this.filteredMovies;
+      console.log(this.movies);
     } else {
       this.movies = this.allMovies;
     }

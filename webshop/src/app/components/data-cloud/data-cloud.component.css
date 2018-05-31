@@ -24,6 +24,20 @@ img {
   border-radius: 0px 10px 10px 0px;
 }
 
+.priceDOTD {
+  position: absolute;
+  margin: -25% 0% 0% 0%;
+  background: #dbba00;
+  color: white;
+  /* display: inline-block; */
+  font-size: 20px;
+  text-align: center;
+  padding: 0px;
+  width: 80px;
+  height: 30px;
+  border-radius: 0px 10px 10px 0px;
+}
+
 .shopButton {
   background: #00bd2f;
 }

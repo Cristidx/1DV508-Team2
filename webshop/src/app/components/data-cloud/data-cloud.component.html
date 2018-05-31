@@ -1,43 +1,50 @@
-
-  <div *ngIf="showMovieCheck" >
-    <div class="bar">
+<div *ngIf="showMovieCheck">
+  <div class="bar">
     <div class="genre1" *ngIf="selectedGenre==''; else showMovie">Movie</div>
-    <ng-template #showMovie><div class="genre1">{{selectedGenre}}</div></ng-template>
-    <app-toolbar (StarEvent)="reciveStars($event)" (resetStarEvent)="resetStars($event)"></app-toolbar></div>
-    <div class="nav3" *ngIf="movies?.length > 0">
+    <ng-template #showMovie>
+      <div class="genre1">{{selectedGenre}}</div>
+    </ng-template>
+    <app-toolbar (StarEvent)="reciveStars($event)" (resetStarEvent)="resetStars($event)"></app-toolbar>
+  </div>
+  <div class="nav3" *ngIf="movies?.length > 0">
 
-      <ul *ngFor="let item of movies">
-      
+    <ul *ngFor="let item of movies">
+
           <div class="box zoom">
             <br>
             <h5 class="grid-container">{{item.title}}</h5>
             <div class="imgContainer shadow">
               <a routerLink="/app-product-design/{{item.id}}">
                 <img src="{{item.imageURL}}" height="213" width="153" class="movieImage">
+                <div class="priceDOTD" *ngIf="item.DOTDstatus; else normalPrice">
+                  {{item.DOTDprice}}:-
+                </div>
+                <ng-template #normalPrice>
                 <div class="price">
                   {{item.price}}:-
                 </div>
+              </ng-template>
+
                 <div class="overlay">
 
-                </div>
-              </a>
-              <p class="stars middle "> {{item.rating}} /5
-                <i class="fas fa-star"></i>
-              </p>
-              <div class="middle">
-                <button *ngIf="item.stock > 0; else outOfStockButton" (click)="addToCart(item)" mat-button class="shopButton">Add to Cart
-                  <i class="fas fa-shopping-cart"></i>
-                </button>
-                <ng-template #outOfStockButton>
-                  <button mat-button class="outStock"> Out of Stock
-                    <i class="fas fa-ban"></i>
-                  </button>
-                </ng-template>
-              </div>
             </div>
+          </a>
+          <p class="stars middle "> {{item.rating}} /5
+            <i class="fas fa-star"></i>
+          </p>
+          <div class="middle">
+            <button *ngIf="item.stock > 0; else outOfStockButton" (click)="addToCart(item)" mat-button class="shopButton">Add to Cart
+              <i class="fas fa-shopping-cart"></i>
+            </button>
+            <ng-template #outOfStockButton>
+              <button mat-button class="outStock"> Out of Stock
+                <i class="fas fa-ban"></i>
+              </button>
+            </ng-template>
           </div>
-     
-      </ul>
-    </div>
-  </div>
+        </div>
+      </div>
 
+    </ul>
+  </div>
+</div>
