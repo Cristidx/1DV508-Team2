@@ -1,17 +1,30 @@
-import { Component, OnInit, Input, AfterViewInit, AfterContentInit } from '@angular/core';
-import { DataCloudService } from '../../services/data-cloud.service';
-import { CrudService } from '../../services/crud.service';
-import {movieData} from '../../model/data';
-import {categoriesData} from '../../model/data';
-import { Title } from '@angular/platform-browser';
-import { DataService } from '../../services/data.service';
-import { trigger,state,style,transition,animate,keyframes } from '@angular/animations';
-import { templateJitUrl } from '@angular/compiler';
-import { Observable } from 'rxjs/Observable';
-import { CartService } from '../../services/cart.service';
-import * as Fuse from 'fuse-js-latest';
-import * as Fuse2 from 'fuse-js-latest';
-import * as Fuse3 from 'fuse-js-latest';
+import {
+  Component,
+  OnInit,
+  Input,
+  AfterViewInit,
+  AfterContentInit
+} from "@angular/core";
+import { DataCloudService } from "../../services/data-cloud.service";
+import { CrudService } from "../../services/crud.service";
+import { movieData } from "../../model/data";
+import { categoriesData } from "../../model/data";
+import { Title } from "@angular/platform-browser";
+import { DataService } from "../../services/data.service";
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+  keyframes
+} from "@angular/animations";
+import { templateJitUrl } from "@angular/compiler";
+import { Observable } from "rxjs/Observable";
+import { CartService } from "../../services/cart.service";
+import * as Fuse from "fuse-js-latest";
+import * as Fuse2 from "fuse-js-latest";
+import * as Fuse3 from "fuse-js-latest";
 @Component({
   selector: "app-data-cloud",
   templateUrl: "./data-cloud.component.html",
@@ -36,96 +49,92 @@ import * as Fuse3 from 'fuse-js-latest';
     ])
   ]
 })
-export class DataCloudComponent implements OnInit, AfterViewInit{
-state: string = 'small';
+export class DataCloudComponent implements OnInit, AfterViewInit {
+  state: string = "small";
 
-moviesDOTD: movieData[];
+  moviesDOTD: movieData[] = [];
 
-movies: movieData[];
-allMovies: movieData[];
+  movies: movieData[];
+  allMovies: movieData[];
 
-movie: movieData[];
-categories: categoriesData[];
-movie2 = {
-  title:'',
-  genre:'',
-  imageURL:'',
-  price:0,
-  year:0,
-  plot:'',
-  stock:0,
-  director:'',
-  dateAdded:'',
-  rating:'',
-  DOTDstatus: false,
-  DOTDprice: 0
-}
-title;
+  movie: movieData[];
+  categories: categoriesData[];
+  movie2 = {
+    title: "",
+    genre: "",
+    imageURL: "",
+    price: 0,
+    year: 0,
+    plot: "",
+    stock: 0,
+    director: "",
+    dateAdded: "",
+    rating: "",
+    DOTDstatus: false,
+    DOTDprice: 0
+  };
+  title;
 
-fuse: Fuse;
-options = {
-  shouldSort: true,
-  threshold: 0.2,
-  location: 0,
-  distance: 100,
-  maxPatternLength: 32,
-  minMatchCharLength: 1,
-  keys: [
-    "title",
-    "director"
-  ]
-};
+  fuse: Fuse;
+  options = {
+    shouldSort: true,
+    threshold: 0.2,
+    location: 0,
+    distance: 100,
+    maxPatternLength: 32,
+    minMatchCharLength: 1,
+    keys: ["title", "director"]
+  };
 
-fuse2: Fuse2;
-options2 = {
-  shouldSort: true,
-  threshold: 0.2,
-  location: 0,
-  distance: 100,
-  maxPatternLength: 32,
-  minMatchCharLength: 1,
-  keys: [
-    "genre",
-  ]
-};
+  fuse2: Fuse2;
+  options2 = {
+    shouldSort: true,
+    threshold: 0.2,
+    location: 0,
+    distance: 100,
+    maxPatternLength: 32,
+    minMatchCharLength: 1,
+    keys: ["genre"]
+  };
 
-fuse3: Fuse3;
-options3 = {
-  shouldSort: true,
-  threshold: 0.2,
-  location: 0,
-  distance: 100,
-  maxPatternLength: 32,
-  minMatchCharLength: 1,
-  keys: [
-    "rating",
-  ]
-};
+  fuse3: Fuse3;
+  options3 = {
+    shouldSort: true,
+    threshold: 0.2,
+    location: 0,
+    distance: 100,
+    maxPatternLength: 32,
+    minMatchCharLength: 1,
+    keys: ["rating"]
+  };
 
-selectedGenre:string;
-searchTarget: string;
+  selectedGenre: string;
+  searchTarget: string;
 
-showMovieCheck: boolean=true;
-stars: number = -1;
+  showMovieCheck: boolean = true;
+  stars: number = -1;
 
-  constructor(public dataCloudService: DataCloudService, private data: DataService,private cartService: CartService) {
-
-   }
+  constructor(
+    public dataCloudService: DataCloudService,
+    private data: DataService,
+    private cartService: CartService
+  ) {}
 
   ngOnInit() {
-   this.selectedGenre = '';
+    this.selectedGenre = "";
 
     this.dataCloudService.getCategories().subscribe(Catdata => {
       this.categories = Catdata;
     });
 
-    this.data.currentHeaderGenreSelected.subscribe(selectedGenre=> {
+    this.data.currentHeaderGenreSelected.subscribe(selectedGenre => {
       this.selectedGenre = selectedGenre;
 
       this.filterMovie(this.selectedGenre);
-
     });
-    this.data.currentListCheck.subscribe(showMovieCheck=>this.showMovieCheck = showMovieCheck);
+    this.data.currentListCheck.subscribe(
+      showMovieCheck => (this.showMovieCheck = showMovieCheck)
+    );
 
     this.data.currentHeaderGenreSelected.subscribe(selectedGenre => {
       this.selectedGenre = selectedGenre;
@@ -141,38 +150,32 @@ stars: number = -1;
       this.filterMovies(this.searchTarget);
     });
 
-    if (this.selectedGenre.length > 0){
-      this.dataCloudService.getMovisByCat(this.selectedGenre)
-      .then((movieData) => {
-        this.movie = movieData;
-      })
-      .catch((error) => console.log(error));
+    if (this.selectedGenre.length > 0) {
+      this.dataCloudService
+        .getMovisByCat(this.selectedGenre)
+        .then(movieData => {
+          this.movie = movieData;
+        })
+        .catch(error => console.log(error));
+    }
   }
-  }
-
-
 
   ngAfterViewInit() {
     this.dataCloudService.getMovie().subscribe(Moviedata => {
       this.showMovieCheck = true;
       this.allMovies = Moviedata;
 
-
-      for (var i=1; i<this.allMovies.length; i++){
-        if (this.allMovies[i].DOTDstatus){
-            this.moviesDOTD.push(this.allMovies[i]);
+      for (var i = 1; i < this.allMovies.length; i++) {
+        if (this.allMovies[i].DOTDstatus) {
+          this.moviesDOTD.push(this.allMovies[i]);
         }
       }
-
 
       this.movies = this.allMovies;
       this.fuse = new Fuse(this.movies, this.options);
       this.fuse2 = new Fuse2(this.movies, this.options2);
       this.fuse3 = new Fuse3(this.movies, this.options3);
     });
-
-
-
   }
 
   filterMovies(searchTarget: string) {
@@ -184,7 +187,7 @@ stars: number = -1;
   }
 
   filterMovie(genreFilter: string) {
-    if (!(genreFilter === '')) {
+    if (!(genreFilter === "")) {
       this.movies = this.fuse2.search(genreFilter);
     } else {
       this.movies = this.allMovies;
@@ -193,7 +196,7 @@ stars: number = -1;
 
   filterStars(searchTarget: number) {
     if (!(searchTarget === 0)) {
-  //    this.movies <= this.fuse3.search(searchTarget);
+      //    this.movies <= this.fuse3.search(searchTarget);
     } else {
       this.movies = this.allMovies;
     }
@@ -225,12 +228,13 @@ stars: number = -1;
       })
       .catch(error => console.log(error)); */
 
-    this.dataCloudService.getMovisByCat(this.selectedGenre)
-    .then((movieData) => {
-      this.movie = movieData;
-      this.filterStars(this.stars);
-    })
-    .catch((error) => console.log(error));
+    this.dataCloudService
+      .getMovisByCat(this.selectedGenre)
+      .then(movieData => {
+        this.movie = movieData;
+        this.filterStars(this.stars);
+      })
+      .catch(error => console.log(error));
   }
 
   resetStars($event) {
