@@ -55,6 +55,7 @@ export class DataCloudService {
   getCategories() {
     return this.categoriesData;
   }
+  
   getMovie() {
     return this.movieData;
   }
@@ -141,7 +142,7 @@ export class DataCloudService {
         movieData.forEach(element => {
           if (element.genre === genre) {
             customerArray.push(element);
-          } 
+          }
         });
       });
     return customerArray;
@@ -152,7 +153,7 @@ export class DataCloudService {
       const sub = this.movieData.subscribe((movieData) => {
         resolve(movieData);
         sub.unsubscribe();
-      }); 
+      });
     });
   }
 

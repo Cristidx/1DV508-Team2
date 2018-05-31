@@ -16,14 +16,18 @@ export class CarrouselComponent implements AfterViewInit {
   moviesDOTD: movieData[];
 
   ngOnInit() {
-   
+    this.moviesDOTD = [];
   }
 
   ngAfterViewInit() {
     this.dataCloudService.getMovie().subscribe(Moviedata => {
-      this.movies = Moviedata; 
+      this.movies = Moviedata;
+      for (var i = 1; i < this.movies.length; i++) {
+        if (this.movies[i].DOTDstatus) {
+          this.moviesDOTD.push(this.movies[i]);
+        }
+      }
     });
-    console.log(this.movies);
 
     this.showSlides(1);
   }
