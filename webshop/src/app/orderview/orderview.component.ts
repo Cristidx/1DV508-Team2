@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit } from "@angular/core";
-import { Order, Status } from "../model/order";
+import { Order } from "../model/order";
 import { AuthService } from "../services/auth.service";
 import { movieData } from "../model/data";
 import { Address } from "../model/address";
@@ -97,7 +97,7 @@ export class OrderviewComponent implements OnInit {
       orderDate: this.cloudSerivce.getDate(date),
       uid: this.authService.getUid(),
       items: cart,
-      status: Status.New,
+      status: "New",
       price: price,
       address: this.address
     };

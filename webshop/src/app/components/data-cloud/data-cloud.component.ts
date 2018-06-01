@@ -123,7 +123,6 @@ export class DataCloudComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.selectedGenre = "";
-
     this.dataCloudService.getCategories().subscribe(Catdata => {
       this.categories = Catdata;
     });
@@ -171,10 +170,9 @@ export class DataCloudComponent implements OnInit, AfterViewInit {
           this.moviesDOTD.push(this.allMovies[i]);
         }
       }
-
-      console.log(this.moviesDOTD);
-
-      this.movies = this.allMovies;
+      this.movies = this.allMovies.sort((x, y) => {
+        return (x.DOTDstatus === y.DOTDstatus)? 0 : x? -1 : 1;
+      });
       this.fuse = new Fuse(this.movies, this.options);
       this.fuse2 = new Fuse2(this.movies, this.options2);
       this.fuse3 = new Fuse3(this.movies, this.options3);

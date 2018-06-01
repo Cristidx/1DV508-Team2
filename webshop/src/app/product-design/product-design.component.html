@@ -15,7 +15,7 @@
           <h4 *ngIf="movie.stock > 0; else notInStock">Available</h4>
           <ng-template #notInStock><h4>Not available</h4></ng-template>
           <h4 *ngIf="dealOfTheDay == true; else standardTemplate">{{ salePrice }} sek <span class="old-price">{{ movie.price }} sek</span></h4>
-          <ng-template #standardTemplate><h4>{{ movie.price }}</h4></ng-template>
+          <ng-template #standardTemplate><h4>{{ movie.price }} sek</h4></ng-template>
           <div class="rating">
             <app-rating [movieID]="movie.id"></app-rating>
           </div>

@@ -10,9 +10,7 @@ import { Router } from "@angular/router";
 import { OrderService } from "../services/order.service";
 import { DataService } from "../services/data.service";
 import { Order } from "../model/order";
-import { Status } from "../model/order";
 import { User } from "../model/user";
-
 import { Observable } from "rxjs/Observable";
 import { DataCloudService } from "../services/data-cloud.service";
 
@@ -22,9 +20,8 @@ import { DataCloudService } from "../services/data-cloud.service";
   styleUrls: ["./profile.component.css"],
   providers: [OrderService]
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements AfterViewInit {
   showsOrders = false;
-
   orders: Order[];
   currentlistCheck: boolean = false;
   user: User = null;
@@ -37,7 +34,7 @@ export class ProfileComponent implements OnInit {
     private dataService: DataCloudService
   ) {}
 
-  ngOnInit() {
+  ngAfterViewInit() {
     this.authService.getCurrentlySignedInUser().subscribe(user => {
       this.user = user;
       this.orderService.getOrdersByUid(user.uid).then(orders => {

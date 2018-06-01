@@ -5,9 +5,9 @@ import { Address } from "./address";
 export interface Order {
     uid?: string;
     orderDate?: string;
-    address?: Address;        
+    address?: Address;
     items?: any[];
-    status?: Status;
+    status?: string;
     price?: number;
     id?: string;
 }

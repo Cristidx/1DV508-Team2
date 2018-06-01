@@ -3,7 +3,7 @@ import { OrderService } from '../services/order.service';
 import { DataService } from '../services/data.service';
 import { unescapeIdentifier } from '@angular/compiler';
 import { DataCloudService } from '../services/data-cloud.service';
-import { Order, Status } from '../model/order';
+import { Order } from '../model/order';
 import { Address } from '../model/address';
 import { element } from 'protractor';
 import { User } from '../model/user';
@@ -24,7 +24,7 @@ export class OrderDetailsComponent implements OnInit {
   order: Order; /* to modify the oder */
   orders: Order[];
   user: User;
-  status: Status;
+  status: string;
   uid: string;
   constructor(
     private orderService: OrderService,

@@ -56,6 +56,11 @@ img {
 
 }
 
+.box > h5 {
+  text-align: center;
+  color: black;
+}
+
 .outOfStock {
   margin: 1% 0% 0% 20%;
   background: #3e423e;
