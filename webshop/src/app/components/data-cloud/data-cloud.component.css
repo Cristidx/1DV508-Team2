@@ -51,6 +51,9 @@ img {
   width: 153px;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: black;
+  text-align: center;
+
 }
 
 .outOfStock {
